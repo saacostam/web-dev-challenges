@@ -1,14 +1,11 @@
+import { Hero } from "../../branding";
 import { ChallengeCard, CHALLENGES } from "../../challenges";
-import { Divider, Header, Paragraph, SubHeader } from "../../core.components";
+import { Divider, Paragraph, SubHeader } from "../../core.components";
 
 export function HomeView() {
   return (
     <>
-      <Header className="text-center">Welcome to React-Challenges</Header>
-      <Paragraph>
-        A personal compendium of small projects and challenges that I’ve built
-        to explore and deepen my understanding of React development.
-      </Paragraph>
+      <Hero />
       <Divider />
       <section className="flex">
         {CHALLENGES.map((challenge) => (

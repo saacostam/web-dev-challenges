@@ -5,7 +5,7 @@ export function MainLayout({ children }: PropsWithChildren) {
   return (
     <>
       <Navbar>
-        <main className="max-w-5xl mx-auto p-8">{children}</main>
+        <main className="max-w-5xl mx-auto p-8 text-neutral">{children}</main>
       </Navbar>
     </>
   );
