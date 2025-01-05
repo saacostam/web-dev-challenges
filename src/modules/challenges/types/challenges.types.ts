@@ -11,7 +11,7 @@ export interface TChallenge {
   id: string;
   name: string;
   description: string;
-  component: FC;
+  Component: FC;
   difficulty: TChallengeDifficulty;
   Icon?: TIcon;
 }
