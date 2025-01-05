@@ -1,6 +1,7 @@
 export * from "./divider";
 export * from "./header";
 export * from "./input";
+export * from "./loader";
 export * from "./logo";
 export * from "./pagination";
 export * from "./paragraph";

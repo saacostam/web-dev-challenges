@@ -1,6 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { TRoute, useGetRoutes } from "../../router";
 import { TChallenge } from "../types";
+import { Link } from "react-router-dom";
 
 export interface TChallengeCardProps {
   challenge: TChallenge;
@@ -19,15 +20,15 @@ export function ChallengeCard({ challenge, className }: TChallengeCardProps) {
         </h2>
         <p>{challenge.description}</p>
         <div className="card-actions justify-end">
-          <a
+          <Link
             className="btn btn-primary"
-            href={router.getHref({
+            to={router.getHref({
               type: TRoute.CHALLENGE_BY_ID,
               id: challenge.id,
             })}
           >
             Check it out!
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,11 +1,10 @@
 import { ClockIcon } from "../../icons";
-import { getUuid } from "../../string.utils";
 import { DumbFC } from "../components";
 import { TChallenge, TChallengeDifficulty } from "../types";
 
 export const CHALLENGES: TChallenge[] = [
   {
-    id: getUuid(),
+    id: "pomodoro-clock",
     name: "Pomodoro Clock",
     description:
       "Pomodoro Timer for Productivity with session and break intervals.",
@@ -14,7 +13,7 @@ export const CHALLENGES: TChallenge[] = [
     Icon: ClockIcon,
   },
   {
-    id: getUuid(),
+    id: "pomodoro-clock-2",
     name: "Pomodoro Clock",
     description:
       "Pomodoro Timer for Productivity with session and break intervals.",
@@ -23,7 +22,7 @@ export const CHALLENGES: TChallenge[] = [
     Icon: ClockIcon,
   },
   {
-    id: getUuid(),
+    id: "pomodoro-clock-3",
     name: "Pomodoro Clock",
     description:
       "Pomodoro Timer for Productivity with session and break intervals.",
@@ -32,7 +31,7 @@ export const CHALLENGES: TChallenge[] = [
     Icon: ClockIcon,
   },
   {
-    id: getUuid(),
+    id: "pomodoro-clock-4",
     name: "Pomodoro Clock",
     description:
       "Pomodoro Timer for Productivity with session and break intervals.",
