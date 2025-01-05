@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { TIcon } from "../../icons";
 
 export enum TChallengeDifficulty {
   EASY = "Easy",
@@ -12,5 +13,5 @@ export interface TChallenge {
   description: string;
   component: FC;
   difficulty: TChallengeDifficulty;
-  icon?: FC;
+  icon?: TIcon;
 }

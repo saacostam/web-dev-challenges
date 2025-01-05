@@ -1,16 +1,29 @@
 import { Hero } from "../../branding";
 import { ChallengeCard, CHALLENGES } from "../../challenges";
-import { Divider, Paragraph, SubHeader } from "../../core.components";
+import {
+  Divider,
+  Pagination,
+  Paragraph,
+  SubHeader,
+} from "../../core.components";
 
 export function HomeView() {
   return (
     <>
       <Hero />
       <Divider />
-      <section className="flex">
-        {CHALLENGES.map((challenge) => (
-          <ChallengeCard challenge={challenge} />
-        ))}
+      <section>
+        <div className="bg-primary text-primary-content h-16 w-full rounded-2xl mb-4 flex items-center justify-center font-bold">
+          🚧 FILTER 🚧
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          {CHALLENGES.map((challenge) => (
+            <ChallengeCard challenge={challenge} />
+          ))}
+        </div>
+        <div className="flex justify-center">
+          <Pagination />
+        </div>
       </section>
       <Divider />
       <Paragraph>

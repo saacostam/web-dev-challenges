@@ -11,4 +11,28 @@ export const CHALLENGES: TChallenge[] = [
     component: DumbFC,
     difficulty: TChallengeDifficulty.EASY,
   },
+  {
+    id: getUuid(),
+    name: "Pomodoro Clock",
+    description:
+      "Pomodoro Timer for Productivity with session and break intervals.",
+    component: DumbFC,
+    difficulty: TChallengeDifficulty.EASY,
+  },
+  {
+    id: getUuid(),
+    name: "Pomodoro Clock",
+    description:
+      "Pomodoro Timer for Productivity with session and break intervals.",
+    component: DumbFC,
+    difficulty: TChallengeDifficulty.EASY,
+  },
+  {
+    id: getUuid(),
+    name: "Pomodoro Clock",
+    description:
+      "Pomodoro Timer for Productivity with session and break intervals.",
+    component: DumbFC,
+    difficulty: TChallengeDifficulty.EASY,
+  },
 ];
