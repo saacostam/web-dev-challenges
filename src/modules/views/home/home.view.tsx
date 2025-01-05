@@ -4,19 +4,30 @@ import {
   Divider,
   Pagination,
   Paragraph,
+  Select,
   SubHeader,
 } from "../../core.components";
+import { SearchBar, SquareClearFilterCta } from "../../filters";
+import { TRoute, useGetRoutes } from "../../router";
 
 export function HomeView() {
+  const getRoutes = useGetRoutes();
+
   return (
     <>
       <Hero />
       <Divider />
       <section>
-        <div className="bg-primary text-primary-content h-16 w-full rounded-2xl mb-4 flex items-center justify-center font-bold">
-          🚧 FILTER 🚧
+        <div className="py-4 flex items-center gap-4">
+          <SquareClearFilterCta
+            clearFilterHref={getRoutes.getHref({
+              type: TRoute.HOME,
+            })}
+          />
+          <SearchBar />
+          <Select description="Difficulty" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
           {CHALLENGES.map((challenge) => (
             <ChallengeCard challenge={challenge} />
           ))}
