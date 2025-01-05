@@ -17,7 +17,7 @@ export function ChallengeCard({ challenge, className }: TChallengeCardProps) {
         <p>{challenge.description}</p>
         <div className="card-actions justify-end">
           <a
-            className="btn btn-accent"
+            className="btn btn-primary"
             href={router.getHref({
               type: TRoute.CHALLENGE_BY_ID,
               id: challenge.id,
