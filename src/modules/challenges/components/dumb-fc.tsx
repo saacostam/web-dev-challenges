@@ -1,3 +1,7 @@
 export function DumbFC() {
-  return <></>;
+  return (
+    <>
+      <h1>Component not implemented yet!</h1>
+    </>
+  );
 }
