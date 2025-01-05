@@ -1,20 +1,21 @@
 import { ChallengeCard, CHALLENGES } from "../../challenges";
-import { Header, Paragraph, SubHeader } from "../../core.components";
+import { Divider, Header, Paragraph, SubHeader } from "../../core.components";
 
 export function HomeView() {
   return (
     <>
-      <Header className="text-center">React Challenges</Header>
+      <Header className="text-center">Welcome to React-Challenges</Header>
       <Paragraph>
-        Welcome to React-Challenges, a personal compendium of small projects and
-        challenges that I’ve built to explore and deepen my understanding of
-        React development.
+        A personal compendium of small projects and challenges that I’ve built
+        to explore and deepen my understanding of React development.
       </Paragraph>
-      <section className="flex mb-8">
+      <Divider />
+      <section className="flex">
         {CHALLENGES.map((challenge) => (
           <ChallengeCard challenge={challenge} />
         ))}
       </section>
+      <Divider />
       <Paragraph>
         Each entry in this collection reflects a specific concept, feature, or
         tool within the React ecosystem. This repository serves as a record of
