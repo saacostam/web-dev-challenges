@@ -6,16 +6,12 @@ export type SelectProps = InputHTMLAttributes<HTMLSelectElement> & {
 };
 
 export function Select(props: SelectProps) {
+  const { className, description, ...rest } = props;
+
   return (
-    <select
-      {...props}
-      className={twMerge(
-        "select select-bordered w-full max-w-xs",
-        props.className,
-      )}
-    >
+    <select {...rest} className={twMerge("select select-bordered", className)}>
       <option disabled selected>
-        {props.description}
+        {description}
       </option>
       <option>Easy</option>
       <option>Medium</option>

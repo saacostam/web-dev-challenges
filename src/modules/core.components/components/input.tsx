@@ -7,15 +7,17 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export function Input(props: InputProps) {
+  const { wrapperClassName, icon, ...rest } = props;
+
   return (
     <label
       className={twMerge(
         "input input-bordered flex items-center gap-2",
-        props.wrapperClassName,
+        wrapperClassName,
       )}
     >
-      <input {...props} />
-      {props.icon}
+      <input {...rest} />
+      {icon}
     </label>
   );
 }
