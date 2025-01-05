@@ -8,14 +8,20 @@ import { TRoute, useGetRoutes } from "../../../router";
 export function Navbar({ children }: PropsWithChildren) {
   const getRoutes = useGetRoutes();
 
-  const homeHref = useMemo(() => getRoutes.getHref({type: TRoute.HOME}), [getRoutes])
-  const NAVBAR_NAVIGATION_ITEMS: NavbarNavigationItem[] = useMemo(() => [
-    {
-      id: "home",
-      label: "Home",
-      href: homeHref,
-    },
-  ], [homeHref]);
+  const homeHref = useMemo(
+    () => getRoutes.getHref({ type: TRoute.HOME }),
+    [getRoutes],
+  );
+  const NAVBAR_NAVIGATION_ITEMS: NavbarNavigationItem[] = useMemo(
+    () => [
+      {
+        id: "home",
+        label: "Home",
+        href: homeHref,
+      },
+    ],
+    [homeHref],
+  );
 
   return (
     <div className="drawer">
@@ -33,10 +39,7 @@ export function Navbar({ children }: PropsWithChildren) {
             </label>
           </div>
           <div className="mx-2 flex-1 px-2">
-            <Link
-              className="btn btn-square btn-ghost w-fit px-2"
-              to={homeHref}
-            >
+            <Link className="btn btn-square btn-ghost w-fit px-2" to={homeHref}>
               <Logo />
             </Link>
           </div>

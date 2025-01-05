@@ -1,9 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import { TIcon } from "../types";
 
-export const CodeBracketIcon: TIcon = ({
-  className,
-}) => {
+export const CodeBracketIcon: TIcon = ({ className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
