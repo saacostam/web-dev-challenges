@@ -7,23 +7,15 @@ import {
   Select,
   SubHeader,
 } from "../../core.components";
-import { SearchBar, SquareClearFilterCta } from "../../filters";
-import { TRoute, useGetRoutes } from "../../router";
+import { SearchBar } from "../../filters";
 
 export function HomeView() {
-  const getRoutes = useGetRoutes();
-
   return (
     <>
       <Hero />
       <Divider />
       <section>
         <div className="py-4 flex flex-wrap items-center gap-4">
-          <SquareClearFilterCta
-            clearFilterHref={getRoutes.getHref({
-              type: TRoute.HOME,
-            })}
-          />
           <SearchBar />
           <Select description="Difficulty" className="w-full sm:w-64" />
         </div>
