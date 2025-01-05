@@ -15,7 +15,7 @@ export function ChallengeCard({ challenge, className }: TChallengeCardProps) {
     <div className={twMerge("card bg-base-100 shadow-xl", className)}>
       <div className="card-body">
         <h2 className="card-title">
-          {challenge.Icon ? <challenge.Icon className="size-5" /> : null}
+          {challenge.Icon ? <challenge.Icon className="size-6" /> : null}
           {challenge.name}
         </h2>
         <p>{challenge.description}</p>
