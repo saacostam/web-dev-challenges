@@ -1,3 +1,4 @@
+export * from "./clock-icon";
 export * from "./code-bracket-icon";
 export * from "./filter-icon";
 export * from "./search-icon";

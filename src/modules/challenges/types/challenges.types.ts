@@ -13,5 +13,5 @@ export interface TChallenge {
   description: string;
   component: FC;
   difficulty: TChallengeDifficulty;
-  icon?: TIcon;
+  Icon?: TIcon;
 }
