@@ -1,6 +1,10 @@
 import { ClientStorage, ClientStorageKeys } from "../../client-storage";
 import { DEFAULT_SETTINGS, SETTINGS_CONFIG } from "../constants";
-import { TPomodoroSettings, TPomodoroSettingsReducer } from "../types";
+import {
+  TPomodoroSettings,
+  TPomodoroSettingsReducer,
+  TPomodoroTimerState,
+} from "../types";
 
 export const pomodoroSettingsReducer: TPomodoroSettingsReducer = (
   state,
@@ -61,9 +65,38 @@ export const pomodoroSettingsReducer: TPomodoroSettingsReducer = (
   }
 };
 
+function validateUnsanitizedPomodoroSettings(
+  data: unknown,
+): data is TPomodoroSettings {
+  if (typeof data !== "object" || data === null) return false;
+  const settings = data as TPomodoroSettings;
+
+  if (typeof settings.durations !== "object" || settings.durations === null)
+    return false;
+
+  for (const state of Object.values(TPomodoroTimerState)) {
+    if (typeof settings.durations[state] !== "number") return false;
+  }
+
+  if (
+    typeof settings.longBreakInterval !== "number" ||
+    typeof settings.volume !== "number"
+  )
+    return false;
+
+  if (settings.notification) {
+    if (typeof settings.notification.secTimeBefore !== "number") return false;
+  }
+
+  return true;
+}
+
 export function initSettings(): TPomodoroSettings {
-  const unsanitizedSettings = ClientStorage.unsafeGet<TPomodoroSettings>(
+  const unsanitizedSettings = ClientStorage.get(
     ClientStorageKeys.POMODORO_SETTINGS,
   );
-  return unsanitizedSettings || DEFAULT_SETTINGS;
+
+  if (!validateUnsanitizedPomodoroSettings(unsanitizedSettings))
+    return DEFAULT_SETTINGS;
+  return unsanitizedSettings;
 }
