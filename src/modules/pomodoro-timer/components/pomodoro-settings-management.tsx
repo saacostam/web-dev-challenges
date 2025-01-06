@@ -65,7 +65,7 @@ export function PomodoroSettingsManagements({
           TPomodoroTimerState.SHORT_BREAK,
           TPomodoroTimerState.LONG_BREAK,
         ].map((state) => (
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center" key={state}>
             <span className="mb-1">{state}</span>
             <Input
               key={state}
