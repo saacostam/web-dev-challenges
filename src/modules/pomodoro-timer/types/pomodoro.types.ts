@@ -63,8 +63,52 @@ export type TPomodoroSettingsReducer = (
 
 export interface TPomodoroTimerSnapshot {
   breakCount: number;
-  lastTransitionDate: Date;
+  isPaused: boolean;
+  secondsCounter: number;
   settings: TPomodoroSettings;
   state: TPomodoroTimerState;
   tasks: TTask[];
 }
+
+export type TPomodoroTimerSnapshotAction =
+  | {
+      type: "break-count";
+      payload: {
+        breakCount: number;
+      };
+    }
+  | {
+      type: "is-paused";
+      payload: {
+        isPaused: boolean;
+      };
+    }
+  | {
+      type: "seconds-counter";
+      payload: {
+        secondsCounter: number;
+      };
+    }
+  | {
+      type: "settings";
+      payload: {
+        settings: TPomodoroSettings;
+      };
+    }
+  | {
+      type: "state";
+      payload: {
+        state: TPomodoroTimerState;
+      };
+    }
+  | {
+      type: "tasks";
+      payload: {
+        tasks: TTask[];
+      };
+    };
+
+export type TPomodoroTimerSnapshotReducer = (
+  snapshot: TPomodoroTimerSnapshot,
+  action: TPomodoroTimerSnapshotAction,
+) => TPomodoroTimerSnapshot;
