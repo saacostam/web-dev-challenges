@@ -2,8 +2,11 @@ import { Divider, SubHeader, useModal } from "../../core.components";
 import { Cog6Tooth } from "../../icons";
 import { ALL_POMODORO_TIMER_STATES } from "../constants";
 import { usePomodoroTimer } from "../hooks";
-import { PomodoroSettingsManagements } from "./pomodoro-settings-management";
-import { PomodoroTimerStateTabs } from "./pomodoro-timer-state-tabs";
+import {
+  PomodoroSettingsManagements,
+  PomodoroTimerCounter,
+  PomodoroTimerStateTabs,
+} from "../components";
 
 export function PomodoroTimer() {
   const { settings, reduceSettings, snapshot, reduceSnapshot } =
@@ -30,6 +33,10 @@ export function PomodoroTimer() {
           onClick: (state) =>
             reduceSnapshot({ type: "state", payload: { state: state } }),
         }))}
+      />
+      <PomodoroTimerCounter
+        className="py-6"
+        secondsLeft={50_000 - snapshot.secondsCounter}
       />
 
       {/* MODALS */}
