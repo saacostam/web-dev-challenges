@@ -13,10 +13,7 @@ export function PomodoroTimerPlayback({
 }: PomodoroTimerPlaybackProps) {
   return (
     <div className="grid grid-cols-3 items-center">
-      <button
-        className="btn btn-lg btn-primary col-start-2"
-        onClick={onTogglePause}
-      >
+      <button className="btn btn-primary col-start-2" onClick={onTogglePause}>
         {isPaused ? "Start" : "Pause"}
       </button>
       {!isPaused && (
