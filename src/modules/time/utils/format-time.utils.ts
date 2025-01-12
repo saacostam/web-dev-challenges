@@ -1,5 +1,7 @@
 export const FormatTimeUtils = {
-  destructureFromSeconds: (totalSeconds: number) => {
+  destructureFromSeconds: (_totalSeconds: number) => {
+    const totalSeconds = Math.max(0, _totalSeconds);
+
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = Math.floor(totalSeconds % 60);

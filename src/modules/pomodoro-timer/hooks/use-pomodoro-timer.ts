@@ -4,6 +4,7 @@ import {
   pomodoroSettingsReducer,
   initSnapshot,
   snapshotReducer,
+  getCurrentStepDurationInSeconds,
 } from "../domain";
 import {
   TPomodoroSettingsReducer,
@@ -23,6 +24,11 @@ export function usePomodoroTimer() {
     initSnapshot(settings),
   );
 
+  const currentStepDurationInSeconds = useMemo(
+    () => getCurrentStepDurationInSeconds({ snapshot }),
+    [snapshot],
+  );
+
   const onTimerEnd = useCallback(
     () =>
       reduceSnapshot({
@@ -31,7 +37,7 @@ export function usePomodoroTimer() {
     [],
   );
   useXSecondsTimer({
-    secondsInterval: 1,
+    secondsInterval: 0.5,
     onTimerEnd,
   });
 
@@ -54,11 +60,18 @@ export function usePomodoroTimer() {
 
   return useMemo(
     () => ({
+      currentStepDurationInSeconds,
       reduceSettings,
       reduceSnapshot,
       settings,
       snapshot,
     }),
-    [reduceSettings, reduceSnapshot, settings, snapshot],
+    [
+      currentStepDurationInSeconds,
+      reduceSettings,
+      reduceSnapshot,
+      settings,
+      snapshot,
+    ],
   );
 }

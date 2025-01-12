@@ -11,8 +11,13 @@ import {
 } from "../components";
 
 export function PomodoroTimer() {
-  const { settings, reduceSettings, snapshot, reduceSnapshot } =
-    usePomodoroTimer();
+  const {
+    currentStepDurationInSeconds,
+    settings,
+    reduceSettings,
+    snapshot,
+    reduceSnapshot,
+  } = usePomodoroTimer();
 
   const { Modal: SettingsModal, openModal: openSettingsModal } = useModal();
 
@@ -38,7 +43,7 @@ export function PomodoroTimer() {
       />
       <PomodoroTimerCounter
         className="py-6 sm:py-12"
-        secondsLeft={50_000 - snapshot.secondsCounter}
+        secondsLeft={currentStepDurationInSeconds - snapshot.secondsCounter}
       />
       <PomodoroTimerPlayback
         isPaused={snapshot.isPaused}

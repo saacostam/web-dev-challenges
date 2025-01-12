@@ -44,14 +44,39 @@ export const snapshotReducer: TPomodoroTimerSnapshotReducer = (
       };
     }
     case "update-counter": {
-      const prev = new Date(state.lastCounterUpdateTime);
-      const delta = Date.now() - prev.getTime();
-
-      return {
+      const newState = {
         ...state,
-        secondsCounter: state.secondsCounter + delta / 1000,
-        lastCounterUpdateTime: Date.now(),
       };
+
+      const prev = new Date(state.lastCounterUpdateTime);
+      newState.lastCounterUpdateTime = Date.now();
+
+      const timeDelta = Math.max(0, Date.now() - prev.getTime());
+      const milisecondsToAdd = newState.isPaused ? 0 : timeDelta;
+      newState.secondsCounter = state.secondsCounter + milisecondsToAdd / 1000;
+
+      const currentStepHasCompleted =
+        newState.secondsCounter >
+        getCurrentStepDurationInSeconds({ snapshot: newState });
+      if (currentStepHasCompleted) {
+        newState.secondsCounter = 0;
+
+        // Transition to next state
+        if (state.state !== TPomodoroTimerState.WORK) {
+          newState.breakCount++;
+          newState.state = TPomodoroTimerState.WORK;
+        } else {
+          const isNextLongBreak =
+            Math.max(state.breakCount, 1) % state.settings.longBreakInterval ===
+            state.settings.longBreakInterval - 1;
+
+          newState.state = isNextLongBreak
+            ? TPomodoroTimerState.LONG_BREAK
+            : TPomodoroTimerState.SHORT_BREAK;
+        }
+      }
+
+      return newState;
     }
   }
 };
@@ -108,4 +133,10 @@ export function initSnapshot(
     ...unsanitizedSnapshot,
     settings: settings,
   };
+}
+
+export function getCurrentStepDurationInSeconds(args: {
+  snapshot: TPomodoroTimerSnapshot;
+}): number {
+  return args.snapshot.settings.durations[args.snapshot.state] * 60;
 }
