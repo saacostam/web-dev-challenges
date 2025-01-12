@@ -5,7 +5,20 @@ export const DEFAULT_SNAPSHOT: Omit<TPomodoroTimerSnapshot, "settings"> = {
   isPaused: true,
   secondsCounter: 0,
   state: TPomodoroTimerState.WORK,
-  tasks: [],
+  tasks: [
+    {
+      name: "Task 1",
+      checked: true,
+    },
+    {
+      name: "Task 2",
+      checked: false,
+    },
+    {
+      name: "Task 3",
+      checked: false,
+    },
+  ],
 };
 
 export const ALL_POMODORO_TIMER_STATES = Object.values(TPomodoroTimerState);

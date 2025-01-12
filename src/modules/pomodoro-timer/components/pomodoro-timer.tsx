@@ -4,6 +4,7 @@ import { ALL_POMODORO_TIMER_STATES } from "../constants";
 import { usePomodoroTimer } from "../hooks";
 import {
   PomodoroSettingsManagements,
+  PomodoroTasks,
   PomodoroTimerCounter,
   PomodoroTimerPlayback,
   PomodoroTimerStateTabs,
@@ -49,6 +50,15 @@ export function PomodoroTimer() {
           })
         }
       />
+      <Divider />
+      <SubHeader>Tasks</SubHeader>
+      <PomodoroTasks
+        tasks={snapshot.tasks}
+        createTask={(...args) => console.log("create task", ...args)}
+        deleteTask={(...args) => console.log("delete task", ...args)}
+        updateTask={(...args) => console.log("update task", ...args)}
+      />
+      <div className="h-4"></div>
 
       {/* MODALS */}
       <SettingsModal>
