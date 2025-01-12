@@ -47,7 +47,7 @@ export function PomodoroTimer() {
       />
       <PomodoroTimerPlayback
         isPaused={snapshot.isPaused}
-        onSkip={() => {}}
+        onSkip={() => reduceSnapshot({ type: "skip" })}
         onTogglePause={() =>
           reduceSnapshot({
             type: "is-paused",

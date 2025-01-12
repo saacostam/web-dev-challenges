@@ -28,6 +28,16 @@ export const snapshotReducer: TPomodoroTimerSnapshotReducer = (
         settings: action.payload.settings,
       };
     }
+    case "skip": {
+      const currentStepDurationInSeconds = getCurrentStepDurationInSeconds({
+        snapshot: state,
+      });
+
+      return {
+        ...state,
+        secondsCounter: currentStepDurationInSeconds,
+      };
+    }
     case "state": {
       return {
         ...state,
@@ -138,5 +148,5 @@ export function initSnapshot(
 export function getCurrentStepDurationInSeconds(args: {
   snapshot: TPomodoroTimerSnapshot;
 }): number {
-  return args.snapshot.settings.durations[args.snapshot.state] * 60;
+  return args.snapshot.settings.durations[args.snapshot.state] * 60 + 1;
 }

@@ -86,13 +86,13 @@ export type TPomodoroTimerSnapshotAction =
       };
     }
   | {
-      type: "update-counter";
-    }
-  | {
       type: "settings";
       payload: {
         settings: TPomodoroSettings;
       };
+    }
+  | {
+      type: "skip";
     }
   | {
       type: "state";
@@ -105,6 +105,9 @@ export type TPomodoroTimerSnapshotAction =
       payload: {
         tasks: SetStateAction<TTask[]>;
       };
+    }
+  | {
+      type: "update-counter";
     };
 
 export type TPomodoroTimerSnapshotReducer = (
