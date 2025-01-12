@@ -10,7 +10,7 @@ export const CHALLENGES: TChallenge[] = [
     description:
       "The Pomodoro Timer enhances productivity by breaking work into 25-minute focused sessions, followed by short 5-minute breaks, with longer breaks after completing several cycles. This challenge aims to replicate this timer using React and Web APIs to create an interactive and functional implementation.",
     Component: PomodoroTimer,
-    difficulty: TChallengeDifficulty.EASY,
+    difficulty: TChallengeDifficulty.MEDIUM,
     Icon: ClockIcon,
   },
   {
