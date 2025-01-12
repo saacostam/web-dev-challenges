@@ -25,5 +25,4 @@ A React module for implementing a Pomodoro timer.
   - [x] Make a Sound
   - [x] Volume Handling
   - [x] Notification Listening - Might require keeping some state
-- [ ] FEAT-NTH: Visualize the current interval.
 - [ ] DOCS: Complete the README.md file.
