@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { TChallenge, useChallengeById } from "../../challenges";
 import { Error404 } from "../../error-handling";
-import { Header, Paragraph, Pill } from "../../core.components";
+import { Divider, Header, Paragraph, Pill } from "../../core.components";
 
 export function ChallengeByIdView() {
   const params = useParams();
@@ -28,8 +28,9 @@ function Challenge({ challenge }: ChallengeProps) {
         </Header>
         <Pill>Difficulty: {challenge.difficulty}</Pill>
       </div>
-      <Paragraph>{challenge.description}</Paragraph>
       <challenge.Component />
+      <Divider />
+      <Paragraph>{challenge.description}</Paragraph>
     </>
   );
 }
