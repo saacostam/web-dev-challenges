@@ -7,12 +7,7 @@ import {
   Range,
   SubHeader,
 } from "../../core.components";
-import {
-  BellAlertIcon,
-  ClockIcon,
-  Cog6Tooth,
-  SpeakerWaveIcon,
-} from "../../icons";
+import { BellAlertIcon, ClockIcon, SpeakerWaveIcon } from "../../icons";
 import {
   TPomodoroSettings,
   TPomodoroSettingsReducerAction,
@@ -50,8 +45,7 @@ export function PomodoroSettingsManagements({
 }: PomodoroSettingsManagementsProps) {
   return (
     <>
-      <Header className="flex gap-2 items-center">
-        <Cog6Tooth className="size-10" />
+      <Header className="flex gap-2 items-center justify-center">
         Settings
       </Header>
       <SubHeader className="flex gap-2 items-center">
