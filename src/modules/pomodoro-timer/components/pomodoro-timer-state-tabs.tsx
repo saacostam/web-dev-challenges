@@ -14,7 +14,10 @@ export function PomodoroTimerStateTabs({
   activeTab,
 }: PomodoroTimerStateTabsProps) {
   return (
-    <div role="tablist" className="tabs grid-cols-3 tabs-boxed bg-transparent">
+    <div
+      role="tablist"
+      className="tabs tabs-sm sm:tabs-md grid-cols-3 tabs-boxed bg-transparent"
+    >
       {tabs.map(({ label, onClick }) => (
         <button
           role="tab"

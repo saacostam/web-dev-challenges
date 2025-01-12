@@ -5,6 +5,7 @@ import { usePomodoroTimer } from "../hooks";
 import {
   PomodoroSettingsManagements,
   PomodoroTimerCounter,
+  PomodoroTimerPlayback,
   PomodoroTimerStateTabs,
 } from "../components";
 
@@ -35,8 +36,18 @@ export function PomodoroTimer() {
         }))}
       />
       <PomodoroTimerCounter
-        className="py-6"
+        className="py-6 sm:py-12"
         secondsLeft={50_000 - snapshot.secondsCounter}
+      />
+      <PomodoroTimerPlayback
+        isPaused={snapshot.isPaused}
+        onSkip={() => {}}
+        onTogglePause={() =>
+          reduceSnapshot({
+            type: "is-paused",
+            payload: { isPaused: !snapshot.isPaused },
+          })
+        }
       />
 
       {/* MODALS */}

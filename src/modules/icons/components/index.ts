@@ -3,6 +3,7 @@ export * from "./clock-icon";
 export * from "./code-bracket-icon";
 export * from "./cog-6-tooth-icon";
 export * from "./filter-icon";
+export * from "./forward-icon";
 export * from "./search-icon";
 export * from "./speaker-wave-icon";
 export * from "./three-lines";
