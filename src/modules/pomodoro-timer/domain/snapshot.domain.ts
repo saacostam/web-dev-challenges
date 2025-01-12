@@ -22,6 +22,16 @@ export const snapshotReducer: TPomodoroTimerSnapshotReducer = (
         ...state,
         isPaused: action.payload.isPaused,
       };
+    case "notified-alert":
+      return {
+        ...state,
+        notifiedAlert: true,
+      };
+    case "notified-end":
+      return {
+        ...state,
+        notifiedEnd: true,
+      };
     case "settings": {
       return {
         ...state,
@@ -71,6 +81,8 @@ export const snapshotReducer: TPomodoroTimerSnapshotReducer = (
         getCurrentStepDurationInSeconds({ snapshot: newState });
       if (currentStepHasCompleted) {
         newState.secondsCounter = 0;
+        newState.notifiedAlert = false;
+        newState.notifiedEnd = false;
 
         // Transition to next state
         if (state.state !== TPomodoroTimerState.WORK) {
@@ -105,7 +117,9 @@ function validatePomodoroTimerSnapshot(
     typeof snapshot.breakCount !== "number" ||
     typeof snapshot.isPaused !== "boolean" ||
     typeof snapshot.secondsCounter !== "number" ||
-    typeof snapshot.lastCounterUpdateTime !== "number"
+    typeof snapshot.lastCounterUpdateTime !== "number" ||
+    typeof snapshot.notifiedAlert !== "boolean" ||
+    typeof snapshot.notifiedEnd !== "boolean"
   ) {
     return false;
   }
@@ -149,5 +163,5 @@ export function initSnapshot(
 export function getCurrentStepDurationInSeconds(args: {
   snapshot: TPomodoroTimerSnapshot;
 }): number {
-  return args.snapshot.settings.durations[args.snapshot.state] * 60 + 1;
+  return args.snapshot.settings.durations[args.snapshot.state] * 60;
 }

@@ -65,11 +65,13 @@ export type TPomodoroSettingsReducer = (
 export interface TPomodoroTimerSnapshot {
   breakCount: number;
   isPaused: boolean;
+  lastCounterUpdateTime: number;
+  notifiedAlert: boolean;
+  notifiedEnd: boolean;
   secondsCounter: number;
   settings: TPomodoroSettings;
   state: TPomodoroTimerState;
   tasks: TTask[];
-  lastCounterUpdateTime: number;
 }
 
 export type TPomodoroTimerSnapshotAction =
@@ -84,6 +86,12 @@ export type TPomodoroTimerSnapshotAction =
       payload: {
         isPaused: boolean;
       };
+    }
+  | {
+      type: "notified-alert";
+    }
+  | {
+      type: "notified-end";
     }
   | {
       type: "settings";

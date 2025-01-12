@@ -43,7 +43,12 @@ export function usePomodoroTimer() {
     onTimerEnd,
   });
 
-  const { play: playDing } = useSoundPlayer({
+  const { play: playNotification } = useSoundPlayer({
+    audioSrc: "/audio/alert-before.mp3",
+    volume: settings.volume / SETTINGS_CONFIG.VOLUME.MAX,
+  });
+
+  const { play: playEnd } = useSoundPlayer({
     audioSrc: "/audio/ding.mp3",
     volume: settings.volume / SETTINGS_CONFIG.VOLUME.MAX,
   });
@@ -66,8 +71,24 @@ export function usePomodoroTimer() {
   }, [settings]);
 
   useEffect(() => {
-    if (snapshot.state) playDing();
-  }, [snapshot.state, playDing]);
+    if (!snapshot.notifiedEnd) {
+      playEnd();
+      reduceSnapshot({ type: "notified-end" });
+    }
+  }, [snapshot.notifiedEnd, playEnd]);
+
+  useEffect(() => {
+    if (settings.notification?.secTimeBefore !== undefined) {
+      const timeLeft = currentStepDurationInSeconds - snapshot.secondsCounter;
+      if (
+        timeLeft <= settings.notification.secTimeBefore &&
+        !snapshot.notifiedAlert
+      ) {
+        playNotification();
+        reduceSnapshot({ type: "notified-alert" });
+      }
+    }
+  }, [currentStepDurationInSeconds, playNotification, settings, snapshot]);
 
   return useMemo(
     () => ({
