@@ -68,6 +68,7 @@ export interface TPomodoroTimerSnapshot {
   settings: TPomodoroSettings;
   state: TPomodoroTimerState;
   tasks: TTask[];
+  lastCounterUpdateTime: number;
 }
 
 export type TPomodoroTimerSnapshotAction =

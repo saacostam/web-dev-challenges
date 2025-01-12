@@ -19,6 +19,7 @@ export const DEFAULT_SNAPSHOT: Omit<TPomodoroTimerSnapshot, "settings"> = {
       checked: false,
     },
   ],
+  lastCounterUpdateTime: Date.now(),
 };
 
 export const ALL_POMODORO_TIMER_STATES = Object.values(TPomodoroTimerState);

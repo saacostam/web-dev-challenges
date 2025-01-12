@@ -60,7 +60,8 @@ function validatePomodoroTimerSnapshot(
   if (
     typeof snapshot.breakCount !== "number" ||
     typeof snapshot.isPaused !== "boolean" ||
-    typeof snapshot.secondsCounter !== "number"
+    typeof snapshot.secondsCounter !== "number" ||
+    typeof snapshot.lastCounterUpdateTime !== "number"
   ) {
     return false;
   }
