@@ -42,6 +42,7 @@ export const snapshotReducer: TPomodoroTimerSnapshotReducer = (
       return {
         ...state,
         state: action.payload.state,
+        secondsCounter: 0,
       };
     }
     case "tasks": {

@@ -20,7 +20,7 @@ A React module for implementing a Pomodoro timer.
   - [x] Update Cards
   - [x] Delete Cards
 - [x] FEAT: Add skip button.
-- [ ] FEAT: Handle when the state is hard-moved.
+- [x] FEAT: Handle when the state is hard-moved.
 - [ ] FEAT: Notifications
   - [ ] Make a Sound
   - [ ] Volume Handling
