@@ -19,4 +19,12 @@ A React module for implementing a Pomodoro timer.
   - [x] Add Cards
   - [x] Update Cards
   - [x] Delete Cards
+- [ ] FEAT: Add skip button.
+- [ ] FEAT: Handle when the state is hard-moved.
+- [ ] FEAT: Notifications
+  - [ ] Make a Sound
+  - [ ] Volume Handling
+  - [ ] Audio Context Acceptance
+  - [ ] Notification Listening - Might require keeping some state
+- [ ] FEAT-NTH: Visualize the current interval.
 - [ ] DOCS: Complete the README.md file.
