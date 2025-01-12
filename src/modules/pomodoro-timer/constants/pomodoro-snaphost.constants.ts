@@ -3,7 +3,9 @@ import { TPomodoroTimerSnapshot, TPomodoroTimerState } from "../types";
 export const DEFAULT_SNAPSHOT: Omit<TPomodoroTimerSnapshot, "settings"> = {
   breakCount: 0,
   isPaused: true,
-  secondCounter: 0,
+  secondsCounter: 0,
   state: TPomodoroTimerState.WORK,
   tasks: [],
 };
+
+export const ALL_POMODORO_TIMER_STATES = Object.values(TPomodoroTimerState);
