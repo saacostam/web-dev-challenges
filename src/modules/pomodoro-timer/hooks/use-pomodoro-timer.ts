@@ -12,6 +12,8 @@ import {
 } from "../types";
 import { ClientStorage, ClientStorageKeys } from "../../client-storage";
 import { useXSecondsTimer } from "../../time";
+import { useSoundPlayer } from "../../sound";
+import { SETTINGS_CONFIG } from "../constants";
 
 export function usePomodoroTimer() {
   const [settings, reduceSettings] = useReducer<TPomodoroSettingsReducer>(
@@ -41,6 +43,11 @@ export function usePomodoroTimer() {
     onTimerEnd,
   });
 
+  const { play: playDing } = useSoundPlayer({
+    audioSrc: "/audio/ding.mp3",
+    volume: settings.volume / SETTINGS_CONFIG.VOLUME.MAX,
+  });
+
   useEffect(() => {
     ClientStorage.set(ClientStorageKeys.POMODORO_SNAPSHOT, {
       ...snapshot,
@@ -57,6 +64,10 @@ export function usePomodoroTimer() {
       },
     });
   }, [settings]);
+
+  useEffect(() => {
+    if (snapshot.state) playDing();
+  }, [snapshot.state, playDing]);
 
   return useMemo(
     () => ({

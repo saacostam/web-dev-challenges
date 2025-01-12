@@ -22,9 +22,9 @@ A React module for implementing a Pomodoro timer.
 - [x] FEAT: Add skip button.
 - [x] FEAT: Handle when the state is hard-moved.
 - [ ] FEAT: Notifications
-  - [ ] Make a Sound
-  - [ ] Volume Handling
-  - [ ] Audio Context Acceptance
+  - [x] Make a Sound
+  - [x] Volume Handling
   - [ ] Notification Listening - Might require keeping some state
+  - [ ] Audio Context Acceptance
 - [ ] FEAT-NTH: Visualize the current interval.
 - [ ] DOCS: Complete the README.md file.
