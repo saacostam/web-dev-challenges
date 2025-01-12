@@ -4,9 +4,9 @@ A React module for implementing a Pomodoro timer.
 
 ## TODOS
 
-- [ ] FEAT: Dumb UI Components
+- [x] FEAT: Dumb UI Components
   - [x] Timer
-  - [ ] Tasks
+  - [x] Tasks
 - [ ] FEAT: Timer Logic:
   - [ ] Interval Logic - Add new param to snapshot `updateAt:seconds` to manage unreliable intervals.
   - [ ] Interval Logic - Gurantee that it is called when possible. Check dependencies and recreations.
@@ -15,7 +15,7 @@ A React module for implementing a Pomodoro timer.
   - [ ] Resolve to correct state
   - [ ] Update the state when necessary
 - [ ] FEAT: Tasks State Management
-  - [ ] Show Cards
+  - [ ] Refactor to add IDs
   - [ ] Add Cards
   - [ ] Update Cards
   - [ ] Delete Cards
