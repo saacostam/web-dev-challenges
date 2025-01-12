@@ -85,10 +85,7 @@ export type TPomodoroTimerSnapshotAction =
       };
     }
   | {
-      type: "seconds-counter";
-      payload: {
-        secondsCounter: number;
-      };
+      type: "update-counter";
     }
   | {
       type: "settings";

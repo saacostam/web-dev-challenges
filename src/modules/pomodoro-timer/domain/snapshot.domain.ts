@@ -22,11 +22,6 @@ export const snapshotReducer: TPomodoroTimerSnapshotReducer = (
         ...state,
         isPaused: action.payload.isPaused,
       };
-    case "seconds-counter":
-      return {
-        ...state,
-        secondsCounter: action.payload.secondsCounter,
-      };
     case "settings": {
       return {
         ...state,
@@ -43,6 +38,16 @@ export const snapshotReducer: TPomodoroTimerSnapshotReducer = (
       return {
         ...state,
         tasks: action.payload.tasks,
+      };
+    }
+    case "update-counter": {
+      const prev = new Date(state.lastCounterUpdateTime);
+      const delta = Date.now() - prev.getTime();
+
+      return {
+        ...state,
+        secondsCounter: state.secondsCounter + delta / 1000,
+        lastCounterUpdateTime: Date.now(),
       };
     }
   }

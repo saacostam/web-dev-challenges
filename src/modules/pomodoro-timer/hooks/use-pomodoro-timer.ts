@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useReducer } from "react";
+import { useCallback, useEffect, useMemo, useReducer } from "react";
 import {
   initSettings,
   pomodoroSettingsReducer,
@@ -23,13 +23,16 @@ export function usePomodoroTimer() {
     initSnapshot(settings),
   );
 
+  const onTimerEnd = useCallback(
+    () =>
+      reduceSnapshot({
+        type: "update-counter",
+      }),
+    [],
+  );
   useXSecondsTimer({
     secondsInterval: 1,
-    onTimerEnd: () =>
-      reduceSnapshot({
-        type: "seconds-counter",
-        payload: { secondsCounter: snapshot.secondsCounter + 1 },
-      }),
+    onTimerEnd,
   });
 
   useEffect(() => {
