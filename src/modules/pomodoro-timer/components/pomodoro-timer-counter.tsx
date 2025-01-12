@@ -16,8 +16,11 @@ export function PomodoroTimerCounter({
   return (
     <div className={twMerge("text-center", className)}>
       <span className="countdown font-mono text-5xl sm:text-7xl">
+        {/* @ts-expect-error: This a custom property for daisyUi */}
         <span style={{ "--value": hours }}></span>:
+        {/* @ts-expect-error: This a custom property for daisyUi */}
         <span style={{ "--value": minutes }}></span>:
+        {/* @ts-expect-error: This a custom property for daisyUi */}
         <span style={{ "--value": seconds }}></span>
       </span>
     </div>
