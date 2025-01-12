@@ -37,7 +37,10 @@ export const snapshotReducer: TPomodoroTimerSnapshotReducer = (
     case "tasks": {
       return {
         ...state,
-        tasks: action.payload.tasks,
+        tasks:
+          action.payload.tasks instanceof Function
+            ? action.payload.tasks(state.tasks)
+            : action.payload.tasks,
       };
     }
     case "update-counter": {
@@ -80,12 +83,7 @@ function validatePomodoroTimerSnapshot(
   }
 
   for (const task of snapshot.tasks) {
-    if (
-      typeof task.checked !== "boolean" ||
-      typeof task.name !== "string" ||
-      (task.estimatedPomodoros !== undefined &&
-        typeof task.estimatedPomodoros !== "number")
-    ) {
+    if (typeof task.checked !== "boolean" || typeof task.name !== "string") {
       return false;
     }
   }

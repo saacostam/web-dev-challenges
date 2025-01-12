@@ -14,9 +14,9 @@ A React module for implementing a Pomodoro timer.
 - [ ] FEAT: State (work, short or long break) Resolution
   - [ ] Resolve to correct state
   - [ ] Update the state when necessary
-- [ ] FEAT: Tasks State Management
-  - [ ] Refactor to add IDs
-  - [ ] Add Cards
-  - [ ] Update Cards
-  - [ ] Delete Cards
+- [x] FEAT: Tasks State Management
+  - [x] Refactor to add IDs
+  - [x] Add Cards
+  - [x] Update Cards
+  - [x] Delete Cards
 - [ ] DOCS: Complete the README.md file.

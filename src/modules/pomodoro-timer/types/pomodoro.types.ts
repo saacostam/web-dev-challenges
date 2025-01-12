@@ -1,3 +1,4 @@
+import { SetStateAction } from "react";
 import { TTask } from "./task.types";
 
 export enum TPomodoroTimerState {
@@ -102,7 +103,7 @@ export type TPomodoroTimerSnapshotAction =
   | {
       type: "tasks";
       payload: {
-        tasks: TTask[];
+        tasks: SetStateAction<TTask[]>;
       };
     };
 

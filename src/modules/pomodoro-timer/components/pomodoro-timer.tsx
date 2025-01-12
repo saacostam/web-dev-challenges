@@ -52,12 +52,7 @@ export function PomodoroTimer() {
       />
       <Divider />
       <SubHeader>Tasks</SubHeader>
-      <PomodoroTasks
-        tasks={snapshot.tasks}
-        createTask={(...args) => console.log("create task", ...args)}
-        deleteTask={(...args) => console.log("delete task", ...args)}
-        updateTask={(...args) => console.log("update task", ...args)}
-      />
+      <PomodoroTasks dispatcher={reduceSnapshot} tasks={snapshot.tasks} />
       <div className="h-4"></div>
 
       {/* MODALS */}

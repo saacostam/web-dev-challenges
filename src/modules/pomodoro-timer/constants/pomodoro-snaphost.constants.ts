@@ -7,15 +7,13 @@ export const DEFAULT_SNAPSHOT: Omit<TPomodoroTimerSnapshot, "settings"> = {
   state: TPomodoroTimerState.WORK,
   tasks: [
     {
-      name: "Task 1",
+      id: "1",
+      name: "Completed Task",
       checked: true,
     },
     {
-      name: "Task 2",
-      checked: false,
-    },
-    {
-      name: "Task 3",
+      id: "2",
+      name: "Uncompleted Task",
       checked: false,
     },
   ],
