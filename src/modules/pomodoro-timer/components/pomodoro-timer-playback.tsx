@@ -1,11 +1,22 @@
 import { ForwardIcon } from "../../icons";
 
+/**
+ * Props for the PomodoroTimerPlayback component.
+ * @interface PomodoroTimerPlaybackProps
+ * @property {boolean} isPaused - A boolean flag indicating whether the timer is paused.
+ * @property {() => void} onSkip - A function that is called when the skip button is clicked.
+ * @property {() => void} onTogglePause - A function that is called to toggle the pause/play state of the timer.
+ */
 export interface PomodoroTimerPlaybackProps {
   isPaused: boolean;
   onSkip: () => void;
   onTogglePause: () => void;
 }
 
+/**
+ * A component that handles playback control for the Pomodoro timer.
+ * @component
+ */
 export function PomodoroTimerPlayback({
   isPaused,
   onSkip,

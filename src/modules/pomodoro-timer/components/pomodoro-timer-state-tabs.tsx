@@ -1,6 +1,12 @@
 import { twMerge } from "tailwind-merge";
 import { TPomodoroTimerState } from "../types";
 
+/**
+ * Props for the PomodoroTimerStateTabs component.
+ * @interface PomodoroTimerStateTabsProps
+ * @property {Array<{ label: TPomodoroTimerState, onClick: (state: TPomodoroTimerState) => void }>} tabs - The list of tabs with their labels and associated click handlers.
+ * @property {TPomodoroTimerState} activeTab - The current active tab's state value.
+ */
 export interface PomodoroTimerStateTabsProps {
   tabs: {
     label: TPomodoroTimerState;
@@ -9,6 +15,10 @@ export interface PomodoroTimerStateTabsProps {
   activeTab: TPomodoroTimerState;
 }
 
+/**
+ * A component that renders a set of tabs for the Pomodoro timer states.
+ * @component
+ */
 export function PomodoroTimerStateTabs({
   tabs,
   activeTab,

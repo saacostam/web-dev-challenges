@@ -16,6 +16,12 @@ import {
 import { twMerge } from "tailwind-merge";
 import { DEFAULT_SETTINGS, SETTINGS_CONFIG } from "../constants";
 
+/**
+ * Props for the `PomodoroSettingsManagements` component.
+ * @typedef {Object} PomodoroSettingsManagementsProps
+ * @property {Dispatch<TPomodoroSettingsReducerAction>} reduceSettings - The function to dispatch settings changes.
+ * @property {TPomodoroSettings} settings - The current settings object.
+ */
 export interface PomodoroSettingsManagementsProps {
   reduceSettings: Dispatch<TPomodoroSettingsReducerAction>;
   settings: TPomodoroSettings;
@@ -39,6 +45,10 @@ export function Label({
   );
 }
 
+/**
+ * Manages and displays the Pomodoro settings.
+ * @component
+ */
 export function PomodoroSettingsManagements({
   settings,
   reduceSettings,

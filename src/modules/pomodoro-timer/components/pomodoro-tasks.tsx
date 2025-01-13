@@ -10,11 +10,21 @@ import {
 } from "../types";
 import { useTasksCRUD } from "../hooks";
 
+/**
+ * Props for the PomodoroTasks component.
+ * @interface PomodoroTasksProps
+ * @property {Dispatch<TPomodoroTimerSnapshotAction>} dispatcher - The dispatcher for Pomodoro timer snapshot actions.
+ * @property {TTask[]} tasks - The list of tasks to be displayed.
+ */
 export interface PomodoroTasksProps {
   dispatcher: Dispatch<TPomodoroTimerSnapshotAction>;
   tasks: TTask[];
 }
 
+/**
+ * Component to manage and display tasks for the Pomodoro timer.
+ * @component
+ */
 export function PomodoroTasks({ dispatcher, tasks }: PomodoroTasksProps) {
   const { createTask, deleteTask, updateTask } = useTasksCRUD({
     dispatcher,
@@ -46,6 +56,14 @@ export function PomodoroTasks({ dispatcher, tasks }: PomodoroTasksProps) {
   );
 }
 
+/**
+ * Props for the PomodoroTask component.
+ * @interface PomodoroTaskProps
+ * @property {TTask} task - The task data to be managed.
+ * @property {TCreateTask} createTask - Function to create a new task.
+ * @property {TDeleteTask} deleteTask - Function to delete an existing task.
+ * @property {TUpdateTask} updateTask - Function to update an existing task.
+ */
 interface PomodoroTaskProps {
   task: TTask;
   createTask: TCreateTask;
@@ -53,6 +71,10 @@ interface PomodoroTaskProps {
   updateTask: TUpdateTask;
 }
 
+/**
+ * Component to manage an individual Pomodoro task.
+ * @component
+ */
 function PomodoroTask({ task, deleteTask, updateTask }: PomodoroTaskProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
