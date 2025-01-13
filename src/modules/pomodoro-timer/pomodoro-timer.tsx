@@ -1,14 +1,14 @@
-import { Divider, SubHeader, useModal } from "../../core.components";
-import { Cog6Tooth } from "../../icons";
-import { ALL_POMODORO_TIMER_STATES } from "../constants";
-import { usePomodoroTimer } from "../hooks";
+import { Divider, SubHeader, useModal } from "../core.components";
+import { Cog6Tooth } from "../icons";
+import { ALL_POMODORO_TIMER_STATES } from "./constants";
+import { usePomodoroTimer } from "./hooks";
 import {
   PomodoroSettingsManagements,
   PomodoroTasks,
   PomodoroTimerCounter,
   PomodoroTimerPlayback,
   PomodoroTimerStateTabs,
-} from "../components";
+} from "./components";
 
 export function PomodoroTimer() {
   const {

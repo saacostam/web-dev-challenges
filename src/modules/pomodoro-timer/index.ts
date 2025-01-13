@@ -1,1 +1,1 @@
-export * from "./components/pomodoro-timer";
+export * from "./pomodoro-timer";
