@@ -1,6 +1,6 @@
-import { ClockIcon } from "../../icons";
+import { ClockIcon, CubeIcon } from "../../icons";
+import { PixelArtEditor } from "../../pixel-art-editor";
 import { PomodoroTimer } from "../../pomodoro-timer";
-import { DumbFC } from "../components";
 import { TChallenge, TChallengeDifficulty } from "../types";
 
 export const CHALLENGES: TChallenge[] = [
@@ -14,12 +14,12 @@ export const CHALLENGES: TChallenge[] = [
     Icon: ClockIcon,
   },
   {
-    id: "pomodoro-clock-2",
-    name: "Pomodoro Clock",
+    id: "pixel-art-editor",
+    name: "Pixel Art Editor",
     description:
-      "Pomodoro Timer for Productivity with session and break intervals.",
-    Component: DumbFC,
-    difficulty: TChallengeDifficulty.EASY,
-    Icon: ClockIcon,
+      "Pixel Art Editor with core features commonly found in similar applications.",
+    Component: PixelArtEditor,
+    difficulty: TChallengeDifficulty.MEDIUM,
+    Icon: CubeIcon,
   },
 ];

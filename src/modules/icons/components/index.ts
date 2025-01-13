@@ -2,6 +2,7 @@ export * from "./bell-alert-icon";
 export * from "./clock-icon";
 export * from "./code-bracket-icon";
 export * from "./cog-6-tooth-icon";
+export * from "./cube-icon";
 export * from "./filter-icon";
 export * from "./forward-icon";
 export * from "./plus-icon";
