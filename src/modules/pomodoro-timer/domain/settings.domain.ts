@@ -6,6 +6,9 @@ import {
   TPomodoroTimerState,
 } from "../types";
 
+/**
+ * Reducer function to handle actions related to pomodoro settings.
+ */
 export const pomodoroSettingsReducer: TPomodoroSettingsReducer = (
   state,
   action,
@@ -65,6 +68,11 @@ export const pomodoroSettingsReducer: TPomodoroSettingsReducer = (
   }
 };
 
+/**
+ * Validates the pomodoro settings object to ensure it matches the expected structure and types.
+ * @param {unknown} data - The data to validate.
+ * @returns {data is TPomodoroSettings} - Returns true if the data is a valid TPomodoroSettings object, otherwise false.
+ */
 function validateUnsanitizedPomodoroSettings(
   data: unknown,
 ): data is TPomodoroSettings {
@@ -91,6 +99,11 @@ function validateUnsanitizedPomodoroSettings(
   return true;
 }
 
+/**
+ * Initializes the pomodoro settings by retrieving them from client storage.
+ * If the settings are not valid or do not exist, the default settings are returned.
+ * @returns {TPomodoroSettings} - The validated or default pomodoro settings.
+ */
 export function initSettings(): TPomodoroSettings {
   const unsanitizedSettings = ClientStorage.get(
     ClientStorageKeys.POMODORO_SETTINGS,

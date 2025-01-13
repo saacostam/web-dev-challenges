@@ -7,6 +7,9 @@ import {
   TPomodoroTimerState,
 } from "../types";
 
+/**
+ * Reducer function to handle actions related to the pomodoro timer snapshot.
+ */
 export const snapshotReducer: TPomodoroTimerSnapshotReducer = (
   state,
   action,
@@ -104,6 +107,11 @@ export const snapshotReducer: TPomodoroTimerSnapshotReducer = (
   }
 };
 
+/**
+ * Validates the pomodoro timer snapshot object to ensure it matches the expected structure and types.
+ * @param {unknown} data - The data to validate.
+ * @returns {data is Omit<TPomodoroTimerSnapshot, "settings">} - Returns true if the data is a valid TPomodoroTimerSnapshot object excluding settings, otherwise false.
+ */
 function validatePomodoroTimerSnapshot(
   data: unknown,
 ): data is Omit<TPomodoroTimerSnapshot, "settings"> {
@@ -141,6 +149,12 @@ function validatePomodoroTimerSnapshot(
   return true;
 }
 
+/**
+ * Initializes the pomodoro timer snapshot by retrieving it from client storage.
+ * If the snapshot is not valid or does not exist, the default snapshot is returned.
+ * @param {TPomodoroSettings} settings - The pomodoro settings to associate with the snapshot.
+ * @returns {TPomodoroTimerSnapshot} - The validated or default pomodoro timer snapshot.
+ */
 export function initSnapshot(
   settings: TPomodoroSettings,
 ): TPomodoroTimerSnapshot {
@@ -160,6 +174,12 @@ export function initSnapshot(
   };
 }
 
+/**
+ * Calculates the duration of the current step in seconds based on the snapshot's state and settings.
+ * @param {object} args - Arguments containing the snapshot.
+ * @param {TPomodoroTimerSnapshot} args.snapshot - The pomodoro timer snapshot.
+ * @returns {number} - The duration of the current step in seconds.
+ */
 export function getCurrentStepDurationInSeconds(args: {
   snapshot: TPomodoroTimerSnapshot;
 }): number {
