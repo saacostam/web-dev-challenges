@@ -1,5 +1,9 @@
 import { TPomodoroTimerState } from "../types";
 
+/**
+ * Default settings for the Pomodoro timer, including durations for each state,
+ * long break interval, volume level, and notification time before alert.
+ */
 export const DEFAULT_SETTINGS = {
   durations: {
     [TPomodoroTimerState.WORK]: 25,
@@ -13,6 +17,10 @@ export const DEFAULT_SETTINGS = {
   },
 };
 
+/**
+ * Configuration settings for Pomodoro timer, defining the valid range for each setting.
+ * These values are used to validate user inputs and ensure they are within the allowed boundaries.
+ */
 export const SETTINGS_CONFIG = {
   DURATIONS: {
     MIN: 1,
