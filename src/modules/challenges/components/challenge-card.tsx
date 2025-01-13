@@ -2,6 +2,7 @@ import { twMerge } from "tailwind-merge";
 import { TRoute, useGetRoutes } from "../../router";
 import { TChallenge } from "../types";
 import { Link } from "react-router-dom";
+import { Pill } from "../../core.components";
 
 export interface TChallengeCardProps {
   challenge: TChallenge;
@@ -17,6 +18,7 @@ export function ChallengeCard({ challenge, className }: TChallengeCardProps) {
         <h2 className="card-title">
           {challenge.Icon ? <challenge.Icon className="size-6" /> : null}
           {challenge.name}
+          <Pill className="p-2">{challenge.difficulty}</Pill>
         </h2>
         <p>{challenge.description}</p>
         <div className="card-actions justify-end">

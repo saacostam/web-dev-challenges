@@ -2,7 +2,7 @@ import { Hero } from "../../branding";
 import { ChallengeCard, CHALLENGES } from "../../challenges";
 import {
   Divider,
-  Pagination,
+  // Pagination,
   Paragraph,
   Select,
   SubHeader,
@@ -24,9 +24,9 @@ export function HomeView() {
             <ChallengeCard challenge={challenge} key={challenge.id} />
           ))}
         </div>
-        <div className="flex justify-center">
+        {/* <div className="flex justify-center">
           <Pagination />
-        </div>
+        </div> */}
       </section>
       <Divider />
       <Paragraph>

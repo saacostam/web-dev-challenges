@@ -58,7 +58,6 @@ export function PomodoroTimer() {
       <Divider />
       <SubHeader>Tasks</SubHeader>
       <PomodoroTasks dispatcher={reduceSnapshot} tasks={snapshot.tasks} />
-      <div className="h-4"></div>
 
       {/* MODALS */}
       <SettingsModal>
