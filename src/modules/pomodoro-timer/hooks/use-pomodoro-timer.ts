@@ -56,7 +56,7 @@ export function usePomodoroTimer() {
   useEffect(() => {
     ClientStorage.set(ClientStorageKeys.POMODORO_SNAPSHOT, {
       ...snapshot,
-      settings: undefined,
+      settings: undefined, // settings is stored separately
     });
   }, [snapshot]);
 
@@ -71,6 +71,7 @@ export function usePomodoroTimer() {
   }, [settings]);
 
   useEffect(() => {
+    // have not already notified
     if (!snapshot.notifiedEnd) {
       playEnd();
       reduceSnapshot({ type: "notified-end" });
@@ -78,11 +79,12 @@ export function usePomodoroTimer() {
   }, [snapshot.notifiedEnd, playEnd]);
 
   useEffect(() => {
+    // shouldNotifyXSecondsBefore
     if (settings.notification?.secTimeBefore !== undefined) {
       const timeLeft = currentStepDurationInSeconds - snapshot.secondsCounter;
       if (
         timeLeft <= settings.notification.secTimeBefore &&
-        !snapshot.notifiedAlert
+        !snapshot.notifiedAlert // have not already notified
       ) {
         playNotification();
         reduceSnapshot({ type: "notified-alert" });
