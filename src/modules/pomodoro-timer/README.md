@@ -87,4 +87,8 @@ function App() {
   - [x] Volume Handling
   - [x] Notification Listening - Might require keeping some state
 - [x] DOCS: Complete the README.md file.
-- [ ] DOCS: Create JSDoc comments.
+- [x] DOCS: Create JSDoc comments.
+- [ ] TEST: Create unit tests for module.
+  - [ ] Domain
+  - [ ] Components
+  - [ ] Hooks
