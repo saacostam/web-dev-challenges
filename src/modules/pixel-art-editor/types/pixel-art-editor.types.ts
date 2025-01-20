@@ -40,9 +40,9 @@ export interface TUpdate {
 
 export interface TPixelArtEditorHistory {
   updates: TUpdate[];
-  add: (action: TUpdate) => void;
-  redo: () => void;
-  undo: () => void;
+  add: (action: TUpdate) => TUpdate;
+  redo: () => TUpdate;
+  undo: () => TUpdate;
 }
 
 export enum TEditorOptionName {
