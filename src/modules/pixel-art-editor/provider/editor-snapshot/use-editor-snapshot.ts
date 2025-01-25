@@ -5,6 +5,7 @@ import { ClientStorageService } from "../../services";
 
 /**
  * Creates a state hook to manage state of a pixel art editor.
+ * It provides the current state and a dispatcher function to update it.
  */
 export function reduceEditorSnapshot(
   state: TPixelArtEditorSnapShot,
