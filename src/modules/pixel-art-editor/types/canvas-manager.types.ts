@@ -14,9 +14,9 @@ export enum TMouseInputTypes {
 
 type TransitionHandler<T> = (input: {
   ctx: T;
-  editorSnapshot: TPixelArtEditorSnapShot;
-  dispatch: Dispatch<TPixelArtEditorAction>;
   bufferFrame: TFrame;
+  dispatch: Dispatch<TPixelArtEditorAction>;
+  editorSnapshot: TPixelArtEditorSnapShot;
   position: TPosition;
 }) => T;
 
