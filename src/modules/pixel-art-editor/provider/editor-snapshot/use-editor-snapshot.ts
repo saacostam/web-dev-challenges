@@ -36,6 +36,12 @@ export function reduceEditorSnapshot(
         showGrid: action.payload.showGrid,
       };
     }
+    case "current-option": {
+      return {
+        ...state,
+        selectedOption: action.payload.currentOption,
+      };
+    }
   }
 }
 

@@ -99,4 +99,10 @@ export type TPixelArtEditorAction =
       payload: {
         showGrid: boolean;
       };
+    }
+  | {
+      type: "current-option";
+      payload: {
+        currentOption: TEditorOptionName;
+      };
     };
