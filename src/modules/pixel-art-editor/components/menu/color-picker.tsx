@@ -31,7 +31,7 @@ export function ColorPicker({
   return (
     <div className={twMerge("flex grid-cols-2 gap-1", className)}>
       {colors.map(({ color, set, tooltip }) => (
-        <div className="tooltip" data-tip={tooltip}>
+        <div className="tooltip" data-tip={tooltip} key={color}>
           <input
             className="px-1 py-0.5 cursor-pointer btn btn-primary btn-outline btn-square"
             type="color"
