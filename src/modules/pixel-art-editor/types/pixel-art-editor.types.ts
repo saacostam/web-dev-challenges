@@ -57,6 +57,14 @@ export interface TEditorOption {
   name: TEditorOptionName;
 }
 
+export interface TColorPalette {
+  colors: string[];
+}
+
+/**
+ * EDITOR SNAPSHOT
+ */
+
 export interface TPixelArtEditorSnapShot {
   currentColorPrimary: string;
   currentColorSecondary: string;
@@ -67,6 +75,28 @@ export interface TPixelArtEditorSnapShot {
   showGrid: boolean;
 }
 
-export interface TColorPalette {
-  colors: string[];
-}
+export type TPixelArtEditorAction =
+  | {
+      type: "current-color-primary";
+      payload: {
+        color: string;
+      };
+    }
+  | {
+      type: "current-color-secondary";
+      payload: {
+        color: string;
+      };
+    }
+  | {
+      type: "fps";
+      payload: {
+        fps: number;
+      };
+    }
+  | {
+      type: "show-grid";
+      payload: {
+        showGrid: boolean;
+      };
+    };
