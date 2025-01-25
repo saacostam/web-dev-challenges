@@ -5,7 +5,7 @@ export interface GetEditorSnapshotFromClientStorageInput {
   history: TPixelArtEditorHistory;
 }
 
-export function getEditorSnapshotFromClientStorage({
+function getEditorSnapshotFromClientStorage({
   history,
 }: GetEditorSnapshotFromClientStorageInput): TPixelArtEditorSnapShot {
   return {
@@ -13,3 +13,7 @@ export function getEditorSnapshotFromClientStorage({
     history,
   };
 }
+
+export const ClientStorageService = {
+  getEditorSnapshotFromClientStorage,
+};

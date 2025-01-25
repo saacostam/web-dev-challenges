@@ -1,7 +1,7 @@
 import { useMemo, useReducer } from "react";
 import { TPixelArtEditorAction, TPixelArtEditorSnapShot } from "../types";
 import { useEditorHistory } from "./use-editor-history";
-import { getEditorSnapshotFromClientStorage } from "../domain";
+import { ClientStorageService } from "../services";
 
 export function reduceEditorSnapshot(
   state: TPixelArtEditorSnapShot,
@@ -41,7 +41,7 @@ export function useEditorSnapshot() {
   const [editorSnapshot, dispatch] = useReducer(
     reduceEditorSnapshot,
     { history },
-    getEditorSnapshotFromClientStorage,
+    ClientStorageService.getEditorSnapshotFromClientStorage,
   );
 
   return useMemo(
