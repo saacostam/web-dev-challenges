@@ -45,11 +45,12 @@ export interface TPixelArtEditorHistory {
   undo: () => TUpdate;
 }
 
+// NOTE: The values are shown to the user, so they should be descriptive and pretty to read
 export enum TEditorOptionName {
-  BUCKET = "bucket",
-  COLOR_PICKER = "color-picker",
-  ERASER = "eraser",
-  PENCIL = "pencil",
+  BUCKET = "Bucket",
+  COLOR_PICKER = "Color Picker",
+  ERASER = "Eraser",
+  PENCIL = "Pencil",
 }
 
 export interface TEditorOption {

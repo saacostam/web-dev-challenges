@@ -9,14 +9,16 @@ export interface MenuOptionsProps {
 
 export function MenuOption({ active, menuOption, onClick }: MenuOptionsProps) {
   return (
-    <button
-      className={twMerge(
-        "btn btn-square btn-primary transition-transform duration-200",
-        active ? "scale-105" : "btn-outline",
-      )}
-      onClick={() => onClick(menuOption.name)}
-    >
-      <menuOption.icon className="size-4 text-primary-content" />
-    </button>
+    <div className="tooltip" data-tip={menuOption.name}>
+      <button
+        className={twMerge(
+          "btn btn-square btn-primary transition-transform duration-200",
+          active ? "scale-105" : "btn-outline",
+        )}
+        onClick={() => onClick(menuOption.name)}
+      >
+        <menuOption.icon className="size-4" />
+      </button>
+    </div>
   );
 }
