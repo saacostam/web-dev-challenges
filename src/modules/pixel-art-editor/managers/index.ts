@@ -1,1 +1,1 @@
-export * from "./canvas.manager";
+export * from "./canvas-manager";

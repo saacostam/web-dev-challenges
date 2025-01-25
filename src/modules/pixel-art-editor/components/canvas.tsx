@@ -12,7 +12,7 @@ export function Canvas() {
     () => {
       canvasManager.current = new CanvasManager({
         baseCanvas: canvasRef.current!,
-        currentFrame: editorSnapshot.frames[0],
+        editorSnapshot: editorSnapshot,
       });
 
       return () => {
@@ -27,9 +27,9 @@ export function Canvas() {
   useEffect(() => {
     if (!canvasManager.current) return;
     canvasManager.current.state({
-      currentFrame: editorSnapshot.frames[0],
+      editorSnapshot: editorSnapshot,
     });
-  }, [editorSnapshot.frames]);
+  }, [editorSnapshot]);
 
   return (
     <div className="w-full h-full flex items-center justify-center">

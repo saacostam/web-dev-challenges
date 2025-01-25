@@ -1,31 +1,31 @@
 import { COLORS } from "../constants";
 import { SeederService } from "../services";
-import { TFrame } from "../types";
+import { TFrame, TPixelArtEditorSnapShot } from "../types";
 
 export interface CanvasManagerInit {
   baseCanvas: HTMLCanvasElement;
-  currentFrame: TFrame;
+  editorSnapshot: TPixelArtEditorSnapShot;
 }
 
 export interface CanvasManagerState {
-  currentFrame: TFrame;
+  editorSnapshot: TPixelArtEditorSnapShot;
 }
 
 export class CanvasManager {
   private baseCanvas: HTMLCanvasElement;
-  private _currentFrame!: TFrame;
+  private _editorSnapshot!: TPixelArtEditorSnapShot;
   private bufferFrame!: TFrame;
 
   private shouldDraw = false;
 
-  get currentFrame() {
-    return this._currentFrame;
+  get editorSnapshot() {
+    return this._editorSnapshot;
   }
 
-  set currentFrame(frame: TFrame) {
-    this._currentFrame = frame;
+  set editorSnapshot(editorSnapshot: TPixelArtEditorSnapShot) {
+    this._editorSnapshot = editorSnapshot;
     this.bufferFrame = this.matchFrame({
-      frame,
+      frame: editorSnapshot.frames[0],
     });
   }
 
@@ -41,20 +41,19 @@ export class CanvasManager {
   }
 
   constructor(init: CanvasManagerInit) {
-    const { baseCanvas, currentFrame } = init;
+    const { baseCanvas, editorSnapshot } = init;
 
     this.baseCanvas = baseCanvas;
-    this.currentFrame = currentFrame;
+    this.editorSnapshot = editorSnapshot;
 
     this.shouldDraw = true;
-
     this.draw();
   }
 
   state(state: CanvasManagerState) {
-    const { currentFrame } = state;
+    const { editorSnapshot } = state;
 
-    this.currentFrame = currentFrame;
+    this.editorSnapshot = editorSnapshot;
   }
 
   cleaup() {
@@ -71,12 +70,13 @@ export class CanvasManager {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
     // Draw the current frame pixels
-    for (let j = 0; j < this.currentFrame.canvas.length; j++) {
-      for (let x = 0; x < this.currentFrame.canvas[j].length; x++) {
-        const width = canvasWidth / this.currentFrame.canvas.length;
-        const height = canvasHeight / this.currentFrame.canvas[j].length;
+    const currentFrame = this.editorSnapshot.frames[0];
+    for (let j = 0; j < currentFrame.canvas.length; j++) {
+      for (let x = 0; x < currentFrame.canvas[j].length; x++) {
+        const width = canvasWidth / currentFrame.canvas.length;
+        const height = canvasHeight / currentFrame.canvas[j].length;
 
-        ctx.fillStyle = this.currentFrame.canvas[j][x].color;
+        ctx.fillStyle = currentFrame.canvas[j][x].color;
         ctx.fillRect(x * width, j * height, width, height);
       }
     }
