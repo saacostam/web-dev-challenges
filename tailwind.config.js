@@ -7,6 +7,7 @@ export default {
   plugins: [require("daisyui")],
   daisyui: {
     themes: [
+      "business",
       {
         garden: {
           primary: "#5a7c65",
