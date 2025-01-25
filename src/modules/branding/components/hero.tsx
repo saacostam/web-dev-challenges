@@ -5,7 +5,7 @@ export function Hero() {
   return (
     <HeroLayoutWrapper>
       <Logo className="text-4xl mb-4" iconClassName="size-10" />
-      <Paragraph className="mb-0">
+      <Paragraph className="mb-0 text-primary-content">
         A personal compendium of small projects and challenges that I’ve built
         to explore and deepen my understanding of React development.
       </Paragraph>

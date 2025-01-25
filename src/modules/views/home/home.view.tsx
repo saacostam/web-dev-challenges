@@ -35,7 +35,7 @@ export function HomeView() {
         my continuous learning journey—showcasing my experiments,
         problem-solving, and growing expertise in React.
       </Paragraph>
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-4 divide-x">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <SubHeader>Explore, Learn, and Be Inspired</SubHeader>
           <Paragraph>

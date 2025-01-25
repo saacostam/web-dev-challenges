@@ -34,12 +34,7 @@ export function Label({
   className?: string;
 }>) {
   return (
-    <span
-      className={twMerge(
-        "text-lg text-neutral font-bold mb-2 block",
-        className,
-      )}
-    >
+    <span className={twMerge("text-lg font-bold mb-2 block", className)}>
       {children}
     </span>
   );

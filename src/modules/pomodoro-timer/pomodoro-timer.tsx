@@ -22,8 +22,8 @@ export function PomodoroTimer() {
   const { Modal: SettingsModal, openModal: openSettingsModal } = useModal();
 
   return (
-    <div className="max-w-md mx-auto">
-      <section className="flex flex-row justify-between items-center">
+    <div className="max-w-md mx-auto text-base-content">
+      <section className="flex flex-row justify-between items-center text-base-content">
         <SubHeader className="mb-0">Pomodoro</SubHeader>
         <button
           className="btn btn-square btn-ghost"
@@ -60,7 +60,7 @@ export function PomodoroTimer() {
       <PomodoroTasks dispatcher={reduceSnapshot} tasks={snapshot.tasks} />
 
       {/* MODALS */}
-      <SettingsModal>
+      <SettingsModal className="text-base-content">
         <PomodoroSettingsManagements
           reduceSettings={reduceSettings}
           settings={settings}

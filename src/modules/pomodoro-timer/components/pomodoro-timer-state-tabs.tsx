@@ -31,10 +31,7 @@ export function PomodoroTimerStateTabs({
       {tabs.map(({ label, onClick }) => (
         <button
           role="tab"
-          className={twMerge(
-            "tab text-neutral",
-            label === activeTab && "tab-active",
-          )}
+          className={twMerge("tab", label === activeTab && "tab-active")}
           key={label}
           onClick={() => onClick(label)}
         >

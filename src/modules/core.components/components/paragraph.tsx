@@ -9,5 +9,7 @@ export function Paragraph({
   children,
   className,
 }: PropsWithChildren<ParagraphProps>) {
-  return <p className={twMerge("mb-4", className)}>{children}</p>;
+  return (
+    <p className={twMerge("mb-4 text-base-content", className)}>{children}</p>
+  );
 }
