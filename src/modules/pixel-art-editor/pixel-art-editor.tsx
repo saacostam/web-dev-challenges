@@ -1,5 +1,5 @@
 import { Canvas, Menu, PixelArtEditorLayout } from "./components";
-import { EditorSnaphostProvider } from "./provider";
+import { EditorSnaphostProvider } from "./providers";
 
 export function PixelArtEditor() {
   return (
