@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { TPixelArtEditorHistory, TUpdate } from "../types";
+import { TPixelArtEditorHistory, TUpdate } from "../../types";
 
 /**
  * Creates a state container to manage the history of a pixel art editor. The returned object has the following properties:
@@ -10,7 +10,7 @@ import { TPixelArtEditorHistory, TUpdate } from "../types";
  *
  * @returns {TPixelArtEditorHistory}
  */
-export function useEditorHistory(): TPixelArtEditorHistory {
+export function useEditorHistoryStateHook(): TPixelArtEditorHistory {
   const [updatesStack, setUpdatesStack] = useState<TUpdate[]>([]);
   const [historyStack, setHistoryStack] = useState<TUpdate[]>([]);
 

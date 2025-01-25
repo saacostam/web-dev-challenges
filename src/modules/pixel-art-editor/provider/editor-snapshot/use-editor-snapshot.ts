@@ -1,8 +1,11 @@
 import { useMemo, useReducer } from "react";
-import { TPixelArtEditorAction, TPixelArtEditorSnapShot } from "../types";
-import { useEditorHistory } from "./use-editor-history";
-import { ClientStorageService } from "../services";
+import { TPixelArtEditorAction, TPixelArtEditorSnapShot } from "../../types";
+import { useEditorHistoryStateHook } from "./use-editor-history";
+import { ClientStorageService } from "../../services";
 
+/**
+ * Creates a state hook to manage state of a pixel art editor.
+ */
 export function reduceEditorSnapshot(
   state: TPixelArtEditorSnapShot,
   action: TPixelArtEditorAction,
@@ -35,8 +38,8 @@ export function reduceEditorSnapshot(
   }
 }
 
-export function useEditorSnapshot() {
-  const history = useEditorHistory();
+export function useEditorSnapshotStateHook() {
+  const history = useEditorHistoryStateHook();
 
   const [editorSnapshot, dispatch] = useReducer(
     reduceEditorSnapshot,
