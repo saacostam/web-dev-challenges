@@ -1,2 +1,2 @@
-export * from "./client-storage";
+export * from "./initializer";
 export * from "./seeder";

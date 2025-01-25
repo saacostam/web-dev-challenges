@@ -6,13 +6,13 @@ import {
 import { TPixelArtEditorHistory, TPixelArtEditorSnapShot } from "../types";
 import { SeederService } from "./seeder";
 
-export interface GetEditorSnapshotFromClientStorageInput {
+export interface InitializeEditorSnapshotInput {
   history: TPixelArtEditorHistory;
 }
 
-function getEditorSnapshotFromClientStorage({
+function initializeEditorSnapshot({
   history,
-}: GetEditorSnapshotFromClientStorageInput): TPixelArtEditorSnapShot {
+}: InitializeEditorSnapshotInput): TPixelArtEditorSnapShot {
   return {
     ...DEFAULT_EDITOR_SNAPSHOT,
     frames: [
@@ -26,6 +26,6 @@ function getEditorSnapshotFromClientStorage({
   };
 }
 
-export const ClientStorageService = {
-  getEditorSnapshotFromClientStorage,
+export const InitializerService = {
+  initializeEditorSnapshot,
 };
