@@ -1,8 +1,41 @@
+import { useEffect, useRef } from "react";
+import { CanvasManager } from "../managers";
+import { useEditorSnapshot } from "../providers";
+
 export function Canvas() {
+  const { editorSnapshot } = useEditorSnapshot();
+
+  const canvasRef = useRef(null);
+  const canvasManager = useRef<CanvasManager>(null as unknown as CanvasManager);
+
+  useEffect(
+    () => {
+      canvasManager.current = new CanvasManager({
+        baseCanvas: canvasRef.current!,
+        currentFrame: editorSnapshot.frames[0],
+      });
+
+      return () => {
+        canvasManager.current?.cleaup();
+      };
+    },
+    // This effect only runs once
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
+  useEffect(() => {
+    if (!canvasManager.current) return;
+    canvasManager.current.state({
+      currentFrame: editorSnapshot.frames[0],
+    });
+  }, [editorSnapshot.frames]);
+
   return (
     <div className="w-full h-full flex items-center justify-center">
       <canvas
         className="cursor-pointer"
+        ref={canvasRef}
         style={{ aspectRatio: "1/1", height: "100%", ...BACKGROUND_STYLING }}
       />
     </div>
