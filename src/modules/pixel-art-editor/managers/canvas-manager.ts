@@ -33,6 +33,12 @@ export class CanvasManager {
   private dispatch: Dispatch<TPixelArtEditorAction>;
 
   private shouldDraw = false;
+  private eventCallbacks: {
+    mousedown: (e: MouseEvent) => void;
+    mousemove: (e: MouseEvent) => void;
+    mouseup: (e: MouseEvent) => void;
+    contextmenu: (e: MouseEvent) => void;
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private optionCtx: any = {};
@@ -73,68 +79,77 @@ export class CanvasManager {
     this.shouldDraw = true;
     this.draw();
 
-    const createEventCallback = (mouseInput: TMouseInputType) => {
-      return (e: MouseEvent) => {
-        e.preventDefault();
-        const { button, offsetX, offsetY } = e;
-
-        const clickType: TMouseClickType =
-          button === 2 ? TMouseClickType.RIGHT : TMouseClickType.LEFT;
-
-        const { clientWidth, clientHeight } = this.baseCanvas;
-
-        const position: TPosition = {
-          x: Math.floor(
-            (offsetX / clientWidth) * this.bufferFrame.canvas[0].length,
-          ),
-          y: Math.floor(
-            (offsetY / clientHeight) * this.bufferFrame.canvas.length,
-          ),
-        };
-
-        if (
-          position.x >= this.bufferFrame.canvas[0].length ||
-          position.y >= this.bufferFrame.canvas.length
-        )
-          return;
-
-        const stateMachine =
-          STATE_MACHINE_CONFIGS[this.editorSnapshot.selectedOption];
-        if (!stateMachine.states.includes(this.optionStatus)) {
-          this.optionStatus = stateMachine.defaultState;
-          this.optionCtx = stateMachine.ctx();
-        }
-
-        const next =
-          stateMachine.transitions[
-            this.optionStatus as (typeof stateMachine.states)[number]
-          ][mouseInput];
-
-        this.optionCtx = next.handler({
-          bufferFrame: this.bufferFrame,
-          clickType: clickType,
-          ctx: this.optionCtx,
-          dispatch: this.dispatch,
-          editorSnapshot: this.editorSnapshot,
-          position,
-        });
-        this.optionStatus = next.nextState;
-      };
+    // Create the event callbacks
+    this.eventCallbacks = {
+      mousedown: this.createMouseEventCallback(TMouseInputType.CLICK),
+      mousemove: this.createMouseEventCallback(TMouseInputType.DRAG),
+      mouseup: this.createMouseEventCallback(TMouseInputType.RELEASE),
+      contextmenu: (e: MouseEvent) => e.preventDefault(),
     };
 
+    // Attach event listeners to the canvas
     this.baseCanvas.addEventListener(
       "mousedown",
-      createEventCallback(TMouseInputType.CLICK),
+      this.eventCallbacks.mousedown,
     );
     this.baseCanvas.addEventListener(
       "mousemove",
-      createEventCallback(TMouseInputType.DRAG),
+      this.eventCallbacks.mousemove,
     );
+    this.baseCanvas.addEventListener("mouseup", this.eventCallbacks.mouseup);
     this.baseCanvas.addEventListener(
-      "mouseup",
-      createEventCallback(TMouseInputType.RELEASE),
+      "contextmenu",
+      this.eventCallbacks.contextmenu,
     );
-    this.baseCanvas.addEventListener("contextmenu", (e) => e.preventDefault());
+  }
+
+  private createMouseEventCallback(mouseInput: TMouseInputType) {
+    return (e: MouseEvent) => {
+      e.preventDefault();
+      const { button, offsetX, offsetY } = e;
+
+      const clickType: TMouseClickType =
+        button === 2 ? TMouseClickType.RIGHT : TMouseClickType.LEFT;
+
+      const { clientWidth, clientHeight } = this.baseCanvas;
+
+      const position: TPosition = {
+        x: Math.floor(
+          (offsetX / clientWidth) * this.bufferFrame.canvas[0].length,
+        ),
+        y: Math.floor(
+          (offsetY / clientHeight) * this.bufferFrame.canvas.length,
+        ),
+      };
+
+      if (
+        position.x >= this.bufferFrame.canvas[0].length ||
+        position.y >= this.bufferFrame.canvas.length
+      )
+        return;
+
+      const stateMachine =
+        STATE_MACHINE_CONFIGS[this.editorSnapshot.selectedOption];
+      if (!stateMachine.states.includes(this.optionStatus)) {
+        this.optionStatus = stateMachine.defaultState;
+        this.optionCtx = stateMachine.ctx();
+      }
+
+      const next =
+        stateMachine.transitions[
+          this.optionStatus as (typeof stateMachine.states)[number]
+        ][mouseInput];
+
+      this.optionCtx = next.handler({
+        bufferFrame: this.bufferFrame,
+        clickType: clickType,
+        ctx: this.optionCtx,
+        dispatch: this.dispatch,
+        editorSnapshot: this.editorSnapshot,
+        position,
+      });
+      this.optionStatus = next.nextState;
+    };
   }
 
   state(state: CanvasManagerState) {
@@ -155,7 +170,11 @@ export class CanvasManager {
   }
 
   cleaup() {
-    // empty
+    this.shouldDraw = false;
+
+    Object.entries(this.eventCallbacks).forEach(([event, callback]) => {
+      this.baseCanvas.removeEventListener(event, callback as EventListener);
+    });
   }
 
   draw() {

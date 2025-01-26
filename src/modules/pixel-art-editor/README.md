@@ -37,8 +37,8 @@ function App() {
 
 - [x] FIX: Check why the color input is closing when clicked.
 - [x] FEAT: Implement the color picker state-machine.
-- [ ] FIX: Clean-up event listener for canvas-manager.
-  - [ ] FIX: Check if this solves the issue where after color-pick, a pen-like behaviour is seen.
+- [x] FIX: Clean-up event listener for canvas-manager.
+  - [x] FIX: Check if this solves the issue where after color-pick, a pen-like behaviour is seen.
 - [ ] FEAT: Implement the bucket state-machine.
 - [ ] FEAT: Implement the delete state-machine.
 - [ ] FEAT: Handle the cancel event.
