@@ -31,34 +31,29 @@ export function HomeView() {
       <Divider />
       <Paragraph>
         Each entry in this collection reflects a specific concept, feature, or
-        tool within the React ecosystem. This repository serves as a record of
-        my continuous learning journey—showcasing my experiments,
-        problem-solving, and growing expertise in React.
+        tool within the React ecosystem. This repository captures my ongoing
+        learning journey, showcasing experiments, problem-solving approaches,
+        and the growth of my React expertise.
       </Paragraph>
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <SubHeader>Explore, Learn, and Be Inspired</SubHeader>
+          <SubHeader>Why React-Challenges?</SubHeader>
           <Paragraph>
-            Feel free to browse through the projects and see how I&apos;ve
+            This isn't a public challenge list or a formal curriculum. Instead,
+            it's a curated collection of personal explorations that have helped
+            me dive deep into the nuances of React. From state management to
+            component architecture, each challenge represents a stepping stone
+            in my development as a React developer.
+          </Paragraph>
+        </div>
+        <div>
+          <SubHeader>Sharing My React Journey</SubHeader>
+          <Paragraph>
+            Feel free to explore through the projects and see how I&apos;ve
             tackled different React concepts. While this collection is personal,
             I hope it can serve as a source of inspiration for fellow developers
             looking to learn, experiment, or solve similar problems in their own
             React journeys.
-          </Paragraph>
-          <Paragraph>
-            Whether you're just getting started with React or you're looking for
-            unique ways to refine your skills, these challenges are here to
-            offer insights and inspiration. Enjoy the journey, and happy coding!
-          </Paragraph>
-        </div>
-        <div>
-          <SubHeader>Why React-Challenges?</SubHeader>
-          <Paragraph>
-            This is not a public challenge list or a formal curriculum. Instead,
-            it’s a curated set of personal explorations that have allowed me to
-            dive deep into the nuances of React. From state management to
-            component architecture, each challenge serves as a stepping stone in
-            my development as a React developer.
           </Paragraph>
         </div>
       </section>
