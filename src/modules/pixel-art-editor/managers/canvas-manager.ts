@@ -186,6 +186,7 @@ export class CanvasManager {
     // Clear the canvas
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
+    const OVERFLOW = 1;
     // Draw the current frame pixels
     const currentFrame = this.editorSnapshot.frames[0];
     for (let j = 0; j < currentFrame.canvas.length; j++) {
@@ -194,7 +195,12 @@ export class CanvasManager {
         const height = canvasHeight / currentFrame.canvas[j].length;
 
         ctx.fillStyle = currentFrame.canvas[j][x].color;
-        ctx.fillRect(x * width, j * height, width, height);
+        ctx.fillRect(
+          x * width - OVERFLOW,
+          j * height - OVERFLOW,
+          width + 2 * OVERFLOW,
+          height + 2 * OVERFLOW,
+        );
       }
     }
 
@@ -205,7 +211,12 @@ export class CanvasManager {
         const height = canvasHeight / this.bufferFrame.canvas[j].length;
 
         ctx.fillStyle = this.bufferFrame.canvas[j][x].color;
-        ctx.fillRect(x * width, j * height, width, height);
+        ctx.fillRect(
+          x * width - OVERFLOW,
+          j * height - OVERFLOW,
+          width + 2 * OVERFLOW,
+          height + 2 * OVERFLOW,
+        );
       }
     }
 
