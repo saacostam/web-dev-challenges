@@ -3,6 +3,7 @@ import { TRoute, useGetRoutes } from "../../router";
 import { TChallenge } from "../types";
 import { Link } from "react-router-dom";
 import { Pill } from "../../core.components";
+import { InProgressPill } from "./in-progress-pill";
 
 export interface TChallengeCardProps {
   challenge: TChallenge;
@@ -24,6 +25,7 @@ export function ChallengeCard({ challenge, className }: TChallengeCardProps) {
           {challenge.Icon ? <challenge.Icon className="size-6" /> : null}
           {challenge.name}
           <Pill className="p-2">{challenge.difficulty}</Pill>
+          {challenge.inProgress && <InProgressPill className="p-2" />}
         </h2>
         <p>{challenge.description}</p>
         <div className="card-actions justify-end">

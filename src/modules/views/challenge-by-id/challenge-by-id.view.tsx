@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { TChallenge, useChallengeById } from "../../challenges";
+import { InProgressPill, TChallenge, useChallengeById } from "../../challenges";
 import { Error404 } from "../../error-handling";
 import {
   Divider,
@@ -32,7 +32,10 @@ function Challenge({ challenge }: ChallengeProps) {
           {challenge.Icon && <challenge.Icon className="size-8" />}
           {challenge.name}
         </Header>
-        <Pill>Difficulty: {challenge.difficulty}</Pill>
+        <div className="flex gap-2">
+          <Pill>Difficulty: {challenge.difficulty}</Pill>
+          {challenge.inProgress && <InProgressPill />}
+        </div>
       </div>
       <challenge.Component />
       <Divider />

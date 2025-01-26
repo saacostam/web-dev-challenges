@@ -7,7 +7,7 @@ export interface PillProps {
 
 export function Pill({ className, children }: PropsWithChildren<PillProps>) {
   return (
-    <div className={twMerge("badge badge-primary p-4", className)}>
+    <div className={twMerge("badge badge-primary p-4 text-center", className)}>
       {children}
     </div>
   );
