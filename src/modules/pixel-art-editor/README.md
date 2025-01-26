@@ -35,7 +35,7 @@ function App() {
 
 ## Tasks
 
-- [ ] FIX: Check why the color input is closing when clicked.
+- [x] FIX: Check why the color input is closing when clicked.
 - [ ] FEAT: Implement the color picker state-machine.
 - [ ] FEAT: Implement the bucket state-machine.
 - [ ] FEAT: Implement the delete state-machine.
