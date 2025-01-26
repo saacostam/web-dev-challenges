@@ -1,12 +1,16 @@
-import { PropsWithChildren, useMemo } from "react";
-import { Link } from "react-router-dom";
-import { ThreeLinesIcon } from "../../../icons";
+import { PropsWithChildren, useEffect, useMemo, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { ThreeLinesIcon, XCircleIcon, XIcon } from "../../../icons";
 import { NavbarNavigationItem } from "./types";
-import { Logo } from "../../../core.components";
+import { Logo, SubHeader } from "../../../core.components";
 import { TRoute, useGetRoutes } from "../../../router";
+import { CHALLENGES } from "../../../challenges";
 
 export function Navbar({ children }: PropsWithChildren) {
   const getRoutes = useGetRoutes();
+  const location = useLocation();
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const homeHref = useMemo(
     () => getRoutes.getHref({ type: TRoute.HOME }),
@@ -19,13 +23,33 @@ export function Navbar({ children }: PropsWithChildren) {
         label: "Home",
         href: homeHref,
       },
+      ...CHALLENGES.map((challenge) => ({
+        id: challenge.id,
+        label: challenge.name,
+        href: getRoutes.getHref({
+          type: TRoute.CHALLENGE_BY_ID,
+          id: challenge.id,
+        }),
+      })),
     ],
-    [homeHref],
+    [homeHref, getRoutes],
   );
+
+  useEffect(() => {
+    if (location.pathname) {
+      setDrawerOpen(false);
+    }
+  }, [location.pathname]);
 
   return (
     <div className="drawer">
-      <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+      <input
+        id="my-drawer-3"
+        type="checkbox"
+        className="drawer-toggle"
+        checked={drawerOpen}
+        onChange={(e) => setDrawerOpen(e.target.checked)}
+      />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
         <div className="navbar bg-primary text-primary-content w-full">
@@ -65,6 +89,15 @@ export function Navbar({ children }: PropsWithChildren) {
         ></label>
         <ul className="menu bg-base-200 min-h-full w-80 p-4">
           {/* Sidebar content here */}
+          <div className="flex items-center gap-2">
+            <SubHeader className="mb-0">Navigation</SubHeader>
+            <button
+              onClick={() => setDrawerOpen(false)}
+              className="btn btn-ghost btn-square ml-auto"
+            >
+              <XIcon />
+            </button>
+          </div>
           {NAVBAR_NAVIGATION_ITEMS.map((item) => (
             <li key={item.id}>
               <Link to={item.href}>{item.label}</Link>

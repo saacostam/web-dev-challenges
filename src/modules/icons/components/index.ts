@@ -15,3 +15,4 @@ export * from "./speaker-wave-icon";
 export * from "./three-lines";
 export * from "./trash-icon";
 export * from "./x-circle-icon";
+export * from "./x-icon";
