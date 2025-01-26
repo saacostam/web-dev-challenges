@@ -1,8 +1,12 @@
 import { Dispatch } from "react";
-import { COLORS } from "../constants";
-import { STATE_MACHINE_CONFIGS } from "../constants/state-machine-configs.constants";
+import {
+  COLORS,
+  DEFAULT_EDITOR_SNAPSHOT,
+  STATE_MACHINE_CONFIGS,
+} from "../constants";
 import { SeederService } from "../services";
 import {
+  TEditorOptionName,
   TFrame,
   TMouseClickType,
   TMouseInputType,
@@ -34,6 +38,8 @@ export class CanvasManager {
   private optionCtx: any = {};
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private optionStatus: any = "";
+  private prevOption: TEditorOptionName =
+    DEFAULT_EDITOR_SNAPSHOT.selectedOption;
 
   get editorSnapshot() {
     return this._editorSnapshot;
@@ -136,6 +142,16 @@ export class CanvasManager {
 
     this.dispatch = dispatch;
     this.editorSnapshot = editorSnapshot;
+
+    if (this.prevOption !== this.editorSnapshot.selectedOption) {
+      const stateMachine =
+        STATE_MACHINE_CONFIGS[this.editorSnapshot.selectedOption];
+
+      this.optionStatus = stateMachine.defaultState;
+      this.optionCtx = stateMachine.ctx();
+
+      this.prevOption = this.editorSnapshot.selectedOption;
+    }
   }
 
   cleaup() {

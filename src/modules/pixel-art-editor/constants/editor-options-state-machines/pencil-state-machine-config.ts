@@ -1,13 +1,12 @@
 import {
-  TEditorOptionName,
   TMouseInputType,
   TStateMachineConfig,
   TUpdate,
   TMouseClickType,
-} from "../types";
-import { COLORS } from "./colors.constants";
+} from "../../types";
+import { COLORS } from "../colors.constants";
 
-const pencilStateMachineConfig: TStateMachineConfig<
+export const pencilStateMachineConfig: TStateMachineConfig<
   {
     update: TUpdate;
     isLeftClick: boolean;
@@ -132,11 +131,4 @@ const pencilStateMachineConfig: TStateMachineConfig<
       },
     },
   },
-};
-
-export const STATE_MACHINE_CONFIGS = {
-  [TEditorOptionName.BUCKET]: pencilStateMachineConfig,
-  [TEditorOptionName.COLOR_PICKER]: pencilStateMachineConfig,
-  [TEditorOptionName.ERASER]: pencilStateMachineConfig,
-  [TEditorOptionName.PENCIL]: pencilStateMachineConfig,
 };
