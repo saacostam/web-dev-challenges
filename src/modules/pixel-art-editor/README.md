@@ -47,8 +47,19 @@ function App() {
 - [x] REFACTOR: Centralize hover logic for buffer in multiple state machines.
 - [x] REFACTOR: Centralize clean-up logic (when hover effect has ended) for buffer in multiple state machines.
 - [ ] FEAT: Implement the delete state-machine.
+- [ ] FEAT: Enable undo and redo buttons in UI.
+- [ ] FEAT: Hook undo and redo to keyboard hot-keys.
+- [ ] FEAT: Hook tool options to keyboard hot-keys.
+- [ ] FEAT: Set current frame as a snapshot attribute.
+- [ ] FEAT: Enable the creation of multiple frames.
+  - [ ] FEAT: Implement hook logic.
+  - [ ] FEAT: Create UI elements.
 - [ ] FEAT: Toogle between second button role: secondary-color vs. delete.
 - [ ] FEAT: Add an error boundary.
+- [ ] FEAT: Create keyboard hot-keys visualizer.
+- [ ] DOCS: Add js-doc annotations to types.
+- [ ] DOCS: Add js-doc to complex business logic.
+- [ ] DOCS: Document module code structure - implementation details.
 - [ ] PERF: Re-visit the hover for pencil option (maybe other as well).
   - [ ] Also, transition between not-clicked to clicked.
 - [ ] TEST: Add unit tests.
