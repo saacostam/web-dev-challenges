@@ -42,6 +42,30 @@ export function reduceEditorSnapshot(
         selectedOption: action.payload.currentOption,
       };
     }
+    case "commit-update": {
+      const update = state.history.add(action.payload.update);
+
+      for (let i = 0; i < update.mutations.length; i++) {
+        const mutation = update.mutations[i];
+
+        switch (mutation.type) {
+          case "switch-color": {
+            const pixel =
+              state.frames[0].canvas[mutation.payload.position.y][
+                mutation.payload.position.x
+              ];
+            pixel.color = mutation.payload.toColor;
+            break;
+          }
+          default:
+            break;
+        }
+      }
+
+      return {
+        ...state,
+      };
+    }
   }
 }
 

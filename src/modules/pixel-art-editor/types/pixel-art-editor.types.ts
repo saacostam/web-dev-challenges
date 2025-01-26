@@ -106,4 +106,10 @@ export type TPixelArtEditorAction =
       payload: {
         currentOption: TEditorOptionName;
       };
+    }
+  | {
+      type: "commit-update";
+      payload: {
+        update: TUpdate;
+      };
     };

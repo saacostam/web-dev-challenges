@@ -9,7 +9,7 @@ export function PixelArtEditorLayout({
   dockMenu,
 }: PropsWithChildren<PixelArtEditorLayoutProps>) {
   return (
-    <div className="flex flex-col sm:flex-row border-primary border-2 rounded-2xl">
+    <div className="flex flex-col sm:flex-row border-primary border-2 rounded-2xl h-96">
       <div className="grow-0 shrink-0 border-b-2 sm:border-r-2 sm:border-b-0 border-primary p-4">
         {dockMenu}
       </div>

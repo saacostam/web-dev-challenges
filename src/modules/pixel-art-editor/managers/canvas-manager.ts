@@ -1,22 +1,39 @@
+import { Dispatch } from "react";
 import { COLORS } from "../constants";
+import { STATE_MACHINE_CONFIGS } from "../constants/state-machine-configs.constants";
 import { SeederService } from "../services";
-import { TFrame, TPixelArtEditorSnapShot } from "../types";
+import {
+  TFrame,
+  TMouseClickType,
+  TMouseInputType,
+  TPixelArtEditorAction,
+  TPixelArtEditorSnapShot,
+  TPosition,
+} from "../types";
 
 export interface CanvasManagerInit {
   baseCanvas: HTMLCanvasElement;
   editorSnapshot: TPixelArtEditorSnapShot;
+  dispatch: Dispatch<TPixelArtEditorAction>;
 }
 
 export interface CanvasManagerState {
   editorSnapshot: TPixelArtEditorSnapShot;
+  dispatch: Dispatch<TPixelArtEditorAction>;
 }
 
 export class CanvasManager {
   private baseCanvas: HTMLCanvasElement;
   private _editorSnapshot!: TPixelArtEditorSnapShot;
   private bufferFrame!: TFrame;
+  private dispatch: Dispatch<TPixelArtEditorAction>;
 
   private shouldDraw = false;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private optionCtx: any = {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private optionStatus: any = "";
 
   get editorSnapshot() {
     return this._editorSnapshot;
@@ -41,18 +58,83 @@ export class CanvasManager {
   }
 
   constructor(init: CanvasManagerInit) {
-    const { baseCanvas, editorSnapshot } = init;
+    const { baseCanvas, dispatch, editorSnapshot } = init;
 
     this.baseCanvas = baseCanvas;
+    this.dispatch = dispatch;
     this.editorSnapshot = editorSnapshot;
 
     this.shouldDraw = true;
     this.draw();
+
+    const createEventCallback = (mouseInput: TMouseInputType) => {
+      return (e: MouseEvent) => {
+        e.preventDefault();
+        const { button, offsetX, offsetY } = e;
+
+        const clickType: TMouseClickType =
+          button === 2 ? TMouseClickType.RIGHT : TMouseClickType.LEFT;
+
+        const { clientWidth, clientHeight } = this.baseCanvas;
+
+        const position: TPosition = {
+          x: Math.floor(
+            (offsetX / clientWidth) * this.bufferFrame.canvas[0].length,
+          ),
+          y: Math.floor(
+            (offsetY / clientHeight) * this.bufferFrame.canvas.length,
+          ),
+        };
+
+        if (
+          position.x >= this.bufferFrame.canvas[0].length ||
+          position.y >= this.bufferFrame.canvas.length
+        )
+          return;
+
+        const stateMachine =
+          STATE_MACHINE_CONFIGS[this.editorSnapshot.selectedOption];
+        if (!stateMachine.states.includes(this.optionStatus)) {
+          this.optionStatus = stateMachine.defaultState;
+          this.optionCtx = stateMachine.ctx();
+        }
+
+        const next =
+          stateMachine.transitions[
+            this.optionStatus as (typeof stateMachine.states)[number]
+          ][mouseInput];
+
+        this.optionCtx = next.handler({
+          bufferFrame: this.bufferFrame,
+          clickType: clickType,
+          ctx: this.optionCtx,
+          dispatch: this.dispatch,
+          editorSnapshot: this.editorSnapshot,
+          position,
+        });
+        this.optionStatus = next.nextState;
+      };
+    };
+
+    this.baseCanvas.addEventListener(
+      "mousedown",
+      createEventCallback(TMouseInputType.CLICK),
+    );
+    this.baseCanvas.addEventListener(
+      "mousemove",
+      createEventCallback(TMouseInputType.DRAG),
+    );
+    this.baseCanvas.addEventListener(
+      "mouseup",
+      createEventCallback(TMouseInputType.RELEASE),
+    );
+    this.baseCanvas.addEventListener("contextmenu", (e) => e.preventDefault());
   }
 
   state(state: CanvasManagerState) {
-    const { editorSnapshot } = state;
+    const { dispatch, editorSnapshot } = state;
 
+    this.dispatch = dispatch;
     this.editorSnapshot = editorSnapshot;
   }
 

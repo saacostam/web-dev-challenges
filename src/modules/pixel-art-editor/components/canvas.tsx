@@ -3,7 +3,7 @@ import { CanvasManager } from "../managers";
 import { useEditorSnapshot } from "../providers";
 
 export function Canvas() {
-  const { editorSnapshot } = useEditorSnapshot();
+  const { dispatch, editorSnapshot } = useEditorSnapshot();
 
   const canvasRef = useRef(null);
   const canvasManager = useRef<CanvasManager>(null as unknown as CanvasManager);
@@ -12,6 +12,7 @@ export function Canvas() {
     () => {
       canvasManager.current = new CanvasManager({
         baseCanvas: canvasRef.current!,
+        dispatch: dispatch,
         editorSnapshot: editorSnapshot,
       });
 
@@ -27,16 +28,23 @@ export function Canvas() {
   useEffect(() => {
     if (!canvasManager.current) return;
     canvasManager.current.state({
+      dispatch: dispatch,
       editorSnapshot: editorSnapshot,
     });
-  }, [editorSnapshot]);
+  }, [dispatch, editorSnapshot]);
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
-      <canvas
-        className="cursor-pointer"
-        ref={canvasRef}
+    <div className="w-full h-full flex items-center justify-center relative">
+      <div
+        className="absolute"
         style={{ aspectRatio: "1/1", height: "100%", ...BACKGROUND_STYLING }}
+      />
+      <canvas
+        className="absolute pointer-events-auto"
+        ref={canvasRef}
+        width="500"
+        height="500"
+        style={{ aspectRatio: "1/1", height: "100%" }}
       />
     </div>
   );

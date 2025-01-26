@@ -35,4 +35,13 @@ function App() {
 
 ## Tasks
 
-- [ ] FEAT:
+- [ ] FIX: Check why the color input is closing when clicked.
+- [ ] FEAT: Implement the color picker state-machine.
+- [ ] FEAT: Implement the bucket state-machine.
+- [ ] FEAT: Implement the delete state-machine.
+- [ ] FIX: Clean-up event listener for canvas-manager.
+- [ ] FEAT: Handle the cancel event.
+- [ ] FEAT: Enable transparent colors.
+- [ ] PERF: Re-visit the hover for pencil option (maybe other as well).
+  - [ ] Also, transition between not-clicked to clicked.
+- [ ] TEST: Add unit tests.

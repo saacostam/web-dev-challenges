@@ -6,32 +6,39 @@ import {
   TPixelArtEditorSnapShot,
 } from "./pixel-art-editor.types";
 
-export enum TMouseInputTypes {
+export enum TMouseInputType {
   CLICK = "click",
   DRAG = "drag",
   RELEASE = "release",
+  CANCEL = "cancel",
 }
 
-type TransitionHandler<T> = (input: {
-  ctx: T;
+export enum TMouseClickType {
+  LEFT = "left",
+  RIGHT = "right",
+}
+
+type TTransitionHandler<T> = (input: {
   bufferFrame: TFrame;
+  clickType: TMouseClickType;
+  ctx: T;
   dispatch: Dispatch<TPixelArtEditorAction>;
   editorSnapshot: TPixelArtEditorSnapShot;
   position: TPosition;
 }) => T;
 
-type Transitions<S extends string, T> = {
+type TTransitions<S extends string, T> = {
   [state in S]: {
-    [transition in TMouseInputTypes]: {
+    [transition in TMouseInputType]: {
       nextState: S;
-      handler: TransitionHandler<T>;
+      handler: TTransitionHandler<T>;
     };
   };
 };
 
-export interface StateMachineConfig<S extends string, T> {
-  toolOption: string;
-  ctx: T;
+export interface TStateMachineConfig<T, S extends string = string> {
+  ctx: () => T;
+  defaultState: S;
   states: S[];
-  transitions: Transitions<S, T>;
+  transitions: TTransitions<S, T>;
 }
