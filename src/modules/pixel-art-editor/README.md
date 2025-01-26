@@ -39,7 +39,8 @@ function App() {
 - [x] FEAT: Implement the color picker state-machine.
 - [x] FIX: Clean-up event listener for canvas-manager.
   - [x] FIX: Check if this solves the issue where after color-pick, a pen-like behaviour is seen.
-- [ ] FEAT: Implement the bucket state-machine.
+- [x] FEAT: Implement the bucket state-machine.
+- [ ] FEAT: Slightly over-draw squares to avoid lines in-between pixels.
 - [ ] FEAT: Handle show vs. not-show grid.
 - [ ] FEAT: Implement the delete state-machine.
 - [ ] FEAT: Toogle between second button role: secondary-color vs. delete.
