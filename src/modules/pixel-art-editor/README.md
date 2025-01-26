@@ -57,6 +57,7 @@ function App() {
 - [ ] FEAT: Toogle between second button role: secondary-color vs. delete.
 - [ ] FEAT: Add an error boundary.
 - [ ] FEAT: Create keyboard hot-keys visualizer.
+- [ ] FEAT: Mobile Support?
 - [ ] DOCS: Add js-doc annotations to types.
 - [ ] DOCS: Add js-doc to complex business logic.
 - [ ] DOCS: Document module code structure - implementation details.

@@ -1,3 +1,4 @@
+export * from "./alert";
 export * from "./checkbox";
 export * from "./divider";
 export * from "./header";
