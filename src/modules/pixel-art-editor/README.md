@@ -41,7 +41,7 @@ function App() {
   - [x] FIX: Check if this solves the issue where after color-pick, a pen-like behaviour is seen.
 - [x] FEAT: Implement the bucket state-machine.
 - [x] FEAT: Slightly over-draw squares to avoid lines in-between pixels.
-- [ ] FEAT: Handle show vs. not-show grid.
+- [x] FEAT: Handle show vs. not-show grid.
 - [ ] FEAT: Implement the delete state-machine.
 - [ ] FEAT: Toogle between second button role: secondary-color vs. delete.
 - [ ] FEAT: Handle the cancel event.

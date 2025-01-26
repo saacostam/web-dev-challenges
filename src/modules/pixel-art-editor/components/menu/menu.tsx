@@ -4,6 +4,7 @@ import { useEditorSnapshot } from "../../providers";
 import { ColorPicker } from "./color-picker";
 import { ToolMenu } from "./tool-menu";
 import { TEditorOptionName } from "../../types";
+import { ShowGridCheck } from "./show-grid-check";
 
 export function Menu() {
   const { editorSnapshot, dispatch } = useEditorSnapshot();
@@ -35,8 +36,17 @@ export function Menu() {
     [dispatch],
   );
 
+  const setShowGrid = useCallback(
+    (showGrid: boolean) =>
+      dispatch({
+        type: "show-grid",
+        payload: { showGrid },
+      }),
+    [dispatch],
+  );
+
   return (
-    <div className="flex flex-col gap-y-4">
+    <div className="flex flex-col gap-y-4 h-full">
       <div>
         <SubHeader className="text-lg text-center mb-2">Tool Belt</SubHeader>
         <ToolMenu
@@ -51,6 +61,13 @@ export function Menu() {
           setCurrentColorPrimary={setCurrentColorPrimary}
           currentColorSecondary={editorSnapshot.currentColorSecondary}
           setCurrentColorSecondary={setCurrentColorSecondary}
+        />
+      </div>
+      <div className="mt-auto">
+        <ShowGridCheck
+          className="mt-4"
+          setShowGrid={setShowGrid}
+          showGrid={editorSnapshot.showGrid}
         />
       </div>
     </div>

@@ -7,4 +7,5 @@ export const COLORS = {
   blue: "#0000FF",
   yellow: "#FFFF00",
   hover: "#779CFA88",
+  grid: "#D9D9D944",
 };
