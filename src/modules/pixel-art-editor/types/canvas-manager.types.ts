@@ -18,7 +18,7 @@ export enum TMouseClickType {
   RIGHT = "right",
 }
 
-type TTransitionHandler<T> = (input: {
+export type TTransitionHandler<T> = (input: {
   bufferFrame: TFrame;
   clickType: TMouseClickType;
   ctx: T;
@@ -27,7 +27,7 @@ type TTransitionHandler<T> = (input: {
   position: TPosition;
 }) => T;
 
-type TTransitions<S extends string, T> = {
+export type TTransitions<S extends string, T> = {
   [state in S]: {
     [transition in TMouseInputType]: {
       nextState: S;

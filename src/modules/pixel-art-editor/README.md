@@ -42,12 +42,13 @@ function App() {
 - [x] FEAT: Implement the bucket state-machine.
 - [x] FEAT: Slightly over-draw squares to avoid lines in-between pixels.
 - [x] FEAT: Handle show vs. not-show grid.
-- [ ] FEAT: Handle the cancel event.
+- [x] FEAT: Handle the cancel event.
+- [x] REFACTOR: Centralize drawing logic for buffer and canvas into a single function.
+- [x] REFACTOR: Centralize hover logic for buffer in multiple state machines.
+- [x] REFACTOR: Centralize clean-up logic (when hover effect has ended) for buffer in multiple state machines.
 - [ ] FEAT: Implement the delete state-machine.
 - [ ] FEAT: Toogle between second button role: secondary-color vs. delete.
-- [ ] REFACTOR: Centralize drawing logic for buffer and canvas into a single function.
-- [ ] REFACTOR: Centralize hover logic for buffer in multiple state machines.
-- [ ] REFACTOR: Centralize clean-up logic (when hover effect has ended) for buffer in multiple state machines.
+- [ ] FEAT: Add an error boundary.
 - [ ] PERF: Re-visit the hover for pencil option (maybe other as well).
   - [ ] Also, transition between not-clicked to clicked.
 - [ ] TEST: Add unit tests.

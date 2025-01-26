@@ -5,7 +5,7 @@ import {
   TUpdate,
   TPosition,
 } from "../../types";
-import { COLORS } from "../colors.constants";
+import { FrameUtils } from "../../utils";
 
 export const bucketStateMachineConfig: TStateMachineConfig<
   unknown,
@@ -26,11 +26,7 @@ export const bucketStateMachineConfig: TStateMachineConfig<
           editorSnapshot,
           position,
         }) => {
-          for (let j = 0; j < bufferFrame.canvas.length; j++) {
-            for (let x = 0; x < bufferFrame.canvas[j].length; x++) {
-              bufferFrame.canvas[j][x].color = COLORS.transparent;
-            }
-          }
+          FrameUtils.clearFrame(bufferFrame);
 
           const currentColor =
             editorSnapshot.frames[0].canvas[position.y][position.x].color;
@@ -86,15 +82,7 @@ export const bucketStateMachineConfig: TStateMachineConfig<
       [TMouseInputType.DRAG]: {
         nextState: "not-clicked",
         handler: ({ bufferFrame, ctx, position }) => {
-          for (let j = 0; j < bufferFrame.canvas.length; j++) {
-            for (let x = 0; x < bufferFrame.canvas[j].length; x++) {
-              bufferFrame.canvas[j][x].color =
-                j === position.y && x === position.x
-                  ? COLORS.hover
-                  : COLORS.transparent;
-            }
-          }
-
+          FrameUtils.paintHover(bufferFrame, position);
           return ctx;
         },
       },
@@ -104,7 +92,10 @@ export const bucketStateMachineConfig: TStateMachineConfig<
       },
       [TMouseInputType.CANCEL]: {
         nextState: "not-clicked",
-        handler: ({ ctx }) => ctx,
+        handler: ({ bufferFrame, ctx }) => {
+          FrameUtils.clearFrame(bufferFrame);
+          return ctx;
+        },
       },
     },
     clicked: {
@@ -122,7 +113,10 @@ export const bucketStateMachineConfig: TStateMachineConfig<
       },
       [TMouseInputType.CANCEL]: {
         nextState: "not-clicked",
-        handler: ({ ctx }) => ctx,
+        handler: ({ bufferFrame, ctx }) => {
+          FrameUtils.clearFrame(bufferFrame);
+          return ctx;
+        },
       },
     },
   },

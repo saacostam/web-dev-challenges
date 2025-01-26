@@ -14,6 +14,7 @@ import {
   TPixelArtEditorSnapShot,
   TPosition,
 } from "../types";
+import { FrameUtils } from "../utils";
 
 export interface CanvasManagerInit {
   baseCanvas: HTMLCanvasElement;
@@ -37,6 +38,7 @@ export class CanvasManager {
     mousedown: (e: MouseEvent) => void;
     mousemove: (e: MouseEvent) => void;
     mouseup: (e: MouseEvent) => void;
+    mouseout: (e: MouseEvent) => void;
     contextmenu: (e: MouseEvent) => void;
   };
 
@@ -84,6 +86,7 @@ export class CanvasManager {
       mousedown: this.createMouseEventCallback(TMouseInputType.CLICK),
       mousemove: this.createMouseEventCallback(TMouseInputType.DRAG),
       mouseup: this.createMouseEventCallback(TMouseInputType.RELEASE),
+      mouseout: this.createMouseEventCallback(TMouseInputType.CANCEL),
       contextmenu: (e: MouseEvent) => e.preventDefault(),
     };
 
@@ -97,6 +100,7 @@ export class CanvasManager {
       this.eventCallbacks.mousemove,
     );
     this.baseCanvas.addEventListener("mouseup", this.eventCallbacks.mouseup);
+    this.baseCanvas.addEventListener("mouseout", this.eventCallbacks.mouseout);
     this.baseCanvas.addEventListener(
       "contextmenu",
       this.eventCallbacks.contextmenu,
@@ -115,18 +119,14 @@ export class CanvasManager {
 
       const position: TPosition = {
         x: Math.floor(
-          (offsetX / clientWidth) * this.bufferFrame.canvas[0].length,
+          (Math.min(Math.max(0, offsetX), clientWidth - 1) / clientWidth) *
+            this.bufferFrame.canvas[0].length,
         ),
         y: Math.floor(
-          (offsetY / clientHeight) * this.bufferFrame.canvas.length,
+          (Math.min(Math.max(0, offsetY), clientHeight - 1) / clientHeight) *
+            this.bufferFrame.canvas.length,
         ),
       };
-
-      if (
-        position.x >= this.bufferFrame.canvas[0].length ||
-        position.y >= this.bufferFrame.canvas.length
-      )
-        return;
 
       const stateMachine =
         STATE_MACHINE_CONFIGS[this.editorSnapshot.selectedOption];
@@ -186,23 +186,9 @@ export class CanvasManager {
     // Clear the canvas
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-    const OVERFLOW = 1;
     // Draw the current frame pixels
     const currentFrame = this.editorSnapshot.frames[0];
-    for (let j = 0; j < currentFrame.canvas.length; j++) {
-      for (let x = 0; x < currentFrame.canvas[j].length; x++) {
-        const width = canvasWidth / currentFrame.canvas.length;
-        const height = canvasHeight / currentFrame.canvas[j].length;
-
-        ctx.fillStyle = currentFrame.canvas[j][x].color;
-        ctx.fillRect(
-          x * width - OVERFLOW,
-          j * height - OVERFLOW,
-          width + 2 * OVERFLOW,
-          height + 2 * OVERFLOW,
-        );
-      }
-    }
+    FrameUtils.drawFrame(currentFrame, this.baseCanvas, ctx);
 
     // Draw the grid if enabled
     if (this.editorSnapshot.showGrid) {
@@ -232,20 +218,7 @@ export class CanvasManager {
     }
 
     // Draw the buffer frame pixels
-    for (let j = 0; j < this.bufferFrame.canvas.length; j++) {
-      for (let x = 0; x < this.bufferFrame.canvas[j].length; x++) {
-        const width = canvasWidth / this.bufferFrame.canvas.length;
-        const height = canvasHeight / this.bufferFrame.canvas[j].length;
-
-        ctx.fillStyle = this.bufferFrame.canvas[j][x].color;
-        ctx.fillRect(
-          x * width - OVERFLOW,
-          j * height - OVERFLOW,
-          width + 2 * OVERFLOW,
-          height + 2 * OVERFLOW,
-        );
-      }
-    }
+    FrameUtils.drawFrame(this.bufferFrame, this.baseCanvas, ctx);
 
     // Schedule the next frame draw
     if (this.shouldDraw) {

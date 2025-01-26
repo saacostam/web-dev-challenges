@@ -3,8 +3,51 @@ import {
   TStateMachineConfig,
   TUpdate,
   TMouseClickType,
+  TTransitionHandler,
 } from "../../types";
-import { COLORS } from "../colors.constants";
+import { FrameUtils } from "../../utils";
+
+interface TPencilStateMachineContext {
+  update: TUpdate;
+  isLeftClick: boolean;
+}
+
+const dragWhenClickedTransitionHandler: TTransitionHandler<
+  TPencilStateMachineContext
+> = ({ bufferFrame, ctx, editorSnapshot, position }) => {
+  const color = ctx.isLeftClick
+    ? editorSnapshot.currentColorPrimary
+    : editorSnapshot.currentColorSecondary;
+
+  bufferFrame.canvas[position.y][position.x].color = color;
+
+  const isPainted = ctx.update.mutations.some(
+    (mutation) =>
+      mutation.type === "switch-color" &&
+      mutation.payload.position.x === position.x &&
+      mutation.payload.position.y === position.y &&
+      mutation.payload.toColor === color,
+  );
+
+  return {
+    ...ctx,
+    update: {
+      mutations: isPainted
+        ? ctx.update.mutations
+        : [
+            ...ctx.update.mutations,
+            {
+              type: "switch-color",
+              payload: {
+                position,
+                fromColor: bufferFrame.canvas[position.y][position.x].color,
+                toColor: color,
+              },
+            },
+          ],
+    },
+  };
+};
 
 export const pencilStateMachineConfig: TStateMachineConfig<
   {
@@ -25,34 +68,25 @@ export const pencilStateMachineConfig: TStateMachineConfig<
     "not-clicked": {
       [TMouseInputType.CLICK]: {
         nextState: "clicked",
-        handler: ({ bufferFrame, ctx, clickType }) => {
-          for (let j = 0; j < bufferFrame.canvas.length; j++) {
-            for (let x = 0; x < bufferFrame.canvas[j].length; x++) {
-              bufferFrame.canvas[j][x].color = COLORS.transparent;
-            }
-          }
+        handler: (input) => {
+          const { bufferFrame, ctx, clickType } = input;
 
-          return {
-            ...ctx,
-            isLeftClick: clickType === TMouseClickType.LEFT,
-          };
+          FrameUtils.clearFrame(bufferFrame);
+
+          return dragWhenClickedTransitionHandler({
+            ...input,
+            ctx: {
+              ...ctx,
+              isLeftClick: clickType === TMouseClickType.LEFT,
+            },
+          });
         },
       },
       [TMouseInputType.DRAG]: {
         nextState: "not-clicked",
         handler: ({ bufferFrame, ctx, position }) => {
-          for (let j = 0; j < bufferFrame.canvas.length; j++) {
-            for (let x = 0; x < bufferFrame.canvas[j].length; x++) {
-              bufferFrame.canvas[j][x].color =
-                j === position.y && x === position.x
-                  ? COLORS.hover
-                  : COLORS.transparent;
-            }
-          }
-
-          return {
-            ...ctx,
-          };
+          FrameUtils.paintHover(bufferFrame, position);
+          return ctx;
         },
       },
       [TMouseInputType.RELEASE]: {
@@ -61,7 +95,15 @@ export const pencilStateMachineConfig: TStateMachineConfig<
       },
       [TMouseInputType.CANCEL]: {
         nextState: "not-clicked",
-        handler: ({ ctx }) => ctx,
+        handler: ({ bufferFrame }) => {
+          FrameUtils.clearFrame(bufferFrame);
+          return {
+            update: {
+              mutations: [],
+            },
+            isLeftClick: true,
+          };
+        },
       },
     },
     clicked: {
@@ -71,41 +113,7 @@ export const pencilStateMachineConfig: TStateMachineConfig<
       },
       [TMouseInputType.DRAG]: {
         nextState: "clicked",
-        handler: ({ bufferFrame, ctx, editorSnapshot, position }) => {
-          const color = ctx.isLeftClick
-            ? editorSnapshot.currentColorPrimary
-            : editorSnapshot.currentColorSecondary;
-
-          bufferFrame.canvas[position.y][position.x].color = color;
-
-          const isPainted = ctx.update.mutations.some(
-            (mutation) =>
-              mutation.type === "switch-color" &&
-              mutation.payload.position.x === position.x &&
-              mutation.payload.position.y === position.y &&
-              mutation.payload.toColor === color,
-          );
-
-          return {
-            ...ctx,
-            update: {
-              mutations: isPainted
-                ? ctx.update.mutations
-                : [
-                    ...ctx.update.mutations,
-                    {
-                      type: "switch-color",
-                      payload: {
-                        position,
-                        fromColor:
-                          bufferFrame.canvas[position.y][position.x].color,
-                        toColor: color,
-                      },
-                    },
-                  ],
-            },
-          };
-        },
+        handler: dragWhenClickedTransitionHandler,
       },
       [TMouseInputType.RELEASE]: {
         nextState: "not-clicked",
@@ -127,7 +135,15 @@ export const pencilStateMachineConfig: TStateMachineConfig<
       },
       [TMouseInputType.CANCEL]: {
         nextState: "not-clicked",
-        handler: ({ ctx }) => ctx,
+        handler: ({ bufferFrame }) => {
+          FrameUtils.clearFrame(bufferFrame);
+          return {
+            update: {
+              mutations: [],
+            },
+            isLeftClick: true,
+          };
+        },
       },
     },
   },
