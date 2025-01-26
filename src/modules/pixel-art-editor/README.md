@@ -40,7 +40,9 @@ function App() {
 - [x] FIX: Clean-up event listener for canvas-manager.
   - [x] FIX: Check if this solves the issue where after color-pick, a pen-like behaviour is seen.
 - [ ] FEAT: Implement the bucket state-machine.
+- [ ] FEAT: Handle show vs. not-show grid.
 - [ ] FEAT: Implement the delete state-machine.
+- [ ] FEAT: Toogle between second button role: secondary-color vs. delete.
 - [ ] FEAT: Handle the cancel event.
 - [ ] FEAT: Enable transparent colors.
 - [ ] PERF: Re-visit the hover for pencil option (maybe other as well).
