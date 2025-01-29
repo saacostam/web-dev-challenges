@@ -47,6 +47,22 @@ export function useKeyboardShortcuts() {
               showGrid: !editorSnapshot.showGrid,
             },
           });
+          break;
+        case "z":
+          if (e.metaKey) {
+            dispatch({ type: "undo" });
+          }
+          break;
+        case "Z":
+          if (e.metaKey) {
+            dispatch({ type: "redo" });
+          }
+          break;
+        case "y":
+          if (e.metaKey) {
+            dispatch({ type: "redo" });
+          }
+          break;
       }
     };
 

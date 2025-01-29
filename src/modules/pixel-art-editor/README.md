@@ -48,7 +48,7 @@ function App() {
 - [x] REFACTOR: Centralize clean-up logic (when hover effect has ended) for buffer in multiple state machines.
 - [x] FEAT: Implement the eraser state-machine.
 - [x] FEAT: Enable undo and redo buttons in UI.
-- [ ] FEAT: Hook undo and redo to keyboard hot-keys.
+- [x] FEAT: Hook undo and redo to keyboard hot-keys.
 - [x] FEAT: Hook tool options to keyboard hot-keys.
 - [ ] REFACTOR: Centralize menu buttons (undoredo, menu-options, color-picker?).
 - [ ] FEAT: Set current frame as a snapshot attribute.
