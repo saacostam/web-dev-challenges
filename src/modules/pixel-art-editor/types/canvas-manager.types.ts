@@ -19,7 +19,10 @@ export enum TMouseClickType {
 }
 
 export type TTransitionHandler<T> = (input: {
-  bufferFrame: TFrame;
+  buffer: {
+    frame: TFrame;
+    enabled: boolean;
+  };
   clickType: TMouseClickType;
   ctx: T;
   dispatch: Dispatch<TPixelArtEditorAction>;

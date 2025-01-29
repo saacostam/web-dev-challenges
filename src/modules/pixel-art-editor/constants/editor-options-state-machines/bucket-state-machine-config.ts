@@ -19,14 +19,14 @@ export const bucketStateMachineConfig: TStateMachineConfig<
       [TMouseInputType.CLICK]: {
         nextState: "clicked",
         handler: ({
-          bufferFrame,
+          buffer,
           ctx,
           clickType,
           dispatch,
           editorSnapshot,
           position,
         }) => {
-          FrameUtils.clearFrame(bufferFrame);
+          FrameUtils.clearFrame(buffer.frame);
 
           const currentColor =
             editorSnapshot.frames[0].canvas[position.y][position.x].color;
@@ -42,8 +42,8 @@ export const bucketStateMachineConfig: TStateMachineConfig<
 
           const visited = new Set<string>();
           const dfs = (pos: TPosition) => {
-            if (pos.y < 0 || pos.y >= bufferFrame.canvas.length) return;
-            if (pos.x < 0 || pos.x >= bufferFrame.canvas[0].length) return;
+            if (pos.y < 0 || pos.y >= buffer.frame.canvas.length) return;
+            if (pos.x < 0 || pos.x >= buffer.frame.canvas[0].length) return;
 
             const isSameColor =
               editorSnapshot.frames[0].canvas[pos.y][pos.x].color ===
@@ -81,8 +81,8 @@ export const bucketStateMachineConfig: TStateMachineConfig<
       },
       [TMouseInputType.DRAG]: {
         nextState: "not-clicked",
-        handler: ({ bufferFrame, ctx, position }) => {
-          FrameUtils.paintHover(bufferFrame, position);
+        handler: ({ buffer, ctx, position }) => {
+          FrameUtils.paintHover(buffer.frame, position);
           return ctx;
         },
       },
@@ -92,8 +92,8 @@ export const bucketStateMachineConfig: TStateMachineConfig<
       },
       [TMouseInputType.CANCEL]: {
         nextState: "not-clicked",
-        handler: ({ bufferFrame, ctx }) => {
-          FrameUtils.clearFrame(bufferFrame);
+        handler: ({ buffer, ctx }) => {
+          FrameUtils.clearFrame(buffer.frame);
           return ctx;
         },
       },
@@ -113,8 +113,8 @@ export const bucketStateMachineConfig: TStateMachineConfig<
       },
       [TMouseInputType.CANCEL]: {
         nextState: "not-clicked",
-        handler: ({ bufferFrame, ctx }) => {
-          FrameUtils.clearFrame(bufferFrame);
+        handler: ({ buffer, ctx }) => {
+          FrameUtils.clearFrame(buffer.frame);
           return ctx;
         },
       },

@@ -14,12 +14,12 @@ interface TPencilStateMachineContext {
 
 const dragWhenClickedTransitionHandler: TTransitionHandler<
   TPencilStateMachineContext
-> = ({ bufferFrame, ctx, editorSnapshot, position }) => {
+> = ({ buffer, ctx, editorSnapshot, position }) => {
   const color = ctx.isLeftClick
     ? editorSnapshot.currentColorPrimary
     : editorSnapshot.currentColorSecondary;
 
-  bufferFrame.canvas[position.y][position.x].color = color;
+  buffer.frame.canvas[position.y][position.x].color = color;
 
   const isPainted = ctx.update.mutations.some(
     (mutation) =>
@@ -40,7 +40,7 @@ const dragWhenClickedTransitionHandler: TTransitionHandler<
               type: "switch-color",
               payload: {
                 position,
-                fromColor: bufferFrame.canvas[position.y][position.x].color,
+                fromColor: buffer.frame.canvas[position.y][position.x].color,
                 toColor: color,
               },
             },
@@ -69,9 +69,9 @@ export const pencilStateMachineConfig: TStateMachineConfig<
       [TMouseInputType.CLICK]: {
         nextState: "clicked",
         handler: (input) => {
-          const { bufferFrame, ctx, clickType } = input;
+          const { buffer, ctx, clickType } = input;
 
-          FrameUtils.clearFrame(bufferFrame);
+          FrameUtils.clearFrame(buffer.frame);
 
           return dragWhenClickedTransitionHandler({
             ...input,
@@ -84,8 +84,8 @@ export const pencilStateMachineConfig: TStateMachineConfig<
       },
       [TMouseInputType.DRAG]: {
         nextState: "not-clicked",
-        handler: ({ bufferFrame, ctx, position }) => {
-          FrameUtils.paintHover(bufferFrame, position);
+        handler: ({ buffer, ctx, position }) => {
+          FrameUtils.paintHover(buffer.frame, position);
           return ctx;
         },
       },
@@ -95,8 +95,8 @@ export const pencilStateMachineConfig: TStateMachineConfig<
       },
       [TMouseInputType.CANCEL]: {
         nextState: "not-clicked",
-        handler: ({ bufferFrame }) => {
-          FrameUtils.clearFrame(bufferFrame);
+        handler: ({ buffer }) => {
+          FrameUtils.clearFrame(buffer.frame);
           return {
             update: {
               mutations: [],
@@ -135,8 +135,8 @@ export const pencilStateMachineConfig: TStateMachineConfig<
       },
       [TMouseInputType.CANCEL]: {
         nextState: "not-clicked",
-        handler: ({ bufferFrame }) => {
-          FrameUtils.clearFrame(bufferFrame);
+        handler: ({ buffer }) => {
+          FrameUtils.clearFrame(buffer.frame);
           return {
             update: {
               mutations: [],

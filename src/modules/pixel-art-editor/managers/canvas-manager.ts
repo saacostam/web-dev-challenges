@@ -30,7 +30,10 @@ export interface CanvasManagerState {
 export class CanvasManager {
   private baseCanvas: HTMLCanvasElement;
   private _editorSnapshot!: TPixelArtEditorSnapShot;
-  private bufferFrame!: TFrame;
+  private buffer!: {
+    frame: TFrame;
+    enabled: boolean;
+  };
   private dispatch: Dispatch<TPixelArtEditorAction>;
 
   private shouldDraw = false;
@@ -55,9 +58,12 @@ export class CanvasManager {
 
   set editorSnapshot(editorSnapshot: TPixelArtEditorSnapShot) {
     this._editorSnapshot = editorSnapshot;
-    this.bufferFrame = this.matchFrame({
-      frame: editorSnapshot.frames[0],
-    });
+    this.buffer = {
+      frame: this.matchFrame({
+        frame: editorSnapshot.frames[0],
+      }),
+      enabled: false,
+    };
   }
 
   private matchFrame(options: {
@@ -120,11 +126,11 @@ export class CanvasManager {
       const position: TPosition = {
         x: Math.floor(
           (Math.min(Math.max(0, offsetX), clientWidth - 1) / clientWidth) *
-            this.bufferFrame.canvas[0].length,
+            this.buffer.frame.canvas[0].length,
         ),
         y: Math.floor(
           (Math.min(Math.max(0, offsetY), clientHeight - 1) / clientHeight) *
-            this.bufferFrame.canvas.length,
+            this.buffer.frame.canvas.length,
         ),
       };
 
@@ -141,7 +147,7 @@ export class CanvasManager {
         ][mouseInput];
 
       this.optionCtx = next.handler({
-        bufferFrame: this.bufferFrame,
+        buffer: this.buffer,
         clickType: clickType,
         ctx: this.optionCtx,
         dispatch: this.dispatch,
@@ -219,7 +225,7 @@ export class CanvasManager {
     }
 
     // Draw the buffer frame pixels
-    FrameUtils.drawFrame(this.bufferFrame, this.baseCanvas, ctx);
+    FrameUtils.drawFrame(this.buffer.frame, this.baseCanvas, ctx);
 
     // Schedule the next frame draw
     if (this.shouldDraw) {

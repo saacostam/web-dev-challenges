@@ -17,14 +17,14 @@ export const colorPickerStateMachineConfig: TStateMachineConfig<
       [TMouseInputType.CLICK]: {
         nextState: "clicked",
         handler: ({
-          bufferFrame,
+          buffer,
           ctx,
           clickType,
           dispatch,
           editorSnapshot,
           position,
         }) => {
-          FrameUtils.clearFrame(bufferFrame);
+          FrameUtils.clearFrame(buffer.frame);
 
           dispatch({
             type:
@@ -42,8 +42,8 @@ export const colorPickerStateMachineConfig: TStateMachineConfig<
       },
       [TMouseInputType.DRAG]: {
         nextState: "not-clicked",
-        handler: ({ bufferFrame, ctx, position }) => {
-          FrameUtils.paintHover(bufferFrame, position);
+        handler: ({ buffer, ctx, position }) => {
+          FrameUtils.paintHover(buffer.frame, position);
           return ctx;
         },
       },
@@ -53,8 +53,8 @@ export const colorPickerStateMachineConfig: TStateMachineConfig<
       },
       [TMouseInputType.CANCEL]: {
         nextState: "not-clicked",
-        handler: ({ bufferFrame, ctx }) => {
-          FrameUtils.clearFrame(bufferFrame);
+        handler: ({ buffer, ctx }) => {
+          FrameUtils.clearFrame(buffer.frame);
           return ctx;
         },
       },
@@ -74,8 +74,8 @@ export const colorPickerStateMachineConfig: TStateMachineConfig<
       },
       [TMouseInputType.CANCEL]: {
         nextState: "not-clicked",
-        handler: ({ bufferFrame, ctx }) => {
-          FrameUtils.clearFrame(bufferFrame);
+        handler: ({ buffer, ctx }) => {
+          FrameUtils.clearFrame(buffer.frame);
           return ctx;
         },
       },
