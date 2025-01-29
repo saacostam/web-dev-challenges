@@ -193,7 +193,7 @@ export class CanvasManager {
     // Draw the grid if enabled
     if (this.editorSnapshot.showGrid) {
       ctx.strokeStyle = COLORS.grid;
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 5;
 
       const currentFrame = this.editorSnapshot.frames[0];
       for (let j = 0; j < currentFrame.canvas.length; j++) {

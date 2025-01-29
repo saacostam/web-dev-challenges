@@ -42,8 +42,8 @@ export function Canvas() {
       <canvas
         className="absolute pointer-events-auto"
         ref={canvasRef}
-        width="500"
-        height="500"
+        width="1500"
+        height="1500"
         style={{ aspectRatio: "1/1", height: "100%" }}
       />
     </div>
