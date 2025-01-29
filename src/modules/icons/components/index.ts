@@ -1,3 +1,5 @@
+export * from "./arrow-uturn-left";
+export * from "./arrow-uturn-right";
 export * from "./bell-alert-icon";
 export * from "./clock-icon";
 export * from "./code-bracket-icon";
