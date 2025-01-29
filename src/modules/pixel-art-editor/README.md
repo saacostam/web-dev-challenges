@@ -50,6 +50,7 @@ function App() {
 - [x] FEAT: Enable undo and redo buttons in UI.
 - [x] FEAT: Hook undo and redo to keyboard hot-keys.
 - [x] FEAT: Hook tool options to keyboard hot-keys.
+- [ ] FEAT: Disable undo and redo if not available.
 - [ ] REFACTOR: Centralize menu buttons (undoredo, menu-options, color-picker?).
 - [ ] FEAT: Set current frame as a snapshot attribute.
 - [ ] FEAT: Enable the creation of multiple frames.
