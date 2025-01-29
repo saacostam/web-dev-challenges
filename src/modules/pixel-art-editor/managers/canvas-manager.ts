@@ -198,14 +198,13 @@ export class CanvasManager {
     FrameUtils.drawFrame(currentFrame, this.baseCanvas, ctx);
 
     // Draw the grid if enabled
-    if (this.editorSnapshot.showGrid) {
-      FrameUtils.drawGrid(ctx, currentFrame);
-    }
+    if (this.editorSnapshot.showGrid) FrameUtils.drawGrid(ctx, currentFrame);
 
-    // Draw the buffer frame pixels
+    // Draw the buffer frame pixels if enabled
     if (this.buffer.enabled) CanvasUtils.drawBackground(ctx);
     FrameUtils.drawFrame(this.buffer.frame, this.baseCanvas, ctx);
-    FrameUtils.drawGrid(ctx, this.buffer.frame);
+    if (this.editorSnapshot.showGrid)
+      FrameUtils.drawGrid(ctx, this.buffer.frame);
 
     // Schedule the next frame draw
     if (this.shouldDraw) {
