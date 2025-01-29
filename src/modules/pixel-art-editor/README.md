@@ -49,7 +49,7 @@ function App() {
 - [x] FEAT: Implement the eraser state-machine.
 - [ ] FEAT: Enable undo and redo buttons in UI.
 - [ ] FEAT: Hook undo and redo to keyboard hot-keys.
-- [ ] FEAT: Hook tool options to keyboard hot-keys.
+- [x] FEAT: Hook tool options to keyboard hot-keys.
 - [ ] FEAT: Set current frame as a snapshot attribute.
 - [ ] FEAT: Enable the creation of multiple frames.
   - [ ] FEAT: Implement hook logic.
