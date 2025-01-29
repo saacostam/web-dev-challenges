@@ -69,9 +69,10 @@ export const pencilStateMachineConfig: TStateMachineConfig<
       [TMouseInputType.CLICK]: {
         nextState: "clicked",
         handler: (input) => {
-          const { buffer, ctx, clickType } = input;
+          const { buffer, ctx, clickType, editorSnapshot } = input;
 
-          FrameUtils.clearFrame(buffer.frame);
+          buffer.frame = FrameUtils.deepCopyFrame(editorSnapshot.frames[0]);
+          buffer.enabled = true;
 
           return dragWhenClickedTransitionHandler({
             ...input,
@@ -97,6 +98,7 @@ export const pencilStateMachineConfig: TStateMachineConfig<
         nextState: "not-clicked",
         handler: ({ buffer }) => {
           FrameUtils.clearFrame(buffer.frame);
+          buffer.enabled = false;
           return {
             update: {
               mutations: [],
@@ -137,6 +139,7 @@ export const pencilStateMachineConfig: TStateMachineConfig<
         nextState: "not-clicked",
         handler: ({ buffer }) => {
           FrameUtils.clearFrame(buffer.frame);
+          buffer.enabled = false;
           return {
             update: {
               mutations: [],

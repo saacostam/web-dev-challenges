@@ -199,33 +199,13 @@ export class CanvasManager {
 
     // Draw the grid if enabled
     if (this.editorSnapshot.showGrid) {
-      ctx.strokeStyle = COLORS.grid;
-      ctx.lineWidth = 5;
-
-      const currentFrame = this.editorSnapshot.frames[0];
-      for (let j = 0; j < currentFrame.canvas.length; j++) {
-        for (let x = 0; x < currentFrame.canvas[j].length; x++) {
-          if (currentFrame.canvas[j][x].color === COLORS.transparent) continue;
-
-          const width = canvasWidth / currentFrame.canvas.length;
-          const height = canvasHeight / currentFrame.canvas[j].length;
-
-          const startX = Math.floor(x * width);
-          const startY = Math.floor(j * height);
-
-          ctx.beginPath();
-          ctx.moveTo(startX, startY);
-          ctx.lineTo(startX, startY + height);
-          ctx.lineTo(startX + width, startY + height);
-          ctx.lineTo(startX + width, startY);
-          ctx.lineTo(startX, startY);
-          ctx.stroke();
-        }
-      }
+      FrameUtils.drawGrid(ctx, currentFrame);
     }
 
     // Draw the buffer frame pixels
+    if (this.buffer.enabled) CanvasUtils.drawBackground(ctx);
     FrameUtils.drawFrame(this.buffer.frame, this.baseCanvas, ctx);
+    FrameUtils.drawGrid(ctx, this.buffer.frame);
 
     // Schedule the next frame draw
     if (this.shouldDraw) {

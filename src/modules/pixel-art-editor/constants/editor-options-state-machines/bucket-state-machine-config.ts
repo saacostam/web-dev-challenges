@@ -26,7 +26,8 @@ export const bucketStateMachineConfig: TStateMachineConfig<
           editorSnapshot,
           position,
         }) => {
-          FrameUtils.clearFrame(buffer.frame);
+          buffer.frame = FrameUtils.deepCopyFrame(editorSnapshot.frames[0]);
+          buffer.enabled = true;
 
           const currentColor =
             editorSnapshot.frames[0].canvas[position.y][position.x].color;
@@ -94,6 +95,7 @@ export const bucketStateMachineConfig: TStateMachineConfig<
         nextState: "not-clicked",
         handler: ({ buffer, ctx }) => {
           FrameUtils.clearFrame(buffer.frame);
+          buffer.enabled = false;
           return ctx;
         },
       },
@@ -115,6 +117,7 @@ export const bucketStateMachineConfig: TStateMachineConfig<
         nextState: "not-clicked",
         handler: ({ buffer, ctx }) => {
           FrameUtils.clearFrame(buffer.frame);
+          buffer.enabled = false;
           return ctx;
         },
       },

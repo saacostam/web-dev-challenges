@@ -9,6 +9,41 @@ export const FrameUtils = {
       }
     }
   },
+  deepCopyFrame: (frame: TFrame): TFrame => {
+    return {
+      canvas: frame.canvas.map((row) =>
+        row.map((cell) => ({
+          color: cell.color,
+        })),
+      ),
+    };
+  },
+  drawGrid(ctx: CanvasRenderingContext2D, currentFrame: TFrame) {
+    const { width: canvasWidth, height: canvasHeight } = ctx.canvas;
+
+    ctx.strokeStyle = COLORS.grid;
+    ctx.lineWidth = 5;
+
+    for (let j = 0; j < currentFrame.canvas.length; j++) {
+      for (let x = 0; x < currentFrame.canvas[j].length; x++) {
+        if (currentFrame.canvas[j][x].color === COLORS.transparent) continue;
+
+        const width = canvasWidth / currentFrame.canvas.length;
+        const height = canvasHeight / currentFrame.canvas[j].length;
+
+        const startX = Math.floor(x * width);
+        const startY = Math.floor(j * height);
+
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(startX, startY + height);
+        ctx.lineTo(startX + width, startY + height);
+        ctx.lineTo(startX + width, startY);
+        ctx.lineTo(startX, startY);
+        ctx.stroke();
+      }
+    }
+  },
   drawFrame: (
     frame: TFrame,
     canvas: HTMLCanvasElement,

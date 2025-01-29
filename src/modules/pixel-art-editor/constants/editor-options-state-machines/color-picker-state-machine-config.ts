@@ -24,7 +24,8 @@ export const colorPickerStateMachineConfig: TStateMachineConfig<
           editorSnapshot,
           position,
         }) => {
-          FrameUtils.clearFrame(buffer.frame);
+          buffer.frame = FrameUtils.deepCopyFrame(editorSnapshot.frames[0]);
+          buffer.enabled = true;
 
           dispatch({
             type:
@@ -55,6 +56,7 @@ export const colorPickerStateMachineConfig: TStateMachineConfig<
         nextState: "not-clicked",
         handler: ({ buffer, ctx }) => {
           FrameUtils.clearFrame(buffer.frame);
+          buffer.enabled = false;
           return ctx;
         },
       },
@@ -76,6 +78,7 @@ export const colorPickerStateMachineConfig: TStateMachineConfig<
         nextState: "not-clicked",
         handler: ({ buffer, ctx }) => {
           FrameUtils.clearFrame(buffer.frame);
+          buffer.enabled = false;
           return ctx;
         },
       },
