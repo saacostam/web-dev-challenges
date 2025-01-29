@@ -46,7 +46,7 @@ function App() {
 - [x] REFACTOR: Centralize drawing logic for buffer and canvas into a single function.
 - [x] REFACTOR: Centralize hover logic for buffer in multiple state machines.
 - [x] REFACTOR: Centralize clean-up logic (when hover effect has ended) for buffer in multiple state machines.
-- [ ] FEAT: Implement the delete state-machine.
+- [x] FEAT: Implement the eraser state-machine.
 - [ ] FEAT: Enable undo and redo buttons in UI.
 - [ ] FEAT: Hook undo and redo to keyboard hot-keys.
 - [ ] FEAT: Hook tool options to keyboard hot-keys.
