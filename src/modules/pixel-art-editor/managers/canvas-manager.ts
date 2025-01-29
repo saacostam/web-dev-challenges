@@ -14,7 +14,7 @@ import {
   TPixelArtEditorSnapShot,
   TPosition,
 } from "../types";
-import { FrameUtils } from "../utils";
+import { CanvasUtils, FrameUtils } from "../utils";
 
 export interface CanvasManagerInit {
   baseCanvas: HTMLCanvasElement;
@@ -185,6 +185,7 @@ export class CanvasManager {
 
     // Clear the canvas
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+    CanvasUtils.drawBackground(ctx);
 
     // Draw the current frame pixels
     const currentFrame = this.editorSnapshot.frames[0];

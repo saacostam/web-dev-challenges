@@ -8,4 +8,6 @@ export const COLORS = {
   yellow: "#FFFF00",
   hover: "#779CFA88",
   grid: "#D9D9D944",
+  "bg-one": "#888888",
+  "bg-two": "#c4c4c4",
 };
