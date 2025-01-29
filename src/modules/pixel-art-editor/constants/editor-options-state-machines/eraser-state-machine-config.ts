@@ -15,6 +15,7 @@ const dragWhenClickedTransitionHandler: TTransitionHandler<
   TEraserStateMachineContext
 > = ({ buffer, ctx, position }) => {
   const color = COLORS.transparent;
+  const currentColor = buffer.frame.canvas[position.y][position.x].color;
 
   buffer.frame.canvas[position.y][position.x].color = color;
 
@@ -37,7 +38,7 @@ const dragWhenClickedTransitionHandler: TTransitionHandler<
               type: "switch-color",
               payload: {
                 position,
-                fromColor: buffer.frame.canvas[position.y][position.x].color,
+                fromColor: currentColor,
                 toColor: color,
               },
             },

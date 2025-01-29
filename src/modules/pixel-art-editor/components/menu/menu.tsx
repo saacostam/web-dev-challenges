@@ -5,6 +5,7 @@ import { ColorPicker } from "./color-picker";
 import { ToolMenu } from "./tool-menu";
 import { TEditorOptionName } from "../../types";
 import { ShowGridCheck } from "./show-grid-check";
+import { UndoRedo } from "./undo-redo";
 
 export function Menu() {
   const { editorSnapshot, dispatch } = useEditorSnapshot();
@@ -45,6 +46,18 @@ export function Menu() {
     [dispatch],
   );
 
+  const undo = useCallback(() => {
+    dispatch({
+      type: "undo",
+    });
+  }, [dispatch]);
+
+  const redo = useCallback(() => {
+    dispatch({
+      type: "redo",
+    });
+  }, [dispatch]);
+
   return (
     <div className="flex flex-col gap-y-4 h-full">
       <div>
@@ -65,10 +78,11 @@ export function Menu() {
       </div>
       <div className="mt-auto">
         <ShowGridCheck
-          className="mt-4"
+          className="mb-2"
           setShowGrid={setShowGrid}
           showGrid={editorSnapshot.showGrid}
         />
+        <UndoRedo redo={redo} undo={undo} />
       </div>
     </div>
   );

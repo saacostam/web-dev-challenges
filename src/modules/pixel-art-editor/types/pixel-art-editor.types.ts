@@ -41,8 +41,8 @@ export interface TUpdate {
 export interface TPixelArtEditorHistory {
   updates: TUpdate[];
   add: (action: TUpdate) => TUpdate;
-  redo: () => TUpdate;
-  undo: () => TUpdate;
+  redo: () => TUpdate | undefined;
+  undo: () => TUpdate | undefined;
 }
 
 // NOTE: The values are shown to the user, so they should be descriptive and pretty to read
@@ -111,5 +111,17 @@ export type TPixelArtEditorAction =
       type: "commit-update";
       payload: {
         update: TUpdate;
+      };
+    }
+  | {
+      type: "undo";
+    }
+  | {
+      type: "redo";
+    }
+  | {
+      type: "set-history";
+      payload: {
+        history: TPixelArtEditorHistory;
       };
     };

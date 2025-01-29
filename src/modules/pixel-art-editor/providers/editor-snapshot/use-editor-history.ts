@@ -23,6 +23,7 @@ export function useEditorHistoryStateHook(): TPixelArtEditorHistory {
   }, []);
 
   const undo = useCallback(() => {
+    if (updatesStack.length === 0) return undefined;
     const lastUpdate = updatesStack[updatesStack.length - 1];
 
     setUpdatesStack((prev) => prev.filter((update) => update !== lastUpdate));
@@ -32,6 +33,7 @@ export function useEditorHistoryStateHook(): TPixelArtEditorHistory {
   }, [updatesStack]);
 
   const redo = useCallback(() => {
+    if (historyStack.length === 0) return undefined;
     const lastUpdateFromHistory = historyStack[historyStack.length - 1];
 
     setHistoryStack((prev) =>
