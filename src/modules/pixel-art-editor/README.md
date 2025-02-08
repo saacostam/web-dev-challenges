@@ -51,11 +51,11 @@ function App() {
 - [x] FEAT: Hook undo and redo to keyboard hot-keys.
 - [x] FEAT: Hook tool options to keyboard hot-keys.
 - [x] FEAT: Disable undo and redo if not available.
-- [ ] REFACTOR: Centralize menu buttons (undoredo, menu-options, color-picker?).
 - [ ] FEAT: Set current frame as a snapshot attribute.
 - [ ] FEAT: Enable the creation of multiple frames.
   - [ ] FEAT: Implement hook logic.
   - [ ] FEAT: Create UI elements.
+- [ ] FEAT: Manage multiple frames.
 - [ ] FEAT: Show transparent in color-picker.
 - [ ] FEAT: Show animation.
 - [ ] FEAT: Store in local-storage.
@@ -64,6 +64,7 @@ function App() {
 - [ ] FEAT: Toogle between second button role: secondary-color vs. delete.
 - [ ] FEAT: Add an error boundary.
 - [ ] FEAT: Create keyboard hot-keys visualizer.
+- [ ] REFACTOR: Centralize menu buttons (undoredo, menu-options, color-picker?).
 - [ ] FEAT: Mobile Support?
 - [ ] DOCS: Add js-doc annotations to types.
 - [ ] DOCS: Add js-doc to complex business logic.
