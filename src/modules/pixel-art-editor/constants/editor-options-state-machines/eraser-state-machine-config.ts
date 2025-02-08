@@ -13,7 +13,7 @@ interface TEraserStateMachineContext {
 
 const dragWhenClickedTransitionHandler: TTransitionHandler<
   TEraserStateMachineContext
-> = ({ buffer, ctx, position }) => {
+> = ({ buffer, ctx, editorSnapshot, position }) => {
   const color = COLORS.transparent;
   const currentColor = buffer.frame.canvas[position.y][position.x].color;
 
@@ -40,6 +40,7 @@ const dragWhenClickedTransitionHandler: TTransitionHandler<
                 position,
                 fromColor: currentColor,
                 toColor: color,
+                frame: editorSnapshot.currentFrame,
               },
             },
           ],

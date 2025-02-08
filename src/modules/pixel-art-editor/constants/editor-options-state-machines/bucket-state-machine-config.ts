@@ -60,6 +60,7 @@ export const bucketStateMachineConfig: TStateMachineConfig<
                 fromColor:
                   editorSnapshot.currentFrame.canvas[pos.y][pos.x].color,
                 toColor: objectiveColor,
+                frame: editorSnapshot.currentFrame,
               },
             });
 

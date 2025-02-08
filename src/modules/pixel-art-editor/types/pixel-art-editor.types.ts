@@ -18,6 +18,7 @@ export type TMutation =
         fromColor: string;
         position: TPosition;
         toColor: string;
+        frame: TFrame;
       };
     }
   | {
