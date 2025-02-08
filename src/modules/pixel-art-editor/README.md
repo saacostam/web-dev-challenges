@@ -56,6 +56,10 @@ function App() {
 - [ ] FEAT: Enable the creation of multiple frames.
   - [ ] FEAT: Implement hook logic.
   - [ ] FEAT: Create UI elements.
+- [ ] FEAT: Show animation.
+- [ ] FEAT: Store in local-storage.
+- [ ] FEAT: Export app file.
+- [ ] FEAT: Export sprite file.
 - [ ] FEAT: Toogle between second button role: secondary-color vs. delete.
 - [ ] FEAT: Add an error boundary.
 - [ ] FEAT: Create keyboard hot-keys visualizer.
