@@ -6,7 +6,9 @@ import { TPixelArtEditorHistory, TUpdate } from "../../types";
  * - `updates`: The current state of the editor as an array of updates
  * - `add`: A function to add a new action to the history
  * - `undo`: A function to undo the last action
+ * - `undoAvailable`: A boolean indicating whether undo is available
  * - `redo`: A function to redo the last action that was undone
+ * - `redoAvailable`: A boolean indicating whether redo is available
  *
  * @returns {TPixelArtEditorHistory}
  */
@@ -32,6 +34,8 @@ export function useEditorHistoryStateHook(): TPixelArtEditorHistory {
     return lastUpdate;
   }, [updatesStack]);
 
+  const undoAvailable = useMemo(() => updatesStack.length > 0, [updatesStack]);
+
   const redo = useCallback(() => {
     if (historyStack.length === 0) return undefined;
     const lastUpdateFromHistory = historyStack[historyStack.length - 1];
@@ -44,13 +48,17 @@ export function useEditorHistoryStateHook(): TPixelArtEditorHistory {
     return lastUpdateFromHistory;
   }, [historyStack]);
 
+  const redoAvailable = useMemo(() => historyStack.length > 0, [historyStack]);
+
   return useMemo(
     () => ({
       updates: updatesStack,
       add,
       undo,
+      undoAvailable,
       redo,
+      redoAvailable,
     }),
-    [updatesStack, add, undo, redo],
+    [updatesStack, add, undo, undoAvailable, redo, redoAvailable],
   );
 }

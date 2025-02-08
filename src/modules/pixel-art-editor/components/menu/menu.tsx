@@ -82,7 +82,12 @@ export function Menu() {
           setShowGrid={setShowGrid}
           showGrid={editorSnapshot.showGrid}
         />
-        <UndoRedo redo={redo} undo={undo} />
+        <UndoRedo
+          redo={redo}
+          redoAvailable={editorSnapshot.history.redoAvailable}
+          undo={undo}
+          undoAvailable={editorSnapshot.history.undoAvailable}
+        />
       </div>
     </div>
   );

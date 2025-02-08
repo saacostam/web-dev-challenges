@@ -42,7 +42,9 @@ export interface TPixelArtEditorHistory {
   updates: TUpdate[];
   add: (action: TUpdate) => TUpdate;
   redo: () => TUpdate | undefined;
+  redoAvailable: boolean;
   undo: () => TUpdate | undefined;
+  undoAvailable: boolean;
 }
 
 // NOTE: The values are shown to the user, so they should be descriptive and pretty to read
