@@ -204,6 +204,15 @@ export function reduceEditorSnapshot(
       });
     }
     case "delete-frame": {
+      if (state.frames.length <= 1) return state;
+      if (
+        !(
+          0 <= action.payload.order &&
+          action.payload.order < state.frames.length
+        )
+      )
+        return state;
+
       return reduceEditorSnapshot(state, {
         type: "commit-update",
         payload: {
@@ -220,6 +229,20 @@ export function reduceEditorSnapshot(
           },
         },
       });
+    }
+    case "set-frame": {
+      if (
+        !(
+          0 <= action.payload.order &&
+          action.payload.order < state.frames.length
+        )
+      )
+        return state;
+
+      return {
+        ...state,
+        currentFrame: state.frames[action.payload.order],
+      };
     }
   }
 }

@@ -56,6 +56,9 @@ function App() {
   - [x] FEAT: Implement hook logic.
   - [ ] FEAT: Create UI elements.
 - [ ] FEAT: Manage multiple frames.
+  - [x] FEAT: Hook logic for deleting.
+  - [x] FEAT: Hook logic for changing focused frame.
+  - [ ] FEAT: Hook logic for duplication.
 - [ ] FEAT: Show transparent in color-picker.
 - [ ] FEAT: Show animation.
 - [ ] FEAT: Store in local-storage.

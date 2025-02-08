@@ -140,4 +140,10 @@ export type TPixelArtEditorAction =
       payload: {
         order: number;
       };
+    }
+  | {
+      type: "set-frame";
+      payload: {
+        order: number;
+      };
     };
