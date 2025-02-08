@@ -30,10 +30,10 @@ export function FrameCta({
       <div className="p-2">
         <FramePreview frame={frame} />
       </div>
-      <div className={twMerge("w-full h-full absolute", !active && "hidden")}>
+      <div className="w-full h-full absolute group">
         {!hideMultiFrameCta && (
           <button
-            className="absolute bottom-0 right-0 btn btn-primary btn-square btn-xs"
+            className="absolute bottom-0 right-0 btn btn-primary btn-square btn-xs hidden group-hover:flex"
             onClick={onClickDeleteFrameHandler}
           >
             <TrashIcon className="size-4" />
