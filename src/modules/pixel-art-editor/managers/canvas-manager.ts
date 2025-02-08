@@ -60,7 +60,7 @@ export class CanvasManager {
     this._editorSnapshot = editorSnapshot;
     this.buffer = {
       frame: this.matchFrame({
-        frame: editorSnapshot.frames[0],
+        frame: editorSnapshot.currentFrame,
       }),
       enabled: false,
     };
@@ -194,7 +194,7 @@ export class CanvasManager {
     CanvasUtils.drawBackground(ctx);
 
     // Draw the current frame pixels
-    const currentFrame = this.editorSnapshot.frames[0];
+    const currentFrame = this.editorSnapshot.currentFrame;
     FrameUtils.drawFrame(currentFrame, this.baseCanvas, ctx);
 
     // Draw the grid if enabled

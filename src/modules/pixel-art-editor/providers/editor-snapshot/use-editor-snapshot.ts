@@ -19,7 +19,7 @@ function applyUpdate(
     switch (mutation.type) {
       case "switch-color": {
         const pixel =
-          state.frames[0].canvas[mutation.payload.position.y][
+          state.currentFrame.canvas[mutation.payload.position.y][
             mutation.payload.position.x
           ];
         pixel.color = mutation.payload.toColor;
@@ -45,7 +45,7 @@ function revertUpdate(
     switch (mutation.type) {
       case "switch-color": {
         const pixel =
-          state.frames[0].canvas[mutation.payload.position.y][
+          state.currentFrame.canvas[mutation.payload.position.y][
             mutation.payload.position.x
           ];
         pixel.color = mutation.payload.fromColor;

@@ -73,6 +73,7 @@ export interface TPixelArtEditorSnapShot {
   currentColorSecondary: string;
   fps: number;
   frames: TFrame[];
+  currentFrame: TFrame;
   history: TPixelArtEditorHistory;
   selectedOption: TEditorOptionName;
   showGrid: boolean;

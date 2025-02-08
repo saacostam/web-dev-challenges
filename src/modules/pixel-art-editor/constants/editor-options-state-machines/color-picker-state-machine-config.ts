@@ -24,7 +24,7 @@ export const colorPickerStateMachineConfig: TStateMachineConfig<
           editorSnapshot,
           position,
         }) => {
-          buffer.frame = FrameUtils.deepCopyFrame(editorSnapshot.frames[0]);
+          buffer.frame = FrameUtils.deepCopyFrame(editorSnapshot.currentFrame);
           buffer.enabled = true;
 
           dispatch({
@@ -34,7 +34,8 @@ export const colorPickerStateMachineConfig: TStateMachineConfig<
                 : "current-color-secondary",
             payload: {
               color:
-                editorSnapshot.frames[0].canvas[position.y][position.x].color,
+                editorSnapshot.currentFrame.canvas[position.y][position.x]
+                  .color,
             },
           });
 

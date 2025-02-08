@@ -26,11 +26,11 @@ export const bucketStateMachineConfig: TStateMachineConfig<
           editorSnapshot,
           position,
         }) => {
-          buffer.frame = FrameUtils.deepCopyFrame(editorSnapshot.frames[0]);
+          buffer.frame = FrameUtils.deepCopyFrame(editorSnapshot.currentFrame);
           buffer.enabled = true;
 
           const currentColor =
-            editorSnapshot.frames[0].canvas[position.y][position.x].color;
+            editorSnapshot.currentFrame.canvas[position.y][position.x].color;
           const objectiveColor =
             clickType === TMouseClickType.LEFT
               ? editorSnapshot.currentColorPrimary
@@ -47,7 +47,7 @@ export const bucketStateMachineConfig: TStateMachineConfig<
             if (pos.x < 0 || pos.x >= buffer.frame.canvas[0].length) return;
 
             const isSameColor =
-              editorSnapshot.frames[0].canvas[pos.y][pos.x].color ===
+              editorSnapshot.currentFrame.canvas[pos.y][pos.x].color ===
               currentColor;
 
             if (visited.has(getHash(pos)) || !isSameColor) return;
@@ -57,7 +57,8 @@ export const bucketStateMachineConfig: TStateMachineConfig<
               type: "switch-color",
               payload: {
                 position: pos,
-                fromColor: editorSnapshot.frames[0].canvas[pos.y][pos.x].color,
+                fromColor:
+                  editorSnapshot.currentFrame.canvas[pos.y][pos.x].color,
                 toColor: objectiveColor,
               },
             });

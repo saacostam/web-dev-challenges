@@ -51,7 +51,7 @@ function App() {
 - [x] FEAT: Hook undo and redo to keyboard hot-keys.
 - [x] FEAT: Hook tool options to keyboard hot-keys.
 - [x] FEAT: Disable undo and redo if not available.
-- [ ] FEAT: Set current frame as a snapshot attribute.
+- [x] FEAT: Set current frame as a snapshot attribute.
 - [ ] FEAT: Enable the creation of multiple frames.
   - [ ] FEAT: Implement hook logic.
   - [ ] FEAT: Create UI elements.

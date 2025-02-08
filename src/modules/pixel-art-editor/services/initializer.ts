@@ -13,15 +13,16 @@ export interface InitializeEditorSnapshotInput {
 function initializeEditorSnapshot({
   history,
 }: InitializeEditorSnapshotInput): TPixelArtEditorSnapShot {
+  const defaultFrame = SeederService.seedFrame({
+    defaultColor: COLORS.transparent,
+    height: DEFAULT_DIMENSIONS.HEIGHT,
+    width: DEFAULT_DIMENSIONS.WIDTH,
+  });
+
   return {
     ...DEFAULT_EDITOR_SNAPSHOT,
-    frames: [
-      SeederService.seedFrame({
-        defaultColor: COLORS.transparent,
-        height: DEFAULT_DIMENSIONS.HEIGHT,
-        width: DEFAULT_DIMENSIONS.WIDTH,
-      }),
-    ],
+    frames: [defaultFrame],
+    currentFrame: defaultFrame,
     history,
   };
 }

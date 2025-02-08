@@ -72,7 +72,7 @@ export const pencilStateMachineConfig: TStateMachineConfig<
         handler: (input) => {
           const { buffer, ctx, clickType, editorSnapshot } = input;
 
-          buffer.frame = FrameUtils.deepCopyFrame(editorSnapshot.frames[0]);
+          buffer.frame = FrameUtils.deepCopyFrame(editorSnapshot.currentFrame);
           buffer.enabled = true;
 
           return dragWhenClickedTransitionHandler({

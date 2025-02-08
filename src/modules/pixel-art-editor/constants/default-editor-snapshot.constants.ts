@@ -3,7 +3,7 @@ import { COLORS } from "./colors.constants";
 
 export const DEFAULT_EDITOR_SNAPSHOT: Omit<
   TPixelArtEditorSnapShot,
-  "history" | "frames"
+  "history" | "frames" | "currentFrame"
 > = {
   currentColorPrimary: COLORS.black,
   currentColorSecondary: COLORS.white,
