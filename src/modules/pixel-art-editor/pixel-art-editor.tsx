@@ -5,13 +5,18 @@ import {
   Menu,
   PixelArtEditorLayout,
 } from "./components";
+import { FrameManagement } from "./components/frames";
 import { EditorSnaphostProvider } from "./providers";
 
 export function PixelArtEditor() {
   return (
     <EditorSnaphostProvider>
       <KeyboardShortcuts>
-        <PixelArtEditorLayout className="hidden sm:flex" dockMenu={<Menu />}>
+        <PixelArtEditorLayout
+          className="hidden sm:flex"
+          dockMenu={<Menu />}
+          dockFrameManagement={<FrameManagement />}
+        >
           <Canvas />
         </PixelArtEditorLayout>
         <Alert className="sm:hidden alert-warning">

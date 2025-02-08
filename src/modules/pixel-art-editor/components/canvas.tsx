@@ -34,14 +34,12 @@ export function Canvas() {
   }, [dispatch, editorSnapshot]);
 
   return (
-    <div className="w-full h-full flex items-center justify-center relative">
-      <canvas
-        className="absolute pointer-events-auto"
-        ref={canvasRef}
-        width="1500"
-        height="1500"
-        style={{ aspectRatio: "1/1", height: "100%" }}
-      />
-    </div>
+    <canvas
+      className="absolute pointer-events-auto"
+      ref={canvasRef}
+      width="1500"
+      height="1500"
+      style={{ aspectRatio: "1/1", height: "100%" }}
+    />
   );
 }
