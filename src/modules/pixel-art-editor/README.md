@@ -62,21 +62,19 @@ function App() {
 - [x] FEAT: Show transparent in color-picker.
 - [x] FEAT: Show animation.
 - [x] FEAT: Arrow keys should navigate frames.
+- [x] FEAT: Add transparent as an option in color picker.
 - [ ] FEAT: Focus newly create frame after duplicating.
 - [ ] FEAT: Focus the frame with the latest changes.
 - [ ] FEAT: Store in local-storage.
 - [ ] FEAT: Export app file.
 - [ ] FEAT: Export sprite file.
-- [ ] FEAT: Toogle between second button role: secondary-color vs. delete.
 - [ ] FEAT: Add an error boundary.
 - [ ] FEAT: Create keyboard hot-keys visualizer.
 - [ ] REFACTOR: Centralize menu buttons (undoredo, menu-options, color-picker?).
-- [ ] FEAT: Mobile Support?
-- [ ] DOCS: Add js-doc annotations to types.
-- [ ] DOCS: Add js-doc to complex business logic.
-- [ ] DOCS: Document module code structure - implementation details.
 - [ ] PERF: `frame-preview.tsx` is rendering as often as possible (empty dep array) because frame is not inmutable.
 - [ ] PERF: Re-visit the hover for pencil option (maybe other as well).
   - [ ] Also, transition between not-clicked to clicked.
 - [ ] TEST: Add unit tests.
-- [ ] FEAT: Add transparent as an option in color picker.
+- [ ] DOCS: Add js-doc annotations to types.
+- [ ] DOCS: Add js-doc to complex business logic.
+- [ ] DOCS: Document module code structure - implementation details.
