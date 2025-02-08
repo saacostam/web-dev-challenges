@@ -24,13 +24,14 @@ export type TMutation =
       type: "create-frame";
       payload: {
         order: number;
+        newFrame: TFrame;
       };
     }
   | {
       type: "delete-frame";
       payload: {
         order: number;
-        before: TFrame;
+        oldFrame: TFrame;
       };
     };
 
@@ -126,5 +127,17 @@ export type TPixelArtEditorAction =
       type: "set-history";
       payload: {
         history: TPixelArtEditorHistory;
+      };
+    }
+  | {
+      type: "create-frame";
+      payload: {
+        order: number;
+      };
+    }
+  | {
+      type: "delete-frame";
+      payload: {
+        order: number;
       };
     };

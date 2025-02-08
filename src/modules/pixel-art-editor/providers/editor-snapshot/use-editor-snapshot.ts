@@ -5,7 +5,8 @@ import {
   TUpdate,
 } from "../../types";
 import { useEditorHistoryStateHook } from "./use-editor-history";
-import { InitializerService } from "../../services";
+import { InitializerService, SeederService } from "../../services";
+import { COLORS } from "../../constants";
 
 /**
  * Applies a single update to the given state. That is, it mutates the state forward.
@@ -24,6 +25,36 @@ function applyUpdate(
           ];
         pixel.color = mutation.payload.toColor;
         break;
+      }
+      case "create-frame": {
+        const frames = [
+          ...state.frames.slice(0, mutation.payload.order),
+          mutation.payload.newFrame,
+          ...state.frames.slice(mutation.payload.order),
+        ];
+
+        return {
+          ...state,
+          frames,
+          currentFrame: mutation.payload.newFrame,
+        };
+      }
+      case "delete-frame": {
+        const frames = [
+          ...state.frames.slice(0, mutation.payload.order),
+          ...state.frames.slice(mutation.payload.order + 1),
+        ];
+
+        const prevIndex = Math.max(
+          0,
+          Math.min(mutation.payload.order - 1, frames.length - 1),
+        );
+
+        return {
+          ...state,
+          frames,
+          currentFrame: frames[prevIndex],
+        };
       }
     }
   }
@@ -50,6 +81,36 @@ function revertUpdate(
           ];
         pixel.color = mutation.payload.fromColor;
         break;
+      }
+      case "create-frame": {
+        const frames = [
+          ...state.frames.slice(0, mutation.payload.order),
+          ...state.frames.slice(mutation.payload.order + 1),
+        ];
+
+        const prevIndex = Math.max(
+          0,
+          Math.min(mutation.payload.order - 1, frames.length - 1),
+        );
+
+        return {
+          ...state,
+          frames,
+          currentFrame: frames[prevIndex],
+        };
+      }
+      case "delete-frame": {
+        const frames = [
+          ...state.frames.slice(0, mutation.payload.order),
+          mutation.payload.oldFrame,
+          ...state.frames.slice(mutation.payload.order),
+        ];
+
+        return {
+          ...state,
+          frames,
+          currentFrame: mutation.payload.oldFrame,
+        };
       }
     }
   }
@@ -117,6 +178,48 @@ export function reduceEditorSnapshot(
         ...state,
         history: action.payload.history,
       };
+    }
+    case "create-frame": {
+      const newFrame = SeederService.seedFrame({
+        height: state.currentFrame.canvas.length,
+        width: state.currentFrame.canvas[0]?.length || 0,
+        defaultColor: COLORS.transparent,
+      });
+
+      return reduceEditorSnapshot(state, {
+        type: "commit-update",
+        payload: {
+          update: {
+            mutations: [
+              {
+                type: "create-frame",
+                payload: {
+                  order: action.payload.order,
+                  newFrame: newFrame,
+                },
+              },
+            ],
+          },
+        },
+      });
+    }
+    case "delete-frame": {
+      return reduceEditorSnapshot(state, {
+        type: "commit-update",
+        payload: {
+          update: {
+            mutations: [
+              {
+                type: "delete-frame",
+                payload: {
+                  order: action.payload.order,
+                  oldFrame: state.frames[action.payload.order],
+                },
+              },
+            ],
+          },
+        },
+      });
     }
   }
 }

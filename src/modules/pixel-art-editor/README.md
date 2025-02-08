@@ -53,7 +53,7 @@ function App() {
 - [x] FEAT: Disable undo and redo if not available.
 - [x] FEAT: Set current frame as a snapshot attribute.
 - [ ] FEAT: Enable the creation of multiple frames.
-  - [ ] FEAT: Implement hook logic.
+  - [x] FEAT: Implement hook logic.
   - [ ] FEAT: Create UI elements.
 - [ ] FEAT: Manage multiple frames.
 - [ ] FEAT: Show transparent in color-picker.
