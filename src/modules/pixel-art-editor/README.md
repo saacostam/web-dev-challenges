@@ -56,6 +56,7 @@ function App() {
 - [ ] FEAT: Enable the creation of multiple frames.
   - [ ] FEAT: Implement hook logic.
   - [ ] FEAT: Create UI elements.
+- [ ] FEAT: Show transparent in color-picker.
 - [ ] FEAT: Show animation.
 - [ ] FEAT: Store in local-storage.
 - [ ] FEAT: Export app file.
