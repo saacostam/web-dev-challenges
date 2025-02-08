@@ -1,9 +1,30 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useEditorSnapshot } from "../providers";
 import { TEditorOptionName } from "../types";
 
 export function useKeyboardShortcuts() {
   const { dispatch, editorSnapshot } = useEditorSnapshot();
+
+  const goToBackFrame = useCallback(() => {
+    const newIndex =
+      (editorSnapshot.frames.findIndex(
+        (frame) => frame === editorSnapshot.currentFrame,
+      ) -
+        1 +
+        editorSnapshot.frames.length) %
+      editorSnapshot.frames.length;
+    dispatch({ type: "set-frame", payload: { order: newIndex } });
+  }, [dispatch, editorSnapshot.currentFrame, editorSnapshot.frames]);
+
+  const goToNextFrame = useCallback(() => {
+    const newIndex =
+      (editorSnapshot.frames.findIndex(
+        (frame) => frame === editorSnapshot.currentFrame,
+      ) +
+        1) %
+      editorSnapshot.frames.length;
+    dispatch({ type: "set-frame", payload: { order: newIndex } });
+  }, [dispatch, editorSnapshot.currentFrame, editorSnapshot.frames]);
 
   useEffect(() => {
     const keydownHandler = (e: KeyboardEvent) => {
@@ -63,6 +84,22 @@ export function useKeyboardShortcuts() {
             dispatch({ type: "redo" });
           }
           break;
+        case "ArrowUp": {
+          goToBackFrame();
+          break;
+        }
+        case "ArrowLeft": {
+          goToBackFrame();
+          break;
+        }
+        case "ArrowDown": {
+          goToNextFrame();
+          break;
+        }
+        case "ArrowRight": {
+          goToNextFrame();
+          break;
+        }
       }
     };
 
@@ -71,5 +108,5 @@ export function useKeyboardShortcuts() {
     return () => {
       window.removeEventListener("keydown", keydownHandler);
     };
-  }, [dispatch, editorSnapshot.showGrid]);
+  }, [dispatch, editorSnapshot.showGrid, goToBackFrame, goToNextFrame]);
 }

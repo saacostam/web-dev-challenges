@@ -61,7 +61,7 @@ function App() {
   - [x] FEAT: Hook logic for duplication.
 - [x] FEAT: Show transparent in color-picker.
 - [x] FEAT: Show animation.
-- [ ] FEAT: Arrow keys should navigate frames.
+- [x] FEAT: Arrow keys should navigate frames.
 - [ ] FEAT: Focus newly create frame after duplicating.
 - [ ] FEAT: Focus the frame with the latest changes.
 - [ ] FEAT: Store in local-storage.
