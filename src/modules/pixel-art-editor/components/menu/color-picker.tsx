@@ -33,7 +33,7 @@ export function ColorPicker({
       {colors.map(({ color, set, tooltip }) => (
         <div className="tooltip" data-tip={tooltip} key={tooltip}>
           <input
-            className="px-1 py-0.5 cursor-pointer btn btn-primary btn-outline btn-square"
+            className="p-1 cursor-pointer btn btn-primary btn-outline btn-square"
             type="color"
             value={color}
             onChange={(e) => set(e.target.value)}
