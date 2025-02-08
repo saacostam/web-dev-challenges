@@ -59,9 +59,10 @@ function App() {
   - [x] FEAT: Hook logic for deleting.
   - [x] FEAT: Hook logic for changing focused frame.
   - [x] FEAT: Hook logic for duplication.
-- [ ] FEAT: Show transparent in color-picker.
-- [ ] FEAT: Focus the frame with the latest changes.
+- [x] FEAT: Show transparent in color-picker.
 - [ ] FEAT: Show animation.
+- [ ] FEAT: Arrow keys should navigate frames.
+- [ ] FEAT: Focus the frame with the latest changes.
 - [ ] FEAT: Store in local-storage.
 - [ ] FEAT: Export app file.
 - [ ] FEAT: Export sprite file.
@@ -77,3 +78,4 @@ function App() {
 - [ ] PERF: Re-visit the hover for pencil option (maybe other as well).
   - [ ] Also, transition between not-clicked to clicked.
 - [ ] TEST: Add unit tests.
+- [ ] FEAT: Add transparent as an option in color picker.

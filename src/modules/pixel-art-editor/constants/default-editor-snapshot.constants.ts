@@ -6,7 +6,7 @@ export const DEFAULT_EDITOR_SNAPSHOT: Omit<
   "history" | "frames" | "currentFrame"
 > = {
   currentColorPrimary: COLORS.black,
-  currentColorSecondary: COLORS.white,
+  currentColorSecondary: COLORS.transparent,
   fps: 12,
   selectedOption: TEditorOptionName.PENCIL,
   showGrid: true,
