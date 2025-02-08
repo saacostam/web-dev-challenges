@@ -19,6 +19,7 @@ function HeroLayoutWrapper({ children }: PropsWithChildren) {
       className="hero rounded-2xl overflow-clip bg-primary"
       style={{
         backgroundImage: "url(./hero.jpg)",
+        backgroundPositionY: "top",
       }}
     >
       <div className="hero-overlay py-32"></div>

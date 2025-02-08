@@ -10,6 +10,7 @@ export * from "./eye-dropper-icon";
 export * from "./fill-drop-icon";
 export * from "./filter-icon";
 export * from "./forward-icon";
+export * from "./leaf-icon";
 export * from "./pencil-icon";
 export * from "./plus-icon";
 export * from "./search-icon";
