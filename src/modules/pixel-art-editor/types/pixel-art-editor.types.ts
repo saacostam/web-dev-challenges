@@ -147,4 +147,10 @@ export type TPixelArtEditorAction =
       payload: {
         order: number;
       };
+    }
+  | {
+      type: "duplicate-frame";
+      payload: {
+        order: number;
+      };
     };

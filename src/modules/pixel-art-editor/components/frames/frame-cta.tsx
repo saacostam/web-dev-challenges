@@ -1,13 +1,14 @@
 import { twMerge } from "tailwind-merge";
 import { TFrame } from "../../types";
 import { FramePreview } from "./frame-preview";
-import { TrashIcon } from "../../../icons";
+import { DuplicateIcon, TrashIcon } from "../../../icons";
 
 export interface FrameCtaProps {
   active: boolean;
   frame: TFrame;
   hideMultiFrameCta: boolean;
   onClickDeleteFrameHandler: () => void;
+  onClickDuplicateFrameHandler: () => void;
   onClickFrameHandler: () => void;
 }
 
@@ -16,6 +17,7 @@ export function FrameCta({
   frame,
   hideMultiFrameCta,
   onClickDeleteFrameHandler,
+  onClickDuplicateFrameHandler,
   onClickFrameHandler,
 }: FrameCtaProps) {
   return (
@@ -31,6 +33,12 @@ export function FrameCta({
         <FramePreview frame={frame} />
       </div>
       <div className="w-full h-full absolute group">
+        <button
+          className="absolute top-0 right-0 btn btn-primary btn-square btn-xs hidden group-hover:flex"
+          onClick={onClickDuplicateFrameHandler}
+        >
+          <DuplicateIcon className="size-4" />
+        </button>
         {!hideMultiFrameCta && (
           <button
             className="absolute bottom-0 right-0 btn btn-primary btn-square btn-xs hidden group-hover:flex"

@@ -7,6 +7,7 @@ import {
 import { useEditorHistoryStateHook } from "./use-editor-history";
 import { InitializerService, SeederService } from "../../services";
 import { COLORS } from "../../constants";
+import { FrameUtils } from "../../utils";
 
 /**
  * Applies a single update to the given state. That is, it mutates the state forward.
@@ -243,6 +244,35 @@ export function reduceEditorSnapshot(
         ...state,
         currentFrame: state.frames[action.payload.order],
       };
+    }
+    case "duplicate-frame": {
+      if (
+        !(
+          0 <= action.payload.order &&
+          action.payload.order < state.frames.length
+        )
+      )
+        return state;
+
+      const frame = state.frames[action.payload.order];
+      const dupped = FrameUtils.deepCopyFrame(frame);
+
+      return reduceEditorSnapshot(state, {
+        type: "commit-update",
+        payload: {
+          update: {
+            mutations: [
+              {
+                type: "create-frame",
+                payload: {
+                  order: action.payload.order + 1,
+                  newFrame: dupped,
+                },
+              },
+            ],
+          },
+        },
+      });
     }
   }
 }

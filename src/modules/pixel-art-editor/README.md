@@ -55,11 +55,12 @@ function App() {
 - [x] FEAT: Enable the creation of multiple frames.
   - [x] FEAT: Implement hook logic.
   - [x] FEAT: Create UI elements.
-- [ ] FEAT: Manage multiple frames.
+- [x] FEAT: Manage multiple frames.
   - [x] FEAT: Hook logic for deleting.
   - [x] FEAT: Hook logic for changing focused frame.
-  - [ ] FEAT: Hook logic for duplication.
+  - [x] FEAT: Hook logic for duplication.
 - [ ] FEAT: Show transparent in color-picker.
+- [ ] FEAT: Focus the frame with the latest changes.
 - [ ] FEAT: Show animation.
 - [ ] FEAT: Store in local-storage.
 - [ ] FEAT: Export app file.

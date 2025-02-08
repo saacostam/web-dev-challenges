@@ -39,6 +39,17 @@ export function FrameManagement() {
     [dispatch],
   );
 
+  const onClickDuplicateFrameHandler = useCallback(
+    (order: number) =>
+      dispatch({
+        type: "duplicate-frame",
+        payload: {
+          order: order,
+        },
+      }),
+    [dispatch],
+  );
+
   return (
     <div className="w-24 min-h-full max-h-full h-full overflow-y-scroll">
       <div className="mb-1 space-y-1">
@@ -49,6 +60,9 @@ export function FrameManagement() {
             key={index}
             hideMultiFrameCta={editorSnapshot.frames.length === 1}
             onClickDeleteFrameHandler={() => onClickDeleteFrameHandler(index)}
+            onClickDuplicateFrameHandler={() =>
+              onClickDuplicateFrameHandler(index)
+            }
             onClickFrameHandler={() => onClickFrameHandler(index)}
           />
         ))}
