@@ -3,9 +3,7 @@ import { ChallengeCard, CHALLENGES } from "../../challenges";
 import {
   Divider,
   // Pagination,
-  Paragraph,
   Select,
-  SubHeader,
 } from "../../core.components";
 import { SearchBar } from "../../filters";
 
