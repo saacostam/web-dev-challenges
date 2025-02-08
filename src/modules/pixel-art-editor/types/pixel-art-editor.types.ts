@@ -18,6 +18,7 @@ export type TMutation =
         fromColor: string;
         position: TPosition;
         toColor: string;
+        frame: TFrame;
       };
     }
   | {
@@ -137,6 +138,12 @@ export type TPixelArtEditorAction =
     }
   | {
       type: "delete-frame";
+      payload: {
+        order: number;
+      };
+    }
+  | {
+      type: "set-frame";
       payload: {
         order: number;
       };

@@ -20,7 +20,7 @@ function applyUpdate(
     switch (mutation.type) {
       case "switch-color": {
         const pixel =
-          state.currentFrame.canvas[mutation.payload.position.y][
+          mutation.payload.frame.canvas[mutation.payload.position.y][
             mutation.payload.position.x
           ];
         pixel.color = mutation.payload.toColor;
@@ -76,7 +76,7 @@ function revertUpdate(
     switch (mutation.type) {
       case "switch-color": {
         const pixel =
-          state.currentFrame.canvas[mutation.payload.position.y][
+          mutation.payload.frame.canvas[mutation.payload.position.y][
             mutation.payload.position.x
           ];
         pixel.color = mutation.payload.fromColor;
@@ -204,6 +204,15 @@ export function reduceEditorSnapshot(
       });
     }
     case "delete-frame": {
+      if (state.frames.length <= 1) return state;
+      if (
+        !(
+          0 <= action.payload.order &&
+          action.payload.order < state.frames.length
+        )
+      )
+        return state;
+
       return reduceEditorSnapshot(state, {
         type: "commit-update",
         payload: {
@@ -220,6 +229,20 @@ export function reduceEditorSnapshot(
           },
         },
       });
+    }
+    case "set-frame": {
+      if (
+        !(
+          0 <= action.payload.order &&
+          action.payload.order < state.frames.length
+        )
+      )
+        return state;
+
+      return {
+        ...state,
+        currentFrame: state.frames[action.payload.order],
+      };
     }
   }
 }

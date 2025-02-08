@@ -43,6 +43,7 @@ const dragWhenClickedTransitionHandler: TTransitionHandler<
                 position,
                 fromColor: currentColor,
                 toColor: color,
+                frame: editorSnapshot.currentFrame,
               },
             },
           ],

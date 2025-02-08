@@ -52,10 +52,13 @@ function App() {
 - [x] FEAT: Hook tool options to keyboard hot-keys.
 - [x] FEAT: Disable undo and redo if not available.
 - [x] FEAT: Set current frame as a snapshot attribute.
-- [ ] FEAT: Enable the creation of multiple frames.
+- [x] FEAT: Enable the creation of multiple frames.
   - [x] FEAT: Implement hook logic.
-  - [ ] FEAT: Create UI elements.
+  - [x] FEAT: Create UI elements.
 - [ ] FEAT: Manage multiple frames.
+  - [x] FEAT: Hook logic for deleting.
+  - [x] FEAT: Hook logic for changing focused frame.
+  - [ ] FEAT: Hook logic for duplication.
 - [ ] FEAT: Show transparent in color-picker.
 - [ ] FEAT: Show animation.
 - [ ] FEAT: Store in local-storage.
@@ -69,6 +72,7 @@ function App() {
 - [ ] DOCS: Add js-doc annotations to types.
 - [ ] DOCS: Add js-doc to complex business logic.
 - [ ] DOCS: Document module code structure - implementation details.
+- [ ] PERF: `frame-preview.tsx` is rendering as often as possible (empty dep array) because frame is not inmutable.
 - [ ] PERF: Re-visit the hover for pencil option (maybe other as well).
   - [ ] Also, transition between not-clicked to clicked.
 - [ ] TEST: Add unit tests.
