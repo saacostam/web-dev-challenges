@@ -3,9 +3,9 @@ import { ChallengeCard, CHALLENGES } from "../../challenges";
 import {
   Divider,
   // Pagination,
-  Select,
+  // Select,
 } from "../../core.components";
-import { SearchBar } from "../../filters";
+// import { SearchBar } from "../../filters";
 
 export function HomeView() {
   return (
@@ -13,10 +13,10 @@ export function HomeView() {
       <Hero />
       <Divider />
       <section>
-        <div className="py-4 flex flex-wrap items-center gap-4">
+        {/* <div className="py-4 flex flex-wrap items-center gap-4">
           <SearchBar />
           <Select description="Difficulty" className="w-full sm:w-64" />
-        </div>
+        </div> */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
           {CHALLENGES.map((challenge) => (
             <ChallengeCard challenge={challenge} key={challenge.id} />
