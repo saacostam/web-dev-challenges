@@ -21,7 +21,7 @@ export function ChallengeCard({ challenge, className }: TChallengeCardProps) {
       )}
     >
       <div className="card-body">
-        <h2 className="card-title">
+        <h2 className="card-title flex-wrap">
           {challenge.Icon ? <challenge.Icon className="size-6" /> : null}
           {challenge.name}
           <Pill className="p-2">{challenge.difficulty}</Pill>
