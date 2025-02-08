@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 export interface PixelArtEditorLayoutProps {
   className?: string;
+  dockAnimation: ReactNode;
   dockFrameManagement: ReactNode;
   dockMenu: ReactNode;
 }
@@ -10,6 +11,7 @@ export interface PixelArtEditorLayoutProps {
 export function PixelArtEditorLayout({
   className,
   children,
+  dockAnimation,
   dockFrameManagement,
   dockMenu,
 }: PropsWithChildren<PixelArtEditorLayoutProps>) {
@@ -29,6 +31,7 @@ export function PixelArtEditorLayout({
             {dockFrameManagement}
           </div>
           {children}
+          <div className="absolute top-0 right-0">{dockAnimation}</div>
         </div>
       </div>
     </div>

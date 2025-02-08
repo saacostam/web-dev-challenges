@@ -4,8 +4,9 @@ import {
   KeyboardShortcuts,
   Menu,
   PixelArtEditorLayout,
+  FrameManagement,
+  Animation,
 } from "./components";
-import { FrameManagement } from "./components/frames";
 import { EditorSnaphostProvider } from "./providers";
 
 export function PixelArtEditor() {
@@ -14,8 +15,9 @@ export function PixelArtEditor() {
       <KeyboardShortcuts>
         <PixelArtEditorLayout
           className="hidden sm:flex"
-          dockMenu={<Menu />}
+          dockAnimation={<Animation />}
           dockFrameManagement={<FrameManagement />}
+          dockMenu={<Menu />}
         >
           <Canvas />
         </PixelArtEditorLayout>
