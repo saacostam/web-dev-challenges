@@ -23,16 +23,19 @@ export function FrameCta({
   return (
     <div
       className={twMerge(
-        "btn btn-square btn-primary w-full h-20 relative cursor-default",
+        "btn btn-square btn-primary w-full relative cursor-default",
         active ? "" : "btn-outline",
       )}
       onClick={onClickFrameHandler}
       role="button"
+      style={{
+        paddingBottom: "100%",
+      }}
     >
-      <div className="p-2">
+      <div className="left-0 top-0 p-2 absolute">
         <FramePreview frame={frame} />
       </div>
-      <div className="w-full h-full absolute group">
+      <div className="w-full h-full absolute top-0 right-0 group">
         <button
           className="absolute top-0 right-0 btn btn-primary btn-square btn-xs hidden group-hover:flex"
           onClick={onClickDuplicateFrameHandler}
