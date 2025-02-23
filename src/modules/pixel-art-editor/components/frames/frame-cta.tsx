@@ -23,7 +23,7 @@ export function FrameCta({
   return (
     <div
       className={twMerge(
-        "btn btn-square btn-primary w-full relative cursor-default",
+        "btn btn-square btn-primary w-full relative cursor-default no-animation",
         active ? "" : "btn-outline",
       )}
       onClick={onClickFrameHandler}
