@@ -60,7 +60,7 @@ export function ColorPicker({
           />
           <div
             className={twMerge(
-              "absolute w-full h-full top-0 left-0 p-2 pointer-events-none",
+              "absolute w-full h-full top-0 left-0 p-1.5 pointer-events-none",
               color === COLORS.transparent ? "block" : "hidden",
             )}
           >

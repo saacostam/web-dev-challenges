@@ -51,7 +51,7 @@ export function FrameManagement() {
   );
 
   return (
-    <div className="w-24 min-h-full max-h-full h-full overflow-y-scroll">
+    <div className="w-24 min-h-full max-h-full h-full overflow-y-auto overflow-x-hidden">
       <div className="mb-1 space-y-1">
         {editorSnapshot.frames.map((frame, index) => (
           <FrameCta
