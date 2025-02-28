@@ -1,6 +1,7 @@
 import { useMemo } from "react";
-import { CHALLENGES } from "../constants";
+
 import { Identifider } from "../../core.types";
+import { CHALLENGES } from "../constants";
 
 export interface UseChallengeByIdProps {
   id?: Identifider;

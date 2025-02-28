@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
+
+import { Pill } from "../../core.components";
 import { TRoute, useGetRoutes } from "../../router";
 import { TChallenge } from "../types";
-import { Link } from "react-router-dom";
-import { Pill } from "../../core.components";
 import { InProgressPill } from "./in-progress-pill";
 
 export interface TChallengeCardProps {

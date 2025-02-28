@@ -1,4 +1,4 @@
-import { useRef, useCallback, useMemo, useEffect } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
 export interface UseSoundPlayerProps {
   audioSrc: string;

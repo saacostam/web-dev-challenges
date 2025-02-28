@@ -1,14 +1,15 @@
 import { Dispatch, useRef } from "react";
+
 import { Checkbox } from "../../core.components";
 import { PlusIcon, TrashIcon } from "../../icons";
+import { useTasksCRUD } from "../hooks";
 import {
-  TTask,
   TCreateTask,
   TDeleteTask,
-  TUpdateTask,
   TPomodoroTimerSnapshotAction,
+  TTask,
+  TUpdateTask,
 } from "../types";
-import { useTasksCRUD } from "../hooks";
 
 /**
  * Props for the PomodoroTasks component.

@@ -1,6 +1,8 @@
 import { PropsWithChildren } from "react";
-import { ArrowUturnLeftIcon, ArrowUturnRightIcon } from "../../../icons";
+
 import { twMerge } from "tailwind-merge";
+
+import { ArrowUturnLeftIcon, ArrowUturnRightIcon } from "../../../icons";
 
 export interface UndoRedoProps {
   redo: () => void;

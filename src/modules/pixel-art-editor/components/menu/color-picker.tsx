@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
+
 import { twMerge } from "tailwind-merge";
-import { CanvasUtils } from "../../utils";
+
 import { COLORS } from "../../constants";
+import { CanvasUtils } from "../../utils";
 
 export interface ColorPickerProps {
   className?: string;

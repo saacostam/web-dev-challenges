@@ -1,9 +1,9 @@
 import {
+  TMouseClickType,
   TMouseInputType,
   TStateMachineConfig,
-  TUpdate,
-  TMouseClickType,
   TTransitionHandler,
+  TUpdate,
 } from "../../types";
 import { FrameUtils } from "../../utils";
 

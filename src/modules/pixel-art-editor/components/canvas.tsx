@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+
 import { CanvasManager } from "../managers";
 import { useEditorSnapshot } from "../providers";
 

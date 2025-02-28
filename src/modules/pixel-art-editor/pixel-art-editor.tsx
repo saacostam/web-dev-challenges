@@ -1,11 +1,11 @@
 import { Alert } from "../core.components";
 import {
+  Animation,
   Canvas,
+  FrameManagement,
   KeyboardShortcuts,
   Menu,
   PixelArtEditorLayout,
-  FrameManagement,
-  Animation,
 } from "./components";
 import { EditorSnaphostProvider } from "./providers";
 

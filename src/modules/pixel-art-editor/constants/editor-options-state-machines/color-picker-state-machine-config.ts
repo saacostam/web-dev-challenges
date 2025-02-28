@@ -1,7 +1,7 @@
 import {
+  TMouseClickType,
   TMouseInputType,
   TStateMachineConfig,
-  TMouseClickType,
 } from "../../types";
 import { FrameUtils } from "../../utils";
 

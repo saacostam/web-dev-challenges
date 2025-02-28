@@ -1,6 +1,7 @@
-import { renderHook, act } from "@testing-library/react";
-import useSoundPlayer from "./use-play-sound";
+import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
+
+import useSoundPlayer from "./use-play-sound";
 
 describe("useSoundPlayer hook", () => {
   let audioPlayMock: ReturnType<typeof vi.spyOn>;

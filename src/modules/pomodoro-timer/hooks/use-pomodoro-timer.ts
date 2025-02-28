@@ -1,19 +1,20 @@
 import { useCallback, useEffect, useMemo, useReducer } from "react";
+
+import { ClientStorage, ClientStorageKeys } from "../../client-storage";
+import { useSoundPlayer } from "../../sound";
+import { useXSecondsTimer } from "../../time";
+import { SETTINGS_CONFIG } from "../constants";
 import {
-  initSettings,
-  pomodoroSettingsReducer,
-  initSnapshot,
-  snapshotReducer,
   getCurrentStepDurationInSeconds,
+  initSettings,
+  initSnapshot,
+  pomodoroSettingsReducer,
+  snapshotReducer,
 } from "../domain";
 import {
   TPomodoroSettingsReducer,
   TPomodoroTimerSnapshotReducer,
 } from "../types";
-import { ClientStorage, ClientStorageKeys } from "../../client-storage";
-import { useXSecondsTimer } from "../../time";
-import { useSoundPlayer } from "../../sound";
-import { SETTINGS_CONFIG } from "../constants";
 
 export function usePomodoroTimer() {
   const [settings, reduceSettings] = useReducer<TPomodoroSettingsReducer>(

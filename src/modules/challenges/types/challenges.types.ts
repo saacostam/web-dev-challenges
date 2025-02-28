@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import { TIcon } from "../../icons";
 
 export enum TChallengeDifficulty {

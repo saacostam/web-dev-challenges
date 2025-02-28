@@ -1,4 +1,5 @@
 import { twMerge } from "tailwind-merge";
+
 import { TEditorOption, TEditorOptionName } from "../../types";
 
 export interface MenuOptionsProps {

@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ChallengeByIdView, HomeView } from "../../views";
-import { MainLayout } from "../../layout";
+
 import { Error404 } from "../../error-handling";
+import { MainLayout } from "../../layout";
+import { ChallengeByIdView, HomeView } from "../../views";
 
 export function AppRouter() {
   return (

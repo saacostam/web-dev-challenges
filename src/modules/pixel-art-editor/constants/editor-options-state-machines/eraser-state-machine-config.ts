@@ -1,8 +1,8 @@
 import {
   TMouseInputType,
   TStateMachineConfig,
-  TUpdate,
   TTransitionHandler,
+  TUpdate,
 } from "../../types";
 import { FrameUtils } from "../../utils";
 import { COLORS } from "../colors.constants";

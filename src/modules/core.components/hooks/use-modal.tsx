@@ -1,6 +1,8 @@
 import { InputHTMLAttributes, useCallback, useMemo } from "react";
-import { getUuid } from "../../string.utils";
+
 import { twMerge } from "tailwind-merge";
+
+import { getUuid } from "../../string.utils";
 
 export function useModal() {
   const id = useMemo(() => getUuid(), []);

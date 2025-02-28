@@ -1,7 +1,5 @@
 import { Divider, SubHeader, useModal } from "../core.components";
 import { Cog6Tooth } from "../icons";
-import { ALL_POMODORO_TIMER_STATES } from "./constants";
-import { usePomodoroTimer } from "./hooks";
 import {
   PomodoroSettingsManagements,
   PomodoroTasks,
@@ -9,6 +7,8 @@ import {
   PomodoroTimerPlayback,
   PomodoroTimerStateTabs,
 } from "./components";
+import { ALL_POMODORO_TIMER_STATES } from "./constants";
+import { usePomodoroTimer } from "./hooks";
 
 export function PomodoroTimer() {
   const {

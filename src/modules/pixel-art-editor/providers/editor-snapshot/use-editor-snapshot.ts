@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useReducer } from "react";
+
+import { COLORS } from "../../constants";
+import { InitializerService, SeederService } from "../../services";
 import {
   TPixelArtEditorAction,
   TPixelArtEditorSnapShot,
   TUpdate,
 } from "../../types";
-import { useEditorHistoryStateHook } from "./use-editor-history";
-import { InitializerService, SeederService } from "../../services";
-import { COLORS } from "../../constants";
 import { FrameUtils } from "../../utils";
+import { useEditorHistoryStateHook } from "./use-editor-history";
 
 /**
  * Applies a single update to the given state. That is, it mutates the state forward.

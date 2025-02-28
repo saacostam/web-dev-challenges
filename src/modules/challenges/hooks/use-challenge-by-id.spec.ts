@@ -1,6 +1,7 @@
 import { renderHook } from "@testing-library/react";
-import { useChallengeById } from "./use-challenge-by-id";
 import { describe, expect, it, vi } from "vitest";
+
+import { useChallengeById } from "./use-challenge-by-id";
 
 vi.mock("../constants", () => ({
   CHALLENGES: [

@@ -1,4 +1,7 @@
 import { Dispatch, PropsWithChildren } from "react";
+
+import { twMerge } from "tailwind-merge";
+
 import {
   Checkbox,
   Divider,
@@ -8,13 +11,12 @@ import {
   SubHeader,
 } from "../../core.components";
 import { BellAlertIcon, ClockIcon, SpeakerWaveIcon } from "../../icons";
+import { DEFAULT_SETTINGS, SETTINGS_CONFIG } from "../constants";
 import {
   TPomodoroSettings,
   TPomodoroSettingsReducerAction,
   TPomodoroTimerState,
 } from "../types";
-import { twMerge } from "tailwind-merge";
-import { DEFAULT_SETTINGS, SETTINGS_CONFIG } from "../constants";
 
 /**
  * Props for the `PomodoroSettingsManagements` component.

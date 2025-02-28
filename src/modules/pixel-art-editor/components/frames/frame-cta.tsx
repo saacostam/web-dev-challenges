@@ -1,7 +1,8 @@
 import { twMerge } from "tailwind-merge";
+
+import { DuplicateIcon, TrashIcon } from "../../../icons";
 import { TFrame } from "../../types";
 import { FramePreview } from "./frame-preview";
-import { DuplicateIcon, TrashIcon } from "../../../icons";
 
 export interface FrameCtaProps {
   active: boolean;

@@ -1,10 +1,11 @@
 import { Hero } from "../../branding";
-import { ChallengeCard, CHALLENGES } from "../../challenges";
+import { CHALLENGES, ChallengeCard } from "../../challenges";
 import {
   Divider,
   // Pagination,
   // Select,
 } from "../../core.components";
+
 // import { SearchBar } from "../../filters";
 
 export function HomeView() {

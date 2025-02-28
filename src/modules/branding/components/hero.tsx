@@ -1,8 +1,10 @@
 import { PropsWithChildren } from "react";
-import { Logo, Paragraph } from "../../core.components";
-import { useGetAuthor } from "../api";
+
 import { twMerge } from "tailwind-merge";
+
+import { Logo, Paragraph } from "../../core.components";
 import { GithubIcon } from "../../icons";
+import { useGetAuthor } from "../api";
 
 export function Hero() {
   const getAuthor = useGetAuthor();

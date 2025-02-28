@@ -1,4 +1,5 @@
 import { twMerge } from "tailwind-merge";
+
 import { TIcon } from "../types";
 
 export const ThreeLinesIcon: TIcon = ({ className }) => {

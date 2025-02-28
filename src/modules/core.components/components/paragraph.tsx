@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+
 import { twMerge } from "tailwind-merge";
 
 export interface ParagraphProps {

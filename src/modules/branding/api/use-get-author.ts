@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { QueryKey, BASE_URL } from "../../api";
+
+import { BASE_URL, QueryKey } from "../../api";
 
 export interface GetAuthorResponse {
   github: {
