@@ -13,6 +13,8 @@ export default defineConfig({
       exclude: [
         "**/docs/**",
         "**/index.{ts,tsx,js,jsx}",
+        "**/*.types.{ts,tsx,js,jsx}",
+        "**/*.constants.{ts,tsx,js,jsx}",
         ...coverageConfigDefaults.exclude,
       ],
     },
