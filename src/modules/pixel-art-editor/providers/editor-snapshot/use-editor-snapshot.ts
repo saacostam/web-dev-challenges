@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useReducer } from "react";
 
+import { ClientStorage, ClientStorageKeys } from "../../../client-storage";
 import { COLORS } from "../../constants";
 import { InitializerService, SeederService } from "../../services";
 import {
@@ -299,6 +300,16 @@ export function useEditorSnapshotStateHook() {
   useEffect(
     () => dispatch({ type: "set-history", payload: { history } }),
     [history],
+  );
+
+  useEffect(
+    function saveSnapshotToLocalStorage() {
+      ClientStorage.set(
+        ClientStorageKeys.PIXEL_ART_EDITOR_SNAPSHOT,
+        editorSnapshot,
+      );
+    },
+    [editorSnapshot],
   );
 
   return useMemo(

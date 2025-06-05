@@ -64,7 +64,8 @@ function App() {
 - [x] FEAT: Arrow keys should navigate frames.
 - [x] FEAT: Add transparent as an option in color picker.
 - [x] FEAT: Focus newly create frame after duplicating.
-- [ ] FEAT: Store in local-storage.
+- [x] FEAT: Store in local-storage.
+- [ ] FEAT: Read from local-storage.
 - [ ] FEAT: Export app file.
 - [ ] FEAT: Export sprite file.
 - [ ] FEAT: Add an error boundary.
