@@ -258,7 +258,9 @@ export function reduceEditorSnapshot(
       const frame = state.frames[action.payload.order];
       const dupped = FrameUtils.deepCopyFrame(frame);
 
-      return reduceEditorSnapshot(state, {
+      const newFrameOrder = action.payload.order + 1;
+
+      const newState = reduceEditorSnapshot(state, {
         type: "commit-update",
         payload: {
           update: {
@@ -266,7 +268,7 @@ export function reduceEditorSnapshot(
               {
                 type: "create-frame",
                 payload: {
-                  order: action.payload.order + 1,
+                  order: newFrameOrder,
                   newFrame: dupped,
                 },
               },
@@ -274,6 +276,13 @@ export function reduceEditorSnapshot(
           },
         },
       });
+
+      return reduceEditorSnapshot(newState, {
+        type: "set-frame",
+        payload: {
+          order: newFrameOrder,
+        }
+      })
     }
   }
 }

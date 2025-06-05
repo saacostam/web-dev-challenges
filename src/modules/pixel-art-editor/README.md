@@ -63,7 +63,7 @@ function App() {
 - [x] FEAT: Show animation.
 - [x] FEAT: Arrow keys should navigate frames.
 - [x] FEAT: Add transparent as an option in color picker.
-- [ ] FEAT: Focus newly create frame after duplicating.
+- [x] FEAT: Focus newly create frame after duplicating.
 - [ ] FEAT: Focus the frame with the latest changes.
 - [ ] FEAT: Store in local-storage.
 - [ ] FEAT: Export app file.
