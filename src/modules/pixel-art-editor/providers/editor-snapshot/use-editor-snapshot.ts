@@ -281,8 +281,8 @@ export function reduceEditorSnapshot(
         type: "set-frame",
         payload: {
           order: newFrameOrder,
-        }
-      })
+        },
+      });
     }
   }
 }

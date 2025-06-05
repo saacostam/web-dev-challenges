@@ -1,5 +1,6 @@
-import { twMerge } from "tailwind-merge";
 import { MouseEventHandler, useCallback } from "react";
+
+import { twMerge } from "tailwind-merge";
 
 import { DuplicateIcon, TrashIcon } from "../../../icons";
 import { TFrame } from "../../types";
@@ -22,15 +23,23 @@ export function FrameCta({
   onClickDuplicateFrameHandler: _onClickDuplicateFrameHandler,
   onClickFrameHandler,
 }: FrameCtaProps) {
-  const onClickDeleteFrameHandler: MouseEventHandler<HTMLButtonElement> = useCallback((e) => {
-    e.stopPropagation();
-    _onClickDeleteFrameHandler();
-  }, [_onClickDeleteFrameHandler]);
+  const onClickDeleteFrameHandler: MouseEventHandler<HTMLButtonElement> =
+    useCallback(
+      (e) => {
+        e.stopPropagation();
+        _onClickDeleteFrameHandler();
+      },
+      [_onClickDeleteFrameHandler],
+    );
 
-  const onClickDuplicateFrameHandler: MouseEventHandler<HTMLButtonElement> = useCallback((e) => {
-    e.stopPropagation();
-    _onClickDuplicateFrameHandler();
-  }, [_onClickDuplicateFrameHandler])
+  const onClickDuplicateFrameHandler: MouseEventHandler<HTMLButtonElement> =
+    useCallback(
+      (e) => {
+        e.stopPropagation();
+        _onClickDuplicateFrameHandler();
+      },
+      [_onClickDuplicateFrameHandler],
+    );
 
   return (
     <div
