@@ -1,3 +1,4 @@
+import { Identifider } from "../../core.types";
 import { TIcon } from "../../icons";
 import { TPosition } from "./core.types";
 
@@ -8,6 +9,7 @@ export interface TPixel {
 export type TCanvas = TPixel[][];
 
 export interface TFrame {
+  id: Identifider;
   canvas: TCanvas;
 }
 

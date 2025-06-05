@@ -1,3 +1,4 @@
+import { getUuid } from "../../string.utils";
 import { TCanvas, TFrame } from "../types";
 
 export interface seedFrameProps {
@@ -23,6 +24,7 @@ export function seedFrame({
   }
 
   return {
+    id: getUuid(),
     canvas,
   };
 }

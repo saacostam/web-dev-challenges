@@ -10,6 +10,7 @@ function createMockFrame(
   color = COLORS.transparent,
 ): TFrame {
   return {
+    id: "test-id",
     canvas: Array.from({ length: rows }, () =>
       Array.from({ length: cols }, () => ({ color })),
     ),
@@ -49,8 +50,11 @@ describe("FrameUtils", () => {
       const frame = createMockFrame();
       const copy = FrameUtils.deepCopyFrame(frame);
 
-      expect(copy).toEqual(frame);
+      expect(copy.id).not.toBe(frame.id);
       expect(copy).not.toBe(frame);
+
+      expect(copy.canvas).toEqual(frame.canvas);
+
       copy.canvas.forEach((row, rowIndex) => {
         row.forEach((cell, colIndex) => {
           expect(cell).not.toBe(frame.canvas[rowIndex][colIndex]);

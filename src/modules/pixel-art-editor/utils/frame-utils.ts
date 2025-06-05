@@ -1,3 +1,4 @@
+import { getUuid } from "../../string.utils";
 import { COLORS } from "../constants";
 import { TFrame, TPosition } from "../types";
 
@@ -11,6 +12,7 @@ export const FrameUtils = {
   },
   deepCopyFrame: (frame: TFrame): TFrame => {
     return {
+      id: getUuid(),
       canvas: frame.canvas.map((row) =>
         row.map((cell) => ({
           color: cell.color,

@@ -65,6 +65,7 @@ function App() {
 - [x] FEAT: Add transparent as an option in color picker.
 - [x] FEAT: Focus newly create frame after duplicating.
 - [x] FEAT: Store in local-storage.
+- [ ] FIX: Keep track of current frame by using id >> Add ids to frames.
 - [ ] FEAT: Read from local-storage.
 - [ ] FEAT: Export app file.
 - [ ] FEAT: Export sprite file.
