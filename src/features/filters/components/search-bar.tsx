@@ -1,4 +1,4 @@
-import { Input } from "../../core.components";
+import { Input } from "../../../shared/components";
 import { SearchIcon } from "../../icons";
 
 export function SearchBar() {

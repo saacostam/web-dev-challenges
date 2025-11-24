@@ -1,4 +1,4 @@
-import { Divider, SubHeader, useModal } from "../core.components";
+import { Divider, SubHeader, useModal } from "../../shared/components";
 import { Cog6Tooth } from "../icons";
 import {
   PomodoroSettingsManagements,

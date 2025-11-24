@@ -4,7 +4,7 @@ import {
   Divider,
   // Pagination,
   // Select,
-} from "../../core.components";
+} from "../../../shared/components";
 
 // import { SearchBar } from "../../filters";
 

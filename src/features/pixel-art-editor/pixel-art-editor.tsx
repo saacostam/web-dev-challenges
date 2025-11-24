@@ -1,4 +1,4 @@
-import { Alert } from "../core.components";
+import { Alert } from "../../shared/components";
 import {
   Animation,
   Canvas,

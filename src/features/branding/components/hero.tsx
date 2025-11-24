@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 
 import { twMerge } from "tailwind-merge";
 
-import { Logo, Paragraph } from "../../core.components";
+import { Logo, Paragraph } from "../../../shared/components";
 import { GithubIcon } from "../../icons";
 import { useGetAuthor } from "../api";
 

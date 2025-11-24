@@ -1,4 +1,4 @@
-import { Range } from "../../../core.components";
+import { Range } from "../../../../shared/components";
 import { useEditorSnapshot } from "../../providers";
 import { CanvasAnimation } from "./canvas-animation";
 

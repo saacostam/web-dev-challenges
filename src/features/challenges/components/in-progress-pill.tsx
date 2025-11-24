@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-import { Pill } from "../../core.components";
+import { Pill } from "../../../shared/components";
 
 export interface InProgressPillProps {
   className?: string;

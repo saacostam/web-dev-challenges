@@ -7,7 +7,7 @@ import {
   Paragraph,
   Pill,
   SubHeader,
-} from "../../core.components";
+} from "../../../shared/components";
 import { Error404 } from "../../error-handling";
 
 export function ChallengeByIdView() {

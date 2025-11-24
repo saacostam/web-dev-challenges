@@ -9,7 +9,7 @@ import {
   Input,
   Range,
   SubHeader,
-} from "../../core.components";
+} from "../../../shared/components";
 import { BellAlertIcon, ClockIcon, SpeakerWaveIcon } from "../../icons";
 import { DEFAULT_SETTINGS, SETTINGS_CONFIG } from "../constants";
 import {

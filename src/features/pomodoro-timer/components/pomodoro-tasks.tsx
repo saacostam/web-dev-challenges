@@ -1,6 +1,6 @@
 import { Dispatch, useRef } from "react";
 
-import { Checkbox } from "../../core.components";
+import { Checkbox } from "../../../shared/components";
 import { PlusIcon, TrashIcon } from "../../icons";
 import { useTasksCRUD } from "../hooks";
 import {

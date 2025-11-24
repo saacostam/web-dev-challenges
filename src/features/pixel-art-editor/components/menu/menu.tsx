@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-import { SubHeader } from "../../../core.components";
+import { SubHeader } from "../../../../shared/components";
 import { useEditorSnapshot } from "../../providers";
 import { TEditorOptionName } from "../../types";
 import { ColorPicker } from "./color-picker";
