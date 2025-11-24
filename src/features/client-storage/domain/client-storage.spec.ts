@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 
-import { ClientStorage } from "../domain";
+import { ClientStorage } from ".";
 import { ClientStorageKeys } from "../types";
 
 describe("ClientStorage", () => {
