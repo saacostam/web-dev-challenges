@@ -1,4 +1,4 @@
-import { Hero } from "../../../features/branding";
+import { Hero } from "../../../features/branding/ui";
 import { CHALLENGES, ChallengeCard } from "../../../features/challenges";
 import {
   Divider,
