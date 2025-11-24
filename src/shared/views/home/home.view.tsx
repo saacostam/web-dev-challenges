@@ -1,5 +1,5 @@
-import { Hero } from "../../branding";
-import { CHALLENGES, ChallengeCard } from "../../challenges";
+import { Hero } from "../../../features/branding";
+import { CHALLENGES, ChallengeCard } from "../../../features/challenges";
 import {
   Divider,
   // Pagination,

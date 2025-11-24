@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { Error404 } from "../../error-handling";
 import { MainLayout } from "../../../shared/layout";
-import { ChallengeByIdView, HomeView } from "../../views";
+import { ChallengeByIdView, HomeView } from "../../../shared/views";
 
 export function AppRouter() {
   return (
