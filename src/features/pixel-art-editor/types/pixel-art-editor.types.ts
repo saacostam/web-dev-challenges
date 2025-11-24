@@ -1,4 +1,4 @@
-import { Identifider } from "../../core.types";
+import { Identifider } from "../../../shared/types";
 import { TIcon } from "../../../shared/icons";
 import { TPosition } from "./core.types";
 
