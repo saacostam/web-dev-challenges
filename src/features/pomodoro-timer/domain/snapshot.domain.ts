@@ -1,4 +1,4 @@
-import { ClientStorage, ClientStorageKeys } from "../../client-storage";
+import { ClientStorageKeys, IStorageAdapter } from "../../../shared/adapters/storage/domain";
 import { DEFAULT_SNAPSHOT } from "../constants";
 import {
   TPomodoroSettings,
@@ -157,8 +157,9 @@ function validatePomodoroTimerSnapshot(
  */
 export function initSnapshot(
   settings: TPomodoroSettings,
+  storageAdapter: IStorageAdapter,
 ): TPomodoroTimerSnapshot {
-  const unsanitizedSnapshot = ClientStorage.get(
+  const unsanitizedSnapshot = storageAdapter.get(
     ClientStorageKeys.POMODORO_SNAPSHOT,
   );
 

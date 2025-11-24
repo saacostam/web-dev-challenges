@@ -1,4 +1,4 @@
-import { ClientStorage, ClientStorageKeys } from "../../client-storage";
+import { ClientStorageKeys, IStorageAdapter } from "../../../shared/adapters/storage/domain";
 import { DEFAULT_SETTINGS, SETTINGS_CONFIG } from "../constants";
 import {
   TPomodoroSettings,
@@ -104,8 +104,8 @@ function validateUnsanitizedPomodoroSettings(
  * If the settings are not valid or do not exist, the default settings are returned.
  * @returns {TPomodoroSettings} - The validated or default pomodoro settings.
  */
-export function initSettings(): TPomodoroSettings {
-  const unsanitizedSettings = ClientStorage.get(
+export function initSettings(storageAdapter: IStorageAdapter): TPomodoroSettings {
+  const unsanitizedSettings = storageAdapter.get(
     ClientStorageKeys.POMODORO_SETTINGS,
   );
 

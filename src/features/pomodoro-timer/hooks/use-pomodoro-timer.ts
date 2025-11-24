@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useReducer } from "react";
 
-import { ClientStorage, ClientStorageKeys } from "../../client-storage";
 import { useSoundPlayer } from "../../sound";
 import { useXSecondsTimer } from "../../time";
 import { SETTINGS_CONFIG } from "../constants";
@@ -15,16 +14,20 @@ import {
   TPomodoroSettingsReducer,
   TPomodoroTimerSnapshotReducer,
 } from "../types";
+import { useAdapters } from "../../../shared/adapters/core/app";
+import { ClientStorageKeys } from "../../../shared/adapters/storage/domain";
 
 export function usePomodoroTimer() {
+  const { storageAdapter } = useAdapters();
+
   const [settings, reduceSettings] = useReducer<TPomodoroSettingsReducer>(
     pomodoroSettingsReducer,
-    initSettings(),
+    initSettings(storageAdapter),
   );
 
   const [snapshot, reduceSnapshot] = useReducer<TPomodoroTimerSnapshotReducer>(
     snapshotReducer,
-    initSnapshot(settings),
+    initSnapshot(settings, storageAdapter),
   );
 
   const currentStepDurationInSeconds = useMemo(
@@ -55,21 +58,21 @@ export function usePomodoroTimer() {
   });
 
   useEffect(() => {
-    ClientStorage.set(ClientStorageKeys.POMODORO_SNAPSHOT, {
+    storageAdapter.set(ClientStorageKeys.POMODORO_SNAPSHOT, {
       ...snapshot,
       settings: undefined, // settings is stored separately
     });
-  }, [snapshot]);
+  }, [snapshot, storageAdapter]);
 
   useEffect(() => {
-    ClientStorage.set(ClientStorageKeys.POMODORO_SETTINGS, settings);
+    storageAdapter.set(ClientStorageKeys.POMODORO_SETTINGS, settings);
     reduceSnapshot({
       type: "settings",
       payload: {
         settings: settings,
       },
     });
-  }, [settings]);
+  }, [settings, storageAdapter]);
 
   useEffect(() => {
     // have not already notified

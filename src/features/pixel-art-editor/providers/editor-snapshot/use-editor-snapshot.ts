@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useReducer } from "react";
 
-import { ClientStorage, ClientStorageKeys } from "../../../client-storage";
 import { COLORS } from "../../constants";
 import { InitializerService, SeederService } from "../../services";
 import {
@@ -10,6 +9,8 @@ import {
 } from "../../types";
 import { FrameUtils } from "../../utils";
 import { useEditorHistoryStateHook } from "./use-editor-history";
+import { useAdapters } from "../../../../shared/adapters/core/app";
+import { ClientStorageKeys } from "../../../../shared/adapters/storage/domain";
 
 /**
  * Applies a single update to the given state. That is, it mutates the state forward.
@@ -289,6 +290,8 @@ export function reduceEditorSnapshot(
 }
 
 export function useEditorSnapshotStateHook() {
+  const { storageAdapter } = useAdapters();
+
   const history = useEditorHistoryStateHook();
 
   const [editorSnapshot, dispatch] = useReducer(
@@ -304,12 +307,12 @@ export function useEditorSnapshotStateHook() {
 
   useEffect(
     function saveSnapshotToLocalStorage() {
-      ClientStorage.set(
+      storageAdapter.set(
         ClientStorageKeys.PIXEL_ART_EDITOR_SNAPSHOT,
         editorSnapshot,
       );
     },
-    [editorSnapshot],
+    [editorSnapshot, storageAdapter],
   );
 
   return useMemo(
