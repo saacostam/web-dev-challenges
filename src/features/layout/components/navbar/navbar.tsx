@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import { CHALLENGES } from "../../../challenges";
 import { Logo, SubHeader } from "../../../../shared/components";
-import { ThreeLinesIcon, XIcon } from "../../../icons";
+import { ThreeLinesIcon, XIcon } from "../../../../shared/icons";
 import { TRoute, useGetRoutes } from "../../../router";
 import { NavbarNavigationItem } from "./types";
 

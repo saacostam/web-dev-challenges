@@ -1,5 +1,5 @@
 import { Divider, SubHeader, useModal } from "../../shared/components";
-import { Cog6Tooth } from "../icons";
+import { Cog6Tooth } from "../../shared/icons";
 import {
   PomodoroSettingsManagements,
   PomodoroTasks,

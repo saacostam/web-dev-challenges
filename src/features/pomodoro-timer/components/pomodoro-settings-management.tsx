@@ -10,7 +10,7 @@ import {
   Range,
   SubHeader,
 } from "../../../shared/components";
-import { BellAlertIcon, ClockIcon, SpeakerWaveIcon } from "../../icons";
+import { BellAlertIcon, ClockIcon, SpeakerWaveIcon } from "../../../shared/icons";
 import { DEFAULT_SETTINGS, SETTINGS_CONFIG } from "../constants";
 import {
   TPomodoroSettings,

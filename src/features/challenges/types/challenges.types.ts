@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { TIcon } from "../../icons";
+import { TIcon } from "../../../shared/icons";
 
 export enum TChallengeDifficulty {
   EASY = "Easy",

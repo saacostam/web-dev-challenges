@@ -2,7 +2,7 @@ import { MouseEventHandler, useCallback } from "react";
 
 import { twMerge } from "tailwind-merge";
 
-import { DuplicateIcon, TrashIcon } from "../../../icons";
+import { DuplicateIcon, TrashIcon } from "../../../../shared/icons";
 import { TFrame } from "../../types";
 import { FramePreview } from "./frame-preview";
 

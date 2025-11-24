@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { Logo, Paragraph } from "../../../shared/components";
-import { GithubIcon } from "../../icons";
+import { GithubIcon } from "../../../shared/icons";
 import { useGetAuthor } from "../api";
 
 export function Hero() {

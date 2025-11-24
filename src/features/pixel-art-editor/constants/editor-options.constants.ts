@@ -3,7 +3,7 @@ import {
   EyeDropperIcon,
   FillDripIcon,
   PencilIcon,
-} from "../../icons";
+} from "../../../shared/icons";
 import { TEditorOption, TEditorOptionName } from "../types";
 
 // Used to map TEditorOptionName to TEditorOption, ensuring all options are always defined.

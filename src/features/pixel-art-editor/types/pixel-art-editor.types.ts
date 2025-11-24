@@ -1,5 +1,5 @@
 import { Identifider } from "../../core.types";
-import { TIcon } from "../../icons";
+import { TIcon } from "../../../shared/icons";
 import { TPosition } from "./core.types";
 
 export interface TPixel {

@@ -1,4 +1,4 @@
-import { ForwardIcon } from "../../icons";
+import { ForwardIcon } from "../../../shared/icons";
 
 /**
  * Props for the PomodoroTimerPlayback component.

@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-import { LeafIcon } from "../../../features/icons";
+import { LeafIcon } from "../../icons";
 
 export interface LogoProps {
   className?: string;
