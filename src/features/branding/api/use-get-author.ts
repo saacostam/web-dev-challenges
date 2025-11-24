@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { BASE_URL, QueryKey } from "../../api";
+import { BASE_URL, QueryKey } from "../../../shared/async-state-management";
 
 export interface GetAuthorResponse {
   github: {
