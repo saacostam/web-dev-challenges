@@ -18,7 +18,7 @@ export function Canvas() {
       });
 
       return () => {
-        canvasManager.current?.cleaup();
+        canvasManager.current?.cleanUp();
       };
     },
     // This effect only runs once

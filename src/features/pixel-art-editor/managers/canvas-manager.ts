@@ -176,7 +176,7 @@ export class CanvasManager {
     }
   }
 
-  cleaup() {
+  cleanUp() {
     this.shouldDraw = false;
 
     Object.entries(this.eventCallbacks).forEach(([event, callback]) => {
