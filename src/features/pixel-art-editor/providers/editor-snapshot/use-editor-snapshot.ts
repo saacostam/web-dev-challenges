@@ -8,8 +8,8 @@ import { InitializerService, SeederService } from "../../services";
 import {
   TFrame,
   TPixelArtEditorAction,
-  TPixelArtEditorSnapShot,
   TPixelArtEditorInternalSnapShot,
+  TPixelArtEditorSnapShot,
   TUpdate,
 } from "../../types";
 import { FrameUtils } from "../../utils";
@@ -223,13 +223,13 @@ export function reduceEditorSnapshot(
     }
     case "delete-frame": {
       if (state.frames.length <= 1) return state;
-      
+
       const findPredicate = (frame: TFrame) => frame.id === action.payload.id;
-      const frameToDelete = state.frames.find(findPredicate)
-      const frameToDeleteIndex = state.frames.findIndex(findPredicate)
+      const frameToDelete = state.frames.find(findPredicate);
+      const frameToDeleteIndex = state.frames.findIndex(findPredicate);
 
-      if (frameToDelete === undefined || frameToDeleteIndex === -1) return state;
-
+      if (frameToDelete === undefined || frameToDeleteIndex === -1)
+        return state;
 
       return reduceEditorSnapshot(state, {
         type: "commit-update",
@@ -262,7 +262,7 @@ export function reduceEditorSnapshot(
     case "duplicate-frame": {
       const findPredicate = (frame: TFrame) => frame.id === action.payload.id;
       const frame = state.frames.find(findPredicate);
-      const frameIndex = state.frames.findIndex(findPredicate)
+      const frameIndex = state.frames.findIndex(findPredicate);
 
       if (frame === undefined || frameIndex === -1) return state;
 

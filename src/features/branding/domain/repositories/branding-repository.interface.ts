@@ -6,6 +6,6 @@ export interface IBrandingRepositoryPayload {
   GetAuthorOut: {
     github: {
       username: string;
-    }
-  }
+    };
+  };
 }

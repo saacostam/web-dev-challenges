@@ -1,7 +1,8 @@
 import { act, renderHook } from "@testing-library/react";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
-import { useLocalStorageAdapter } from "./use-local-storage-adapter";
+
 import { ClientStorageKeys } from "../domain";
+import { useLocalStorageAdapter } from "./use-local-storage-adapter";
 
 describe("useLocalStorageAdapter", () => {
   const mockGetItem = vi.fn();
@@ -36,7 +37,9 @@ describe("useLocalStorageAdapter", () => {
     const { result } = renderHook(() => useLocalStorageAdapter());
     const value = result.current.get(ClientStorageKeys.POMODORO_SETTINGS);
 
-    expect(mockGetItem).toHaveBeenCalledWith(ClientStorageKeys.POMODORO_SETTINGS);
+    expect(mockGetItem).toHaveBeenCalledWith(
+      ClientStorageKeys.POMODORO_SETTINGS,
+    );
     expect(value).toEqual({ foo: "bar" });
   });
 
@@ -64,7 +67,7 @@ describe("useLocalStorageAdapter", () => {
 
     const { result } = renderHook(() => useLocalStorageAdapter());
     const value = result.current.unsafeGet<typeof mockData>(
-      ClientStorageKeys.POMODORO_SETTINGS
+      ClientStorageKeys.POMODORO_SETTINGS,
     );
 
     expect(value).toEqual(mockData);
@@ -75,7 +78,7 @@ describe("useLocalStorageAdapter", () => {
 
     const { result } = renderHook(() => useLocalStorageAdapter());
     const value = result.current.unsafeGet<{ foo: string }>(
-      ClientStorageKeys.POMODORO_SETTINGS
+      ClientStorageKeys.POMODORO_SETTINGS,
     );
 
     expect(value).toBeNull();
@@ -93,7 +96,7 @@ describe("useLocalStorageAdapter", () => {
 
     expect(mockSetItem).toHaveBeenCalledWith(
       ClientStorageKeys.POMODORO_SETTINGS,
-      JSON.stringify(payload)
+      JSON.stringify(payload),
     );
   });
 });

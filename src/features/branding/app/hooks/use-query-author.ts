@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { QueryKey } from "../../../../shared/async-state-management";
 import { useRepositories } from "../../../../shared/repositories/app";
 
@@ -8,5 +9,5 @@ export function useQueryAuthor() {
   return useQuery({
     queryKey: [QueryKey.AUTHOR],
     queryFn: () => brandingRepository.getAuthor(),
-  })
+  });
 }

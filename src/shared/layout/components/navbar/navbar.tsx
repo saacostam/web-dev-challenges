@@ -3,9 +3,9 @@ import { PropsWithChildren, useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { CHALLENGES } from "../../../../features/challenges";
+import { TRoute, useGetRoutes } from "../../../../features/router";
 import { Logo, SubHeader } from "../../../components";
 import { ThreeLinesIcon, XIcon } from "../../../icons";
-import { TRoute, useGetRoutes } from "../../../../features/router";
 import { NavbarNavigationItem } from "./types";
 
 export function Navbar({ children }: PropsWithChildren) {

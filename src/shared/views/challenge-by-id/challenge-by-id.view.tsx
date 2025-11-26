@@ -1,6 +1,11 @@
 import { useParams } from "react-router-dom";
 
-import { InProgressPill, TChallenge, useChallengeById } from "../../../features/challenges";
+import {
+  InProgressPill,
+  TChallenge,
+  useChallengeById,
+} from "../../../features/challenges";
+import { Error404 } from "../../../features/error-handling";
 import {
   Divider,
   Header,
@@ -8,7 +13,6 @@ import {
   Pill,
   SubHeader,
 } from "../../../shared/components";
-import { Error404 } from "../../../features/error-handling";
 
 export function ChallengeByIdView() {
   const params = useParams();

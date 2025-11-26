@@ -60,7 +60,9 @@ export function FrameManagement() {
             frame={frame}
             key={index}
             hideMultiFrameCta={editorSnapshot.frames.length === 1}
-            onClickDeleteFrameHandler={() => onClickDeleteFrameHandler(frame.id)}
+            onClickDeleteFrameHandler={() =>
+              onClickDeleteFrameHandler(frame.id)
+            }
             onClickDuplicateFrameHandler={() =>
               onClickDuplicateFrameHandler(frame.id)
             }

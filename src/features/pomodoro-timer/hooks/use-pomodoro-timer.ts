@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useMemo, useReducer } from "react";
 
+import { useAdapters } from "../../../shared/adapters/core/app";
+import { ClientStorageKeys } from "../../../shared/adapters/storage/domain";
 import { useSoundPlayer } from "../../sound";
 import { useXSecondsTimer } from "../../time";
 import { SETTINGS_CONFIG } from "../constants";
@@ -14,8 +16,6 @@ import {
   TPomodoroSettingsReducer,
   TPomodoroTimerSnapshotReducer,
 } from "../types";
-import { useAdapters } from "../../../shared/adapters/core/app";
-import { ClientStorageKeys } from "../../../shared/adapters/storage/domain";
 
 export function usePomodoroTimer() {
   const { storageAdapter } = useAdapters();

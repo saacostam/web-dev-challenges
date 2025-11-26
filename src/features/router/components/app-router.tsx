@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { Error404 } from "../../error-handling";
-import { MainLayout } from "../../../shared/layout";
-import { ChallengeByIdView, HomeView } from "../../../shared/views";
-import { RepositoriesProvider } from "../../../shared/repositories/ui";
 import { AdaptersProvider } from "../../../shared/adapters/core/ui";
+import { MainLayout } from "../../../shared/layout";
+import { RepositoriesProvider } from "../../../shared/repositories/ui";
+import { ChallengeByIdView, HomeView } from "../../../shared/views";
+import { Error404 } from "../../error-handling";
 
 export function AppRouter() {
   return (

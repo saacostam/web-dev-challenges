@@ -1,9 +1,9 @@
-import { describe, it, expect } from "vitest";
-import { MemoryRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import { describe, expect, it } from "vitest";
 
+import { type TChallenge, TChallengeDifficulty } from "../types";
 import { ChallengeCard } from "./challenge-card";
-import { TChallengeDifficulty, type TChallenge } from "../types";
 
 function DummyIcon() {
   return <svg data-testid="dummy-icon" />;
@@ -24,13 +24,11 @@ describe("ChallengeCard", () => {
     render(
       <MemoryRouter>
         <ChallengeCard challenge={challenge} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(screen.getByText("Binary Trees")).toBeDefined();
-    expect(
-      screen.getByText("Learn recursive tree traversal.")
-    ).toBeDefined();
+    expect(screen.getByText("Learn recursive tree traversal.")).toBeDefined();
     expect(screen.getByText(TChallengeDifficulty.HARD)).toBeDefined();
     expect(screen.getByText("In progress")).toBeDefined();
     expect(screen.getByTestId("dummy-icon")).toBeDefined();
@@ -53,13 +51,11 @@ describe("ChallengeCard", () => {
     render(
       <MemoryRouter>
         <ChallengeCard challenge={challenge} />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(screen.getByText("Sorting Algorithms")).toBeDefined();
-    expect(
-      screen.getByText("Master quicksort and mergesort.")
-    ).toBeDefined();
+    expect(screen.getByText("Master quicksort and mergesort.")).toBeDefined();
     expect(screen.getByText(TChallengeDifficulty.EASY)).toBeDefined();
 
     expect(screen.queryByTestId("dummy-icon")).toBeNull();
