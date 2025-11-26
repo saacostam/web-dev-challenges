@@ -14,7 +14,11 @@ export function useKeyboardShortcuts() {
         1 +
         editorSnapshot.frames.length) %
       editorSnapshot.frames.length;
-    dispatch({ type: "set-frame", payload: { order: newIndex } });
+
+    const newFocusedFrame = editorSnapshot.frames.at(newIndex);
+    if (!newFocusedFrame) return;
+
+    dispatch({ type: "set-frame", payload: { id: newFocusedFrame.id } });
   }, [dispatch, editorSnapshot.currentFrame, editorSnapshot.frames]);
 
   const goToNextFrame = useCallback(() => {
@@ -24,7 +28,11 @@ export function useKeyboardShortcuts() {
       ) +
         1) %
       editorSnapshot.frames.length;
-    dispatch({ type: "set-frame", payload: { order: newIndex } });
+
+    const newFocusedFrame = editorSnapshot.frames.at(newIndex);
+    if (!newFocusedFrame) return;
+
+    dispatch({ type: "set-frame", payload: { id: newFocusedFrame.id } });
   }, [dispatch, editorSnapshot.currentFrame, editorSnapshot.frames]);
 
   useEffect(() => {

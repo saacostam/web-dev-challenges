@@ -3,7 +3,7 @@ import {
   DEFAULT_DIMENSIONS,
   DEFAULT_EDITOR_SNAPSHOT,
 } from "../constants";
-import { TPixelArtEditorHistory, TPixelArtEditorSnapShot } from "../types";
+import { TPixelArtEditorHistory, TPixelArtEditorInternalSnapShot } from "../types";
 import { SeederService } from "./seeder";
 
 export interface InitializeEditorSnapshotInput {
@@ -12,7 +12,7 @@ export interface InitializeEditorSnapshotInput {
 
 function initializeEditorSnapshot({
   history,
-}: InitializeEditorSnapshotInput): TPixelArtEditorSnapShot {
+}: InitializeEditorSnapshotInput): TPixelArtEditorInternalSnapShot {
   const defaultFrame = SeederService.seedFrame({
     defaultColor: COLORS.transparent,
     height: DEFAULT_DIMENSIONS.HEIGHT,
@@ -22,7 +22,7 @@ function initializeEditorSnapshot({
   return {
     ...DEFAULT_EDITOR_SNAPSHOT,
     frames: [defaultFrame],
-    currentFrame: defaultFrame,
+    _currentFrameId: defaultFrame.id,
     history,
   };
 }

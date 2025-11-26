@@ -19,33 +19,33 @@ export function FrameManagement() {
   );
 
   const onClickFrameHandler = useCallback(
-    (order: number) =>
+    (id: string) =>
       dispatch({
         type: "set-frame",
         payload: {
-          order: order,
+          id,
         },
       }),
     [dispatch],
   );
 
   const onClickDeleteFrameHandler = useCallback(
-    (order: number) =>
+    (id: string) =>
       dispatch({
         type: "delete-frame",
         payload: {
-          order: order,
+          id,
         },
       }),
     [dispatch],
   );
 
   const onClickDuplicateFrameHandler = useCallback(
-    (order: number) =>
+    (id: string) =>
       dispatch({
         type: "duplicate-frame",
         payload: {
-          order: order,
+          id,
         },
       }),
     [dispatch],
@@ -60,11 +60,11 @@ export function FrameManagement() {
             frame={frame}
             key={index}
             hideMultiFrameCta={editorSnapshot.frames.length === 1}
-            onClickDeleteFrameHandler={() => onClickDeleteFrameHandler(index)}
+            onClickDeleteFrameHandler={() => onClickDeleteFrameHandler(frame.id)}
             onClickDuplicateFrameHandler={() =>
-              onClickDuplicateFrameHandler(index)
+              onClickDuplicateFrameHandler(frame.id)
             }
-            onClickFrameHandler={() => onClickFrameHandler(index)}
+            onClickFrameHandler={() => onClickFrameHandler(frame.id)}
           />
         ))}
       </div>

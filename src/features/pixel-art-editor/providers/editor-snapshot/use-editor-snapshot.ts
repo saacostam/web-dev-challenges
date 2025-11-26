@@ -1,24 +1,27 @@
-import { useEffect, useMemo, useReducer } from "react";
+import { Dispatch, useEffect, useMemo, useReducer } from "react";
 
+import { useAdapters } from "../../../../shared/adapters/core/app";
+import { ClientStorageKeys } from "../../../../shared/adapters/storage/domain";
+import { getUuid } from "../../../string.utils";
 import { COLORS } from "../../constants";
 import { InitializerService, SeederService } from "../../services";
 import {
+  TFrame,
   TPixelArtEditorAction,
   TPixelArtEditorSnapShot,
+  TPixelArtEditorInternalSnapShot,
   TUpdate,
 } from "../../types";
 import { FrameUtils } from "../../utils";
 import { useEditorHistoryStateHook } from "./use-editor-history";
-import { useAdapters } from "../../../../shared/adapters/core/app";
-import { ClientStorageKeys } from "../../../../shared/adapters/storage/domain";
 
 /**
  * Applies a single update to the given state. That is, it mutates the state forward.
  */
 function applyUpdate(
   update: TUpdate,
-  state: TPixelArtEditorSnapShot,
-): TPixelArtEditorSnapShot {
+  state: TPixelArtEditorInternalSnapShot,
+): TPixelArtEditorInternalSnapShot {
   for (let i = 0; i < update.mutations.length; i++) {
     const mutation = update.mutations[i];
     switch (mutation.type) {
@@ -31,16 +34,21 @@ function applyUpdate(
         break;
       }
       case "create-frame": {
+        const completeNewFrame: TFrame = {
+          ...mutation.payload.newFrame,
+          id: getUuid(),
+        };
+
         const frames = [
           ...state.frames.slice(0, mutation.payload.order),
-          mutation.payload.newFrame,
+          completeNewFrame,
           ...state.frames.slice(mutation.payload.order),
         ];
 
         return {
           ...state,
           frames,
-          currentFrame: mutation.payload.newFrame,
+          _currentFrameId: completeNewFrame.id,
         };
       }
       case "delete-frame": {
@@ -57,7 +65,7 @@ function applyUpdate(
         return {
           ...state,
           frames,
-          currentFrame: frames[prevIndex],
+          _currentFrameId: frames[prevIndex].id,
         };
       }
     }
@@ -73,8 +81,8 @@ function applyUpdate(
  */
 function revertUpdate(
   update: TUpdate,
-  state: TPixelArtEditorSnapShot,
-): TPixelArtEditorSnapShot {
+  state: TPixelArtEditorInternalSnapShot,
+): TPixelArtEditorInternalSnapShot {
   for (let i = 0; i < update.mutations.length; i++) {
     const mutation = update.mutations[i];
     switch (mutation.type) {
@@ -100,7 +108,7 @@ function revertUpdate(
         return {
           ...state,
           frames,
-          currentFrame: frames[prevIndex],
+          _currentFrameId: frames[prevIndex].id,
         };
       }
       case "delete-frame": {
@@ -113,7 +121,7 @@ function revertUpdate(
         return {
           ...state,
           frames,
-          currentFrame: mutation.payload.oldFrame,
+          _currentFrameId: mutation.payload.oldFrame.id,
         };
       }
     }
@@ -129,9 +137,9 @@ function revertUpdate(
  * It provides the current state and a dispatcher function to update it.
  */
 export function reduceEditorSnapshot(
-  state: TPixelArtEditorSnapShot,
+  state: TPixelArtEditorInternalSnapShot,
   action: TPixelArtEditorAction,
-): TPixelArtEditorSnapShot {
+): TPixelArtEditorInternalSnapShot {
   switch (action.type) {
     case "current-color-primary": {
       return {
@@ -184,9 +192,15 @@ export function reduceEditorSnapshot(
       };
     }
     case "create-frame": {
+      const currentFrame = state.frames.find(
+        (frame) => frame.id === state._currentFrameId,
+      );
+
+      if (currentFrame === undefined) return state;
+
       const newFrame = SeederService.seedFrame({
-        height: state.currentFrame.canvas.length,
-        width: state.currentFrame.canvas[0]?.length || 0,
+        height: currentFrame.canvas.length,
+        width: currentFrame.canvas[0]?.length || 0,
         defaultColor: COLORS.transparent,
       });
 
@@ -209,13 +223,13 @@ export function reduceEditorSnapshot(
     }
     case "delete-frame": {
       if (state.frames.length <= 1) return state;
-      if (
-        !(
-          0 <= action.payload.order &&
-          action.payload.order < state.frames.length
-        )
-      )
-        return state;
+      
+      const findPredicate = (frame: TFrame) => frame.id === action.payload.id;
+      const frameToDelete = state.frames.find(findPredicate)
+      const frameToDeleteIndex = state.frames.findIndex(findPredicate)
+
+      if (frameToDelete === undefined || frameToDeleteIndex === -1) return state;
+
 
       return reduceEditorSnapshot(state, {
         type: "commit-update",
@@ -225,8 +239,8 @@ export function reduceEditorSnapshot(
               {
                 type: "delete-frame",
                 payload: {
-                  order: action.payload.order,
-                  oldFrame: state.frames[action.payload.order],
+                  order: frameToDeleteIndex,
+                  oldFrame: frameToDelete,
                 },
               },
             ],
@@ -235,32 +249,25 @@ export function reduceEditorSnapshot(
       });
     }
     case "set-frame": {
-      if (
-        !(
-          0 <= action.payload.order &&
-          action.payload.order < state.frames.length
-        )
-      )
+      const id = action.payload.id;
+
+      if (state.frames.find((frame) => frame.id === id) === undefined)
         return state;
 
       return {
         ...state,
-        currentFrame: state.frames[action.payload.order],
+        _currentFrameId: id,
       };
     }
     case "duplicate-frame": {
-      if (
-        !(
-          0 <= action.payload.order &&
-          action.payload.order < state.frames.length
-        )
-      )
-        return state;
+      const findPredicate = (frame: TFrame) => frame.id === action.payload.id;
+      const frame = state.frames.find(findPredicate);
+      const frameIndex = state.frames.findIndex(findPredicate)
 
-      const frame = state.frames[action.payload.order];
+      if (frame === undefined || frameIndex === -1) return state;
+
       const dupped = FrameUtils.deepCopyFrame(frame);
-
-      const newFrameOrder = action.payload.order + 1;
+      const newFrameOrder = frameIndex + 1;
 
       const newState = reduceEditorSnapshot(state, {
         type: "commit-update",
@@ -282,14 +289,17 @@ export function reduceEditorSnapshot(
       return reduceEditorSnapshot(newState, {
         type: "set-frame",
         payload: {
-          order: newFrameOrder,
+          id: dupped.id,
         },
       });
     }
   }
 }
 
-export function useEditorSnapshotStateHook() {
+export function useEditorSnapshotStateHook(): {
+  editorSnapshot: TPixelArtEditorSnapShot;
+  dispatch: Dispatch<TPixelArtEditorAction>;
+} {
   const { storageAdapter } = useAdapters();
 
   const history = useEditorHistoryStateHook();
@@ -315,11 +325,22 @@ export function useEditorSnapshotStateHook() {
     [editorSnapshot, storageAdapter],
   );
 
+  const finalEditorSnapshot: TPixelArtEditorSnapShot = useMemo(
+    () => ({
+      ...editorSnapshot,
+      currentFrame:
+        editorSnapshot.frames.find(
+          (frame) => frame.id === editorSnapshot._currentFrameId,
+        ) ?? editorSnapshot.frames[0],
+    }),
+    [editorSnapshot],
+  );
+
   return useMemo(
     () => ({
-      editorSnapshot,
+      editorSnapshot: finalEditorSnapshot,
       dispatch,
     }),
-    [editorSnapshot, dispatch],
+    [finalEditorSnapshot, dispatch],
   );
 }

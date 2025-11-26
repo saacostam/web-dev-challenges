@@ -1,5 +1,5 @@
-import { Identifider } from "../../../shared/types";
 import { TIcon } from "../../../shared/icons";
+import { Identifider } from "../../../shared/types";
 import { TPosition } from "./core.types";
 
 export interface TPixel {
@@ -27,7 +27,7 @@ export type TMutation =
       type: "create-frame";
       payload: {
         order: number;
-        newFrame: TFrame;
+        newFrame: Omit<TFrame, "id">;
       };
     }
   | {
@@ -72,15 +72,20 @@ export interface TColorPalette {
  * EDITOR SNAPSHOT
  */
 
-export interface TPixelArtEditorSnapShot {
+export interface TPixelArtEditorInternalSnapShot {
   currentColorPrimary: string;
   currentColorSecondary: string;
   fps: number;
   frames: TFrame[];
-  currentFrame: TFrame;
+  _currentFrameId: TFrame["id"];
   history: TPixelArtEditorHistory;
   selectedOption: TEditorOptionName;
   showGrid: boolean;
+}
+
+export interface TPixelArtEditorSnapShot
+  extends TPixelArtEditorInternalSnapShot {
+  currentFrame: TFrame;
 }
 
 export type TPixelArtEditorAction =
@@ -141,18 +146,18 @@ export type TPixelArtEditorAction =
   | {
       type: "delete-frame";
       payload: {
-        order: number;
+        id: Identifider;
       };
     }
   | {
       type: "set-frame";
       payload: {
-        order: number;
+        id: Identifider;
       };
     }
   | {
       type: "duplicate-frame";
       payload: {
-        order: number;
+        id: Identifider;
       };
     };
