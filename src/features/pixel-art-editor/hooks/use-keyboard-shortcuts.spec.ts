@@ -2,12 +2,12 @@ import { act, renderHook } from "@testing-library/react";
 import { Mock, afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { useEditorSnapshot } from "../providers";
-import { TEditorOptionName } from "../types";
+import { TEditorOptionName, TFrame } from "../types";
 import { useKeyboardShortcuts } from "./use-keyboard-shortcuts";
 
 type EditorSnapshot = {
-  currentFrame: string;
-  frames: string[];
+  currentFrame: TFrame;
+  frames: TFrame[];
   showGrid: boolean;
 };
 
@@ -25,10 +25,14 @@ describe("useKeyboardShortcuts", () => {
   let editorSnapshot: EditorSnapshot;
 
   beforeEach(() => {
+    const frame1 = { id: "frame1" } as TFrame;
+    const frame2 = { id: "frame2" } as TFrame;
+    const frame3 = { id: "frame3" } as TFrame;
+
     dispatch = vi.fn();
     editorSnapshot = {
-      currentFrame: "frame1",
-      frames: ["frame1", "frame2", "frame3"],
+      currentFrame: frame1,
+      frames: [frame1, frame2, frame3],
       showGrid: false,
     };
 
@@ -95,39 +99,51 @@ describe("useKeyboardShortcuts", () => {
     });
   });
 
-  it("should navigate frames correctly on arrow key press", () => {
+  it("should handle ArrowUp", () => {
     renderHook(() => useKeyboardShortcuts());
-
     act(() => {
       window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
     });
+
     expect(dispatch).toHaveBeenCalledWith({
       type: "set-frame",
-      payload: { order: 2 },
+      payload: { id: "frame3" },
     });
+  });
 
+  it("should handle ArrowDown", () => {
+    renderHook(() => useKeyboardShortcuts());
     act(() => {
       window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }));
     });
+
     expect(dispatch).toHaveBeenCalledWith({
       type: "set-frame",
-      payload: { order: 1 },
+      payload: { id: "frame2" },
     });
+  });
 
+  it("should handle ArrowLeft", () => {
+    renderHook(() => useKeyboardShortcuts());
     act(() => {
       window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowLeft" }));
     });
+
     expect(dispatch).toHaveBeenCalledWith({
       type: "set-frame",
-      payload: { order: 2 },
+      payload: { id: "frame3" },
     });
+  });
 
+  it("should handle ArrowRight", () => {
+    renderHook(() => useKeyboardShortcuts());
     act(() => {
       window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }));
     });
+
     expect(dispatch).toHaveBeenCalledWith({
       type: "set-frame",
-      payload: { order: 1 },
+      payload: { id: "frame2" },
     });
   });
 });

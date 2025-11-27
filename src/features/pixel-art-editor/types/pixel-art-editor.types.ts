@@ -72,15 +72,21 @@ export interface TColorPalette {
  * EDITOR SNAPSHOT
  */
 
-export interface TPixelArtEditorInternalSnapShot {
+// IMPORTANT: If the types are updated, the validation service needs to be updated to match the new structure
+
+export interface TPixelArtEditorStorableSnapShot {
   currentColorPrimary: string;
   currentColorSecondary: string;
   fps: number;
   frames: TFrame[];
   _currentFrameId: TFrame["id"];
-  history: TPixelArtEditorHistory;
   selectedOption: TEditorOptionName;
   showGrid: boolean;
+}
+
+export interface TPixelArtEditorInternalSnapShot
+  extends TPixelArtEditorStorableSnapShot {
+  history: TPixelArtEditorHistory;
 }
 
 export interface TPixelArtEditorSnapShot

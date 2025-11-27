@@ -66,9 +66,10 @@ function App() {
 - [x] FEAT: Focus newly create frame after duplicating.
 - [x] FEAT: Store in local-storage.
 - [x] FIX: Keep track of current frame by using id >> Add ids to frames.
-- [ ] FEAT: Read from local-storage.
+- [x] FEAT: Read from local-storage.
 - [ ] FEAT: Export app file.
 - [ ] FEAT: Export sprite file.
+- [ ] FEAT: Create clear/reset canvas CTA.
 - [ ] FEAT: Add an error boundary.
 - [ ] FEAT: Create keyboard hot-keys visualizer.
 - [ ] REFACTOR: Centralize menu buttons (undoredo, menu-options, color-picker?).

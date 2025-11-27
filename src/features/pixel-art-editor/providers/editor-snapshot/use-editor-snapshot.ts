@@ -306,7 +306,7 @@ export function useEditorSnapshotStateHook(): {
 
   const [editorSnapshot, dispatch] = useReducer(
     reduceEditorSnapshot,
-    { history },
+    { history, storage: storageAdapter },
     InitializerService.initializeEditorSnapshot,
   );
 
