@@ -1,3 +1,8 @@
+import { vi } from "vitest";
+
+globalThis.URL.createObjectURL = vi.fn(() => "blob:mock-url");
+globalThis.URL.revokeObjectURL = vi.fn();
+
 // vitest.setup.ts
 if (!Blob.prototype.text) {
   Blob.prototype.text = async function () {
