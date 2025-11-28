@@ -5,7 +5,7 @@ export default defineConfig({
   test: {
     environment: "jsdom", // Simulates a browser environment
     globals: true, // Enables global test functions like `describe` and `it`
-    // setupFiles: './vitest.setup.ts',
+    setupFiles: "./vitest.setup.ts",
     coverage: {
       provider: "v8",
       reporter: ["text", "json", "html"],

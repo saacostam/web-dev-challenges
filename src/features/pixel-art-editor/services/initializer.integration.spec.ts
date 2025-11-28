@@ -1,8 +1,13 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import { InitializerService } from "./initializer";
-import { COLORS, DEFAULT_DIMENSIONS, DEFAULT_EDITOR_SNAPSHOT } from "../constants";
-import { ValidationService } from "./validation";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+import {
+  COLORS,
+  DEFAULT_DIMENSIONS,
+  DEFAULT_EDITOR_SNAPSHOT,
+} from "../constants";
 import { TPixelArtEditorHistory } from "../types";
+import { InitializerService } from "./initializer";
+import { ValidationService } from "./validation";
 
 vi.mock("./validation", () => ({
   ValidationService: {
@@ -33,18 +38,19 @@ describe("initializeEditorSnapshot", () => {
 
     const storage = createStorageMock(storedSnapshot);
 
-    
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (ValidationService.isPixelArtEditorStorableSnapshot as any).mockReturnValue(true);
+    (ValidationService.isPixelArtEditorStorableSnapshot as any).mockReturnValue(
+      true,
+    );
 
     const result = InitializerService.initializeEditorSnapshot({
       history: historyMock as unknown as TPixelArtEditorHistory,
       storage,
     });
 
-    expect(ValidationService.isPixelArtEditorStorableSnapshot).toHaveBeenCalledWith(
-      storedSnapshot
-    );
+    expect(
+      ValidationService.isPixelArtEditorStorableSnapshot,
+    ).toHaveBeenCalledWith(storedSnapshot);
 
     expect(result.frames).toEqual(storedSnapshot.frames);
     expect(result._currentFrameId).toBe("abc");
@@ -55,7 +61,9 @@ describe("initializeEditorSnapshot", () => {
     const storage = createStorageMock(null);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (ValidationService.isPixelArtEditorStorableSnapshot as any).mockReturnValue(false);
+    (ValidationService.isPixelArtEditorStorableSnapshot as any).mockReturnValue(
+      false,
+    );
 
     const result = InitializerService.initializeEditorSnapshot({
       history: historyMock as unknown as TPixelArtEditorHistory,
