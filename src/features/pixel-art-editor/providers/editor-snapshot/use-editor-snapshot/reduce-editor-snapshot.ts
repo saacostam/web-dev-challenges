@@ -47,6 +47,27 @@ export function reduceEditorSnapshot(
         selectedOption: action.payload.currentOption,
       };
     }
+    case "set-history": {
+      return {
+        ...state,
+        history: action.payload.history,
+      };
+    }
+    case "set-pixel-art-internal-snapshot": {
+      return action.payload.setSnapshot(state);
+    }
+    case "set-frame": {
+      const id = action.payload.id;
+
+      if (state.frames.find((frame) => frame.id === id) === undefined)
+        return state;
+
+      return {
+        ...state,
+        _currentFrameId: id,
+      };
+    }
+    // Actions built on update objects (i.e., history-reversible updates)
     case "commit-update": {
       const update = state.history.add(action.payload.update);
       return applyUpdate(update, state);
@@ -60,15 +81,6 @@ export function reduceEditorSnapshot(
       const update = state.history.redo();
       if (!update) return state;
       return applyUpdate(update, state);
-    }
-    case "set-history": {
-      return {
-        ...state,
-        history: action.payload.history,
-      };
-    }
-    case "set-pixel-art-internal-snapshot": {
-      return action.payload.setSnapshot(state);
     }
     case "create-frame": {
       const currentFrame = state.frames.find(
@@ -126,17 +138,6 @@ export function reduceEditorSnapshot(
           },
         },
       });
-    }
-    case "set-frame": {
-      const id = action.payload.id;
-
-      if (state.frames.find((frame) => frame.id === id) === undefined)
-        return state;
-
-      return {
-        ...state,
-        _currentFrameId: id,
-      };
     }
     case "duplicate-frame": {
       const findPredicate = (frame: TFrame) => frame.id === action.payload.id;
