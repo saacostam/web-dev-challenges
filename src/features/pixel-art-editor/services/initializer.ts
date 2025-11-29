@@ -14,25 +14,13 @@ import {
 import { SeederService } from "./seeder";
 import { ValidationService } from "./validation";
 
-export interface InitializeEditorSnapshotInput {
+export interface CreateDefaultEditorSnapshotArgs {
   history: TPixelArtEditorHistory;
-  storage: IStorageAdapter;
 }
 
-function initializeEditorSnapshot({
+function createDefaultEditorSnapshot({
   history,
-  storage,
-}: InitializeEditorSnapshotInput): TPixelArtEditorInternalSnapShot {
-  const rawEditorSnapshot = storage.get(
-    ClientStorageKeys.PIXEL_ART_EDITOR_SNAPSHOT,
-  );
-  if (ValidationService.isPixelArtEditorStorableSnapshot(rawEditorSnapshot)) {
-    return {
-      ...rawEditorSnapshot,
-      history,
-    };
-  }
-
+}: CreateDefaultEditorSnapshotArgs): TPixelArtEditorInternalSnapShot {
   const defaultFrame = SeederService.seedFrame({
     defaultColor: COLORS.transparent,
     height: DEFAULT_DIMENSIONS.HEIGHT,
@@ -47,6 +35,42 @@ function initializeEditorSnapshot({
   };
 }
 
+export interface InitializeEditorSnapshotArgs {
+  history: TPixelArtEditorHistory;
+  storage: IStorageAdapter;
+}
+
+function initializeEditorSnapshot({
+  history,
+  storage,
+}: InitializeEditorSnapshotArgs): TPixelArtEditorInternalSnapShot {
+  const rawEditorSnapshot = storage.get(
+    ClientStorageKeys.PIXEL_ART_EDITOR_SNAPSHOT,
+  );
+  if (ValidationService.isPixelArtEditorStorableSnapshot(rawEditorSnapshot)) {
+    return {
+      ...rawEditorSnapshot,
+      history,
+    };
+  }
+
+  return createDefaultEditorSnapshot({ history });
+}
+
+export interface ResetEditorSnapshotArgs {
+  history: TPixelArtEditorHistory;
+  storage: IStorageAdapter;
+}
+
+function resetEditorSnapshot({
+  history,
+  storage,
+}: ResetEditorSnapshotArgs): TPixelArtEditorInternalSnapShot {
+  storage.removeItem(ClientStorageKeys.PIXEL_ART_EDITOR_SNAPSHOT);
+  return createDefaultEditorSnapshot({ history });
+}
+
 export const InitializerService = {
   initializeEditorSnapshot,
+  resetEditorSnapshot,
 };

@@ -193,4 +193,5 @@ export interface IEditorSnapshotService {
       },
     ) => void;
   };
+  reset: () => void;
 }

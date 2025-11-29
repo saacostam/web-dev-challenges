@@ -8,6 +8,7 @@ const DEFAULT_HISTORY_STACK: TUpdate[] = [];
 /**
  * Creates a state container to manage the history of a pixel art editor. The returned object has the following properties:
  * - `updates`: The current state of the editor as an array of updates
+ * - `reset`: A function to reset the history: array of updates
  * - `add`: A function to add a new action to the history
  * - `undo`: A function to undo the last action
  * - `undoAvailable`: A boolean indicating whether undo is available

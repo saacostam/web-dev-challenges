@@ -1,8 +1,16 @@
 import { useCallback } from "react";
 
 import { useAdapters } from "../../../../shared/adapters/core/app";
-import { SubHeader, useModal } from "../../../../shared/components";
-import { ArrowDownTray, ArrowUpTray } from "../../../../shared/icons";
+import {
+  ConfirmationModal,
+  SubHeader,
+  useModal,
+} from "../../../../shared/components";
+import {
+  ArrowDownTray,
+  ArrowUpTray,
+  DocumentPlusIcon,
+} from "../../../../shared/icons";
 import { DomainErrorUtils } from "../../../error-handling/domain";
 import { useEditorSnapshot } from "../../providers";
 import { TEditorOptionName } from "../../types";
@@ -14,12 +22,17 @@ import { UndoRedo } from "./undo-redo";
 
 export function Menu() {
   const { notificationsAdapter } = useAdapters();
-  const { editorSnapshot, dispatch, downloadSnaphot, loadSnapshot } =
+  const { editorSnapshot, dispatch, downloadSnaphot, loadSnapshot, reset } =
     useEditorSnapshot();
   const {
     Modal: FileModal,
     closeModal: closeFileModal,
     openModal: openFileModal,
+  } = useModal();
+  const {
+    Modal: ResetModal,
+    closeModal: closeResetModal,
+    openModal: openResetModal,
   } = useModal();
 
   const onClickMenuOption = useCallback(
@@ -91,16 +104,18 @@ export function Menu() {
           <SubHeader className="text-lg text-center mb-2">File</SubHeader>
           <div className="flex flex-row gap-1">
             <div className="tooltip" data-tip="Download Json">
-              <button
-                className="btn btn-primary btn-sm flex-1"
-                onClick={downloadSnaphot}
-              >
-                <ArrowDownTray className="size-5" />
+              <button className="btn btn-sm flex-1" onClick={downloadSnaphot}>
+                <ArrowDownTray className="size-4" />
               </button>
             </div>
             <div className="tooltip" data-tip="Import Json">
               <button className="btn btn-sm flex-1" onClick={openFileModal}>
-                <ArrowUpTray className="size-5" />
+                <ArrowUpTray className="size-4" />
+              </button>
+            </div>
+            <div className="tooltip" data-tip="New Sprite">
+              <button className="btn btn-sm flex-1" onClick={openResetModal}>
+                <DocumentPlusIcon className="size-4" />
               </button>
             </div>
           </div>
@@ -131,6 +146,30 @@ export function Menu() {
           }}
         />
       </FileModal>
+      <ResetModal>
+        <ConfirmationModal
+          header="New Sprite"
+          description={
+            <>
+              <b>Are you sure you want to create a new sprite?</b> Your current
+              sprite will be lost. You can download a JSON file first to save
+              your changes.
+            </>
+          }
+          primaryButton={{
+            label: "Cancel",
+            onClick: closeResetModal,
+          }}
+          secondaryButton={{
+            label: "Yes, reset",
+            onClick: () => {
+              reset();
+              closeResetModal();
+            },
+          }}
+          order="primary-secondary"
+        />
+      </ResetModal>
     </div>
   );
 }

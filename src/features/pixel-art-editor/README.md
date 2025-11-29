@@ -68,9 +68,11 @@ function App() {
 - [x] FIX: Keep track of current frame by using id >> Add ids to frames.
 - [x] FEAT: Read from local-storage.
 - [x] FEAT: Export app file.
-- [ ] FEAT: Export sprite file.
-- [ ] FEAT: Create clear/reset canvas CTA.
+- [x] FEAT: Create new sprite CTA.
+- [ ] REFACTOR: Suffix all icons with "Icons" to convey usage.
+- [ ] FEAT: Add cancel button to import-to-json modal.
 - [ ] FEAT: Add an error boundary.
+- [ ] FEAT: Export sprite file.
 - [ ] FEAT: Create keyboard hot-keys visualizer.
 - [ ] REFACTOR: Centralize menu buttons (undoredo, menu-options, color-picker?).
 - [ ] PERF: `frame-preview.tsx` is rendering as often as possible (empty dep array) because frame is not inmutable.

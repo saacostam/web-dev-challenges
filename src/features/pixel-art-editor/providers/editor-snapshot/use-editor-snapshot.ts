@@ -404,13 +404,29 @@ export function useEditorSnapshotStateHook(): IEditorSnapshotService {
     [history, readFromBlob],
   );
 
+  const reset: IEditorSnapshotService["reset"] = useCallback(() => {
+    history.reset();
+
+    dispatch({
+      type: "set-pixel-art-internal-snapshot",
+      payload: {
+        setSnapshot: () =>
+          InitializerService.resetEditorSnapshot({
+            history,
+            storage: storageAdapter,
+          }),
+      },
+    });
+  }, [history, storageAdapter]);
+
   return useMemo(
     () => ({
-      editorSnapshot: finalEditorSnapshot,
       dispatch,
       downloadSnaphot,
+      editorSnapshot: finalEditorSnapshot,
       loadSnapshot,
+      reset,
     }),
-    [finalEditorSnapshot, dispatch, downloadSnaphot, loadSnapshot],
+    [finalEditorSnapshot, dispatch, downloadSnaphot, loadSnapshot, reset],
   );
 }
