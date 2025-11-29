@@ -102,7 +102,7 @@ export function Menu() {
         />
         <div className="mt-2">
           <SubHeader className="text-lg text-center mb-2">File</SubHeader>
-          <div className="flex flex-row gap-1">
+          <div className="grid grid-cols-2 gap-2">
             <div className="tooltip" data-tip="Download Json">
               <button className="btn btn-sm flex-1" onClick={downloadSnaphot}>
                 <ArrowDownTrayIcon className="size-4" />
