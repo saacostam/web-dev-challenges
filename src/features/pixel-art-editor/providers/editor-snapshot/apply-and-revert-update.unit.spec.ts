@@ -1,12 +1,13 @@
-import { describe, it, expect } from "vitest";
-import { applyUpdate, revertUpdate } from "./use-editor-snapshot";
+import { describe, expect, it } from "vitest";
+
 import {
-  TPixelArtEditorInternalSnapShot,
-  TFrame,
-  TUpdate,
   TEditorOptionName,
+  TFrame,
   TPixelArtEditorHistory,
+  TPixelArtEditorInternalSnapShot,
+  TUpdate,
 } from "../../types";
+import { applyUpdate, revertUpdate } from "./apply-and-rever-update";
 
 function makeFrame(id: string, color = "red"): TFrame {
   return {
@@ -15,7 +16,9 @@ function makeFrame(id: string, color = "red"): TFrame {
   };
 }
 
-function makeState(frames: TFrame[] = [makeFrame("f1")]): TPixelArtEditorInternalSnapShot {
+function makeState(
+  frames: TFrame[] = [makeFrame("f1")],
+): TPixelArtEditorInternalSnapShot {
   return {
     frames,
     _currentFrameId: frames[0].id,
@@ -80,7 +83,7 @@ describe("applyUpdate / revertUpdate (back and forth)", () => {
     const reverted = revertUpdate(update, applied);
 
     expect(reverted.frames.length).toBe(2);
-    expect(reverted.frames.map(f => f.id)).toEqual(["a", "b"]);
+    expect(reverted.frames.map((f) => f.id)).toEqual(["a", "b"]);
     expect(reverted._currentFrameId).toBe("a");
   });
 
@@ -104,11 +107,11 @@ describe("applyUpdate / revertUpdate (back and forth)", () => {
 
     const applied = applyUpdate(update, initial);
 
-    expect(applied.frames.map(f => f.id)).toEqual(["f1", "f3"]);
+    expect(applied.frames.map((f) => f.id)).toEqual(["f1", "f3"]);
 
     const reverted = revertUpdate(update, applied);
 
-    expect(reverted.frames.map(f => f.id)).toEqual(["f1", "f2", "f3"]);
+    expect(reverted.frames.map((f) => f.id)).toEqual(["f1", "f2", "f3"]);
     expect(reverted._currentFrameId).toBe("f2");
   });
 
@@ -146,7 +149,7 @@ describe("applyUpdate / revertUpdate (back and forth)", () => {
     const reverted = revertUpdate(update, applied);
 
     expect(reverted.frames.length).toBe(2);
-    expect(reverted.frames.map(f => f.id)).toEqual(["f1", "f2"]);
+    expect(reverted.frames.map((f) => f.id)).toEqual(["f1", "f2"]);
     expect(reverted.frames[0].canvas[0][0].color).toBe("red");
   });
 
