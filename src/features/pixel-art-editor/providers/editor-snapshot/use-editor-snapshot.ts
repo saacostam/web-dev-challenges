@@ -22,7 +22,7 @@ import { useEditorHistoryStateHook } from "./use-editor-history";
 /**
  * Applies a single update to the given state. That is, it mutates the state forward.
  */
-function applyUpdate(
+export function applyUpdate(
   update: TUpdate,
   state: TPixelArtEditorInternalSnapShot,
 ): TPixelArtEditorInternalSnapShot {
@@ -83,7 +83,7 @@ function applyUpdate(
 /**
  * Reverts a single update to the given state. That is, it mutates the state backward.
  */
-function revertUpdate(
+export function revertUpdate(
   update: TUpdate,
   state: TPixelArtEditorInternalSnapShot,
 ): TPixelArtEditorInternalSnapShot {
