@@ -10,6 +10,7 @@ export * from "./cube-icon";
 export * from "./document-plus-icon";
 export * from "./duplicate-icon";
 export * from "./eraser-icon";
+export * from "./exclamation-circle-icon";
 export * from "./eye-dropper-icon";
 export * from "./fill-drop-icon";
 export * from "./filter-icon";

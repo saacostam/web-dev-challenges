@@ -71,7 +71,7 @@ function App() {
 - [x] FEAT: Create new sprite CTA.
 - [x] REFACTOR: Suffix all icons with "Icons" to convey usage.
 - [x] FEAT: Add cancel button to import-to-json modal.
-- [ ] FEAT: Add an error boundary.
+- [x] FEAT: Add an error boundary.
 - [ ] FEAT: Export sprite file.
 - [ ] FEAT: Create keyboard hot-keys visualizer.
 - [ ] REFACTOR: Centralize menu buttons (undoredo, menu-options, color-picker?).
