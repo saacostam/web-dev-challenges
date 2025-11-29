@@ -1,3 +1,5 @@
+import { Dispatch } from "react";
+
 import { TIcon } from "../../../shared/icons";
 import { Identifider } from "../../../shared/types";
 import { TPosition } from "./core.types";
@@ -176,3 +178,19 @@ export type TPixelArtEditorAction =
         id: Identifider;
       };
     };
+
+export interface IEditorSnapshotService {
+  editorSnapshot: TPixelArtEditorSnapShot;
+  dispatch: Dispatch<TPixelArtEditorAction>;
+  downloadSnaphot: () => void;
+  loadSnapshot: {
+    isPending: boolean;
+    onClick: (
+      blob: Blob,
+      args?: {
+        onError?: (e: unknown) => void;
+        onSettled?: () => void;
+      },
+    ) => void;
+  };
+}

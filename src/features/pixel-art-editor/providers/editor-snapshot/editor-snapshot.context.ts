@@ -1,9 +1,9 @@
 import { createContext, useContext } from "react";
 
-import { useEditorSnapshotStateHook } from "./use-editor-snapshot";
+import { IEditorSnapshotService } from "../../types";
 
 export const EditorSnapshotContext = createContext(
-  null as unknown as ReturnType<typeof useEditorSnapshotStateHook>,
+  null as unknown as IEditorSnapshotService,
 );
 
 export function useEditorSnapshot() {

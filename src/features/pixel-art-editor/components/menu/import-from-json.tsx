@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 
 import { Header } from "../../../../shared/components";
-import { useEditorSnapshot } from "../../providers";
+import { IEditorSnapshotService } from "../../types";
 
 export interface ImportFromJsonProps {
-  loadSnapshot: ReturnType<typeof useEditorSnapshot>["loadSnapshot"];
+  loadSnapshot: IEditorSnapshotService["loadSnapshot"];
   onError: (e: unknown) => void;
   onSettled: () => void;
 }

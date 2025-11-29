@@ -9,6 +9,7 @@ import { COLORS } from "../../constants";
 import { InitializerService, SeederService } from "../../services";
 import { ValidationService } from "../../services/validation";
 import {
+  IEditorSnapshotService,
   TFrame,
   TPixelArtEditorAction,
   TPixelArtEditorInternalSnapShot,
@@ -304,7 +305,7 @@ export function reduceEditorSnapshot(
 
 const PIXEL_ART_EDITOR_FILENAME = "pixel-art-editor.json";
 
-export function useEditorSnapshotStateHook() {
+export function useEditorSnapshotStateHook(): IEditorSnapshotService {
   const { blobExportAdapter, downloaderAdapter, storageAdapter } =
     useAdapters();
   const readFromBlob = useMutationReadFromBlob();
@@ -343,22 +344,17 @@ export function useEditorSnapshotStateHook() {
     [editorSnapshot],
   );
 
-  const downloadSnaphot = useCallback(() => {
-    downloaderAdapter.download(
-      blobExportAdapter.dumpToBlob(editorSnapshot),
-      PIXEL_ART_EDITOR_FILENAME,
-    );
-  }, [blobExportAdapter, downloaderAdapter, editorSnapshot]);
+  const downloadSnaphot: IEditorSnapshotService["downloadSnaphot"] =
+    useCallback(() => {
+      downloaderAdapter.download(
+        blobExportAdapter.dumpToBlob(editorSnapshot),
+        PIXEL_ART_EDITOR_FILENAME,
+      );
+    }, [blobExportAdapter, downloaderAdapter, editorSnapshot]);
 
-  const loadSnapshot = useMemo(
+  const loadSnapshot: IEditorSnapshotService["loadSnapshot"] = useMemo(
     () => ({
-      onClick: (
-        blob: Blob,
-        args?: {
-          onError?: (e: unknown) => void;
-          onSettled?: () => void;
-        },
-      ) => {
+      onClick: (blob, args) => {
         readFromBlob.mutate(
           { blob },
           {
