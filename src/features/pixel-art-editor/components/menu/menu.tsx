@@ -7,8 +7,8 @@ import {
   useModal,
 } from "../../../../shared/components";
 import {
-  ArrowDownTray,
-  ArrowUpTray,
+  ArrowDownTrayIcon,
+  ArrowUpTrayIcon,
   DocumentPlusIcon,
 } from "../../../../shared/icons";
 import { DomainErrorUtils } from "../../../error-handling/domain";
@@ -105,12 +105,12 @@ export function Menu() {
           <div className="flex flex-row gap-1">
             <div className="tooltip" data-tip="Download Json">
               <button className="btn btn-sm flex-1" onClick={downloadSnaphot}>
-                <ArrowDownTray className="size-4" />
+                <ArrowDownTrayIcon className="size-4" />
               </button>
             </div>
             <div className="tooltip" data-tip="Import Json">
               <button className="btn btn-sm flex-1" onClick={openFileModal}>
-                <ArrowUpTray className="size-4" />
+                <ArrowUpTrayIcon className="size-4" />
               </button>
             </div>
             <div className="tooltip" data-tip="New Sprite">

@@ -2,7 +2,7 @@ import { twMerge } from "tailwind-merge";
 
 import { TIcon } from "../types";
 
-export const ArrowUpTray: TIcon = ({ className }) => {
+export const ArrowUpTrayIcon: TIcon = ({ className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

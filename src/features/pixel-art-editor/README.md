@@ -69,7 +69,7 @@ function App() {
 - [x] FEAT: Read from local-storage.
 - [x] FEAT: Export app file.
 - [x] FEAT: Create new sprite CTA.
-- [ ] REFACTOR: Suffix all icons with "Icons" to convey usage.
+- [x] REFACTOR: Suffix all icons with "Icons" to convey usage.
 - [ ] FEAT: Add cancel button to import-to-json modal.
 - [ ] FEAT: Add an error boundary.
 - [ ] FEAT: Export sprite file.
