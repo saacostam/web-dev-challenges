@@ -23,6 +23,7 @@ describe("initializeEditorSnapshot", () => {
       get: vi.fn(() => getValue),
       set: vi.fn(),
       unsafeGet: vi.fn(),
+      removeItem: vi.fn(),
     };
   }
 
