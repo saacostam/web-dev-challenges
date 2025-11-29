@@ -8,7 +8,7 @@ export interface InProgressPillProps {
 
 export function InProgressPill({ className }: InProgressPillProps) {
   return (
-    <Pill className={twMerge("badge-info badge-outline", className)}>
+    <Pill className={twMerge("badge-accent badge-outline", className)}>
       In progress
     </Pill>
   );

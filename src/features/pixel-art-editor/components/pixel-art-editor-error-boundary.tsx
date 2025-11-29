@@ -1,4 +1,5 @@
 import { Component, PropsWithChildren, ReactNode } from "react";
+
 import { ErrorAlert } from "../../error-handling/ui";
 
 export class PixelArtEditorErrorBoundary extends Component<

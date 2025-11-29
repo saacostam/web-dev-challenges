@@ -22,9 +22,7 @@ export function ErrorAlert({
       <Header className="flex gap-2 flex-row mb-2 text-error-content items-center">
         <ExclamationCircleIcon className="size-8" /> {header}
       </Header>
-      <span className="text-error-content">
-         {children}
-      </span>
+      <span className="text-error-content">{children}</span>
       {cta && (
         <div className="mt-2">
           <button

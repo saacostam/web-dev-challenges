@@ -104,17 +104,26 @@ export function Menu() {
           <SubHeader className="text-lg text-center mb-2">File</SubHeader>
           <div className="grid grid-cols-2 gap-2">
             <div className="tooltip" data-tip="Download Json">
-              <button className="btn btn-sm flex-1" onClick={downloadSnaphot}>
+              <button
+                className="btn btn-outline btn-primary btn-sm"
+                onClick={downloadSnaphot}
+              >
                 <ArrowDownTrayIcon className="size-4" />
               </button>
             </div>
             <div className="tooltip" data-tip="Import Json">
-              <button className="btn btn-sm flex-1" onClick={openFileModal}>
+              <button
+                className="btn btn-outline btn-primary btn-sm"
+                onClick={openFileModal}
+              >
                 <ArrowUpTrayIcon className="size-4" />
               </button>
             </div>
             <div className="tooltip" data-tip="New Sprite">
-              <button className="btn btn-sm flex-1" onClick={openResetModal}>
+              <button
+                className="btn btn-outline btn-primary btn-sm"
+                onClick={openResetModal}
+              >
                 <DocumentPlusIcon className="size-4" />
               </button>
             </div>

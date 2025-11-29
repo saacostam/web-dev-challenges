@@ -14,7 +14,7 @@ export function Hero() {
   return (
     <HeroLayoutWrapper>
       <Logo className="text-4xl mb-4" iconClassName="size-10" />
-      <Paragraph className="mb-0 text-primary-content">
+      <Paragraph className="mb-0">
         A personal compendium of small projects and challenges that I’ve built
         to explore and deepen my understanding of React development.
       </Paragraph>
@@ -35,17 +35,8 @@ export function Hero() {
 
 function HeroLayoutWrapper({ children }: PropsWithChildren) {
   return (
-    <div
-      className="hero rounded-2xl overflow-clip bg-primary"
-      style={{
-        backgroundImage: "url(./hero.jpg)",
-        backgroundPositionY: "top",
-      }}
-    >
-      <div className="hero-overlay py-32"></div>
-      <div className="hero-content text-primary-content">
-        <div className="max-w-md">{children}</div>
-      </div>
+    <div className="rounded-2xl overflow-clip border-primary border p-8">
+      {children}
     </div>
   );
 }

@@ -17,7 +17,7 @@ export function ChallengeCard({ challenge, className }: TChallengeCardProps) {
   return (
     <div
       className={twMerge(
-        "card bg-base-100 shadow-xl text-base-content",
+        "card bg-base-100 shadow-xl text-base-content border border-primary",
         className,
       )}
     >

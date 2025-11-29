@@ -54,7 +54,7 @@ export function Navbar({ children }: PropsWithChildren) {
       />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <div className="navbar bg-primary text-primary-content w-full">
+        <div className="navbar border-b-primary border-b w-full">
           <div className="flex-none lg:hidden">
             <label
               htmlFor="my-drawer-3"
