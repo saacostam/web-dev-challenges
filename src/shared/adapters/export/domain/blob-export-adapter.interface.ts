@@ -1,10 +1,16 @@
 export interface IBlobExportAdapter {
   dumpToBlob(object: unknown): Blob;
-  readFromBlob(blob: Blob): Promise<IBlobExportAdapterPayload["ReadFromBlob"]>;
+  readFromBlob(
+    args: IBlobExportAdapterPayload["ReadFromBlobIn"],
+  ): Promise<IBlobExportAdapterPayload["ReadFromBlobOut"]>;
 }
 
 export interface IBlobExportAdapterPayload {
-  ReadFromBlob:
+  ReadFromBlobIn: {
+    blob: Blob;
+  };
+
+  ReadFromBlobOut:
     | {
         type: "valid";
         value: unknown;

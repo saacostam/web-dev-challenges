@@ -11,7 +11,11 @@ export function useJsonBlobExportAdapter(): IBlobExportAdapter {
   }, []);
 
   const readFromBlob = useCallback(
-    async (blob: Blob): Promise<IBlobExportAdapterPayload["ReadFromBlob"]> => {
+    async ({
+      blob,
+    }: IBlobExportAdapterPayload["ReadFromBlobIn"]): Promise<
+      IBlobExportAdapterPayload["ReadFromBlobOut"]
+    > => {
       if (!blob.type.includes("json")) {
         return {
           type: "invalid",

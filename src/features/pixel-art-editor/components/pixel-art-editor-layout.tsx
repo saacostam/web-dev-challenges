@@ -19,7 +19,7 @@ export function PixelArtEditorLayout({
   return (
     <div
       className={twMerge(
-        "flex flex-row border-primary border-2 rounded-2xl h-96",
+        "flex flex-row border-primary border-2 rounded-2xl h-[512px]",
         className,
       )}
     >

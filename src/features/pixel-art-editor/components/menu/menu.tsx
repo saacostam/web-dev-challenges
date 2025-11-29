@@ -1,15 +1,26 @@
 import { useCallback } from "react";
 
-import { SubHeader } from "../../../../shared/components";
+import { useAdapters } from "../../../../shared/adapters/core/app";
+import { SubHeader, useModal } from "../../../../shared/components";
+import { ArrowDownTray, ArrowUpTray } from "../../../../shared/icons";
+import { DomainErrorUtils } from "../../../error-handling/domain";
 import { useEditorSnapshot } from "../../providers";
 import { TEditorOptionName } from "../../types";
 import { ColorPicker } from "./color-picker";
+import { ImportFromJson } from "./import-from-json";
 import { ShowGridCheck } from "./show-grid-check";
 import { ToolMenu } from "./tool-menu";
 import { UndoRedo } from "./undo-redo";
 
 export function Menu() {
-  const { editorSnapshot, dispatch } = useEditorSnapshot();
+  const { notificationsAdapter } = useAdapters();
+  const { editorSnapshot, dispatch, downloadSnaphot, loadSnapshot } =
+    useEditorSnapshot();
+  const {
+    Modal: FileModal,
+    closeModal: closeFileModal,
+    openModal: openFileModal,
+  } = useModal();
 
   const onClickMenuOption = useCallback(
     (name: TEditorOptionName) =>
@@ -76,6 +87,24 @@ export function Menu() {
           currentColorSecondary={editorSnapshot.currentColorSecondary}
           setCurrentColorSecondary={setCurrentColorSecondary}
         />
+        <div className="mt-2">
+          <SubHeader className="text-lg text-center mb-2">File</SubHeader>
+          <div className="flex flex-row gap-1">
+            <div className="tooltip" data-tip="Download Json">
+              <button
+                className="btn btn-primary btn-sm flex-1"
+                onClick={downloadSnaphot}
+              >
+                <ArrowDownTray className="size-5" />
+              </button>
+            </div>
+            <div className="tooltip" data-tip="Import Json">
+              <button className="btn btn-sm flex-1" onClick={openFileModal}>
+                <ArrowUpTray className="size-5" />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="mt-auto">
         <ShowGridCheck
@@ -90,6 +119,18 @@ export function Menu() {
           undoAvailable={editorSnapshot.history.undoAvailable}
         />
       </div>
+      <FileModal>
+        <ImportFromJson
+          onSettled={closeFileModal}
+          loadSnapshot={loadSnapshot}
+          onError={(e) => {
+            notificationsAdapter.logError(
+              DomainErrorUtils.getMessageWithDefault(e, "Unnable to load file"),
+              "import-from-json-error",
+            );
+          }}
+        />
+      </FileModal>
     </div>
   );
 }

@@ -1,10 +1,13 @@
-import { Dispatch, useEffect, useMemo, useReducer } from "react";
+import { useCallback, useEffect, useMemo, useReducer } from "react";
 
 import { useAdapters } from "../../../../shared/adapters/core/app";
+import { useMutationReadFromBlob } from "../../../../shared/adapters/export/app";
 import { ClientStorageKeys } from "../../../../shared/adapters/storage/domain";
+import { DomainError, DomainErrorType } from "../../../error-handling/domain";
 import { getUuid } from "../../../string.utils";
 import { COLORS } from "../../constants";
 import { InitializerService, SeederService } from "../../services";
+import { ValidationService } from "../../services/validation";
 import {
   TFrame,
   TPixelArtEditorAction,
@@ -191,6 +194,9 @@ export function reduceEditorSnapshot(
         history: action.payload.history,
       };
     }
+    case "set-pixel-art-internal-snapshot": {
+      return action.payload.setSnapshot(state);
+    }
     case "create-frame": {
       const currentFrame = state.frames.find(
         (frame) => frame.id === state._currentFrameId,
@@ -296,11 +302,12 @@ export function reduceEditorSnapshot(
   }
 }
 
-export function useEditorSnapshotStateHook(): {
-  editorSnapshot: TPixelArtEditorSnapShot;
-  dispatch: Dispatch<TPixelArtEditorAction>;
-} {
-  const { storageAdapter } = useAdapters();
+const PIXEL_ART_EDITOR_FILENAME = "pixel-art-editor.json";
+
+export function useEditorSnapshotStateHook() {
+  const { blobExportAdapter, downloaderAdapter, storageAdapter } =
+    useAdapters();
+  const readFromBlob = useMutationReadFromBlob();
 
   const history = useEditorHistoryStateHook();
 
@@ -336,11 +343,78 @@ export function useEditorSnapshotStateHook(): {
     [editorSnapshot],
   );
 
+  const downloadSnaphot = useCallback(() => {
+    downloaderAdapter.download(
+      blobExportAdapter.dumpToBlob(editorSnapshot),
+      PIXEL_ART_EDITOR_FILENAME,
+    );
+  }, [blobExportAdapter, downloaderAdapter, editorSnapshot]);
+
+  const loadSnapshot = useMemo(
+    () => ({
+      onClick: (
+        blob: Blob,
+        args?: {
+          onError?: (e: unknown) => void;
+          onSettled?: () => void;
+        },
+      ) => {
+        readFromBlob.mutate(
+          { blob },
+          {
+            onError: args?.onError,
+            onSettled: args?.onSettled,
+            onSuccess: (res) => {
+              if (res.type === "invalid") {
+                args?.onError?.(
+                  new DomainError(
+                    DomainErrorType.BAD_REQUEST,
+                    res.reason,
+                    "[EditorSnapshot.loadSnapshot] Couldn't read from blob",
+                  ),
+                );
+                return;
+              }
+
+              const { value } = res;
+              if (!ValidationService.isPixelArtEditorStorableSnapshot(value)) {
+                args?.onError?.(
+                  new DomainError(
+                    DomainErrorType.BAD_REQUEST,
+                    "Invalid file structure",
+                    "[EditorSnapshot.loadSnapshot] Blob read, but structure is invalid",
+                  ),
+                );
+                return;
+              }
+
+              history.reset();
+              dispatch({
+                type: "set-pixel-art-internal-snapshot",
+                payload: {
+                  setSnapshot: (state) => ({
+                    ...state,
+                    ...value,
+                    history,
+                  }),
+                },
+              });
+            },
+          },
+        );
+      },
+      isPending: readFromBlob.isPending,
+    }),
+    [history, readFromBlob],
+  );
+
   return useMemo(
     () => ({
       editorSnapshot: finalEditorSnapshot,
       dispatch,
+      downloadSnaphot,
+      loadSnapshot,
     }),
-    [finalEditorSnapshot, dispatch],
+    [finalEditorSnapshot, dispatch, downloadSnaphot, loadSnapshot],
   );
 }

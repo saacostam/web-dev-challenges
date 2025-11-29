@@ -35,12 +35,18 @@ export function useModal() {
       )?.showModal(),
     [id],
   );
+  const closeModal = useCallback(
+    () =>
+      (document.getElementById(id) as HTMLDialogElement | undefined)?.close(),
+    [id],
+  );
 
   return useMemo(
     () => ({
       Modal,
+      closeModal,
       openModal,
     }),
-    [Modal, openModal],
+    [Modal, closeModal, openModal],
   );
 }

@@ -22,7 +22,7 @@ describe("useJsonBlobExportAdapter", () => {
       type: "application/json",
     });
 
-    const out = await result.current.readFromBlob(blob);
+    const out = await result.current.readFromBlob({ blob });
 
     expect(out).toEqual({
       type: "valid",
@@ -35,7 +35,7 @@ describe("useJsonBlobExportAdapter", () => {
 
     const blob = new Blob(["hello"], { type: "text/plain" });
 
-    const out = await result.current.readFromBlob(blob);
+    const out = await result.current.readFromBlob({ blob });
 
     expect(out).toEqual({
       type: "invalid",
@@ -50,7 +50,7 @@ describe("useJsonBlobExportAdapter", () => {
       type: "application/json",
     });
 
-    const out = await result.current.readFromBlob(blob);
+    const out = await result.current.readFromBlob({ blob });
 
     expect(out).toEqual({
       type: "invalid",

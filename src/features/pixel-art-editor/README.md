@@ -67,7 +67,7 @@ function App() {
 - [x] FEAT: Store in local-storage.
 - [x] FIX: Keep track of current frame by using id >> Add ids to frames.
 - [x] FEAT: Read from local-storage.
-- [ ] FEAT: Export app file.
+- [x] FEAT: Export app file.
 - [ ] FEAT: Export sprite file.
 - [ ] FEAT: Create clear/reset canvas CTA.
 - [ ] FEAT: Add an error boundary.

@@ -2,6 +2,9 @@ import { useCallback, useMemo, useState } from "react";
 
 import { TPixelArtEditorHistory, TUpdate } from "../../types";
 
+const DEFAULT_UPDATES_STACK: TUpdate[] = [];
+const DEFAULT_HISTORY_STACK: TUpdate[] = [];
+
 /**
  * Creates a state container to manage the history of a pixel art editor. The returned object has the following properties:
  * - `updates`: The current state of the editor as an array of updates
@@ -14,8 +17,17 @@ import { TPixelArtEditorHistory, TUpdate } from "../../types";
  * @returns {TPixelArtEditorHistory}
  */
 export function useEditorHistoryStateHook(): TPixelArtEditorHistory {
-  const [updatesStack, setUpdatesStack] = useState<TUpdate[]>([]);
-  const [historyStack, setHistoryStack] = useState<TUpdate[]>([]);
+  const [updatesStack, setUpdatesStack] = useState<TUpdate[]>(
+    DEFAULT_UPDATES_STACK,
+  );
+  const [historyStack, setHistoryStack] = useState<TUpdate[]>(
+    DEFAULT_HISTORY_STACK,
+  );
+
+  const reset = useCallback(() => {
+    setUpdatesStack(DEFAULT_UPDATES_STACK);
+    setHistoryStack(DEFAULT_HISTORY_STACK);
+  }, []);
 
   const add = useCallback((action: TUpdate) => {
     // When a new action is added, clear the history stack as a new "path" is created
@@ -59,7 +71,8 @@ export function useEditorHistoryStateHook(): TPixelArtEditorHistory {
       undoAvailable,
       redo,
       redoAvailable,
+      reset,
     }),
-    [updatesStack, add, undo, undoAvailable, redo, redoAvailable],
+    [updatesStack, add, undo, undoAvailable, redo, redoAvailable, reset],
   );
 }

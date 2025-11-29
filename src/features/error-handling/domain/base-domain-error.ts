@@ -16,7 +16,7 @@ export class DomainError extends Error {
 }
 
 export const DomainErrorUtils = {
-  getDefaultMessage(e: unknown, defaultMessage: string): string {
+  getMessageWithDefault(e: unknown, defaultMessage: string): string {
     let message = defaultMessage;
     if (e instanceof DomainError) {
       message = e.message;
