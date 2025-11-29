@@ -4,28 +4,48 @@ import { TIcon } from "../../../shared/icons";
 import { Identifider } from "../../../shared/types";
 import { TPosition } from "./core.types";
 
+/**
+ * A single pixel in the canvas.
+ * @property {string} color - The hex/color value of the pixel.
+ */
 export interface TPixel {
   color: string;
 }
 
+/**
+ * A 2D canvas composed of pixels.
+ *
+ * @typedef {TPixel[][]} TCanvas
+ */
 export type TCanvas = TPixel[][];
 
+/**
+ * A single animation frame composed of a pixel canvas.
+ *
+ * @property {Identifider} id - Unique frame identifier.
+ * @property {TCanvas} canvas - 2D grid of pixels.
+ */
 export interface TFrame {
   id: Identifider;
   canvas: TCanvas;
 }
 
+/**
+ * Represents a reversible change (mutation) applied to a frame or editor state.
+ */
 export type TMutation =
   | {
+      /** Bucket fill or similar color replacement mutation. */
       type: "switch-color";
       payload: {
         fromColor: string;
-        position: TPosition;
         toColor: string;
+        position: TPosition;
         frame: TFrame;
       };
     }
   | {
+      /** Creates a new frame. */
       type: "create-frame";
       payload: {
         order: number;
@@ -33,6 +53,7 @@ export type TMutation =
       };
     }
   | {
+      /** Deletes an existing frame. */
       type: "delete-frame";
       payload: {
         order: number;
@@ -40,21 +61,43 @@ export type TMutation =
       };
     };
 
+/**
+ * Represents a set of mutations that form a single editor update event.
+ */
 export interface TUpdate {
   mutations: TMutation[];
 }
 
+/**
+ * History manager for undo/redo functionality.
+ */
 export interface TPixelArtEditorHistory {
+  /** All recorded updates. */
   updates: TUpdate[];
+
+  /** Add a new update to the history. */
   add: (action: TUpdate) => TUpdate;
+
+  /** Redo the next available update. */
   redo: () => TUpdate | undefined;
+
+  /** Whether redo is currently possible. */
   redoAvailable: boolean;
+
+  /** Undo the most recent update. */
   undo: () => TUpdate | undefined;
+
+  /** Whether undo is currently possible. */
   undoAvailable: boolean;
+
+  /** Clears the entire history. */
   reset: () => void;
 }
 
-// NOTE: The values are shown to the user, so they should be descriptive and pretty to read
+/**
+ * Editor tool names shown to the user.
+ * MUST remain human-readable because they appear in UI.
+ */
 export enum TEditorOptionName {
   BUCKET = "Bucket (B)",
   COLOR_PICKER = "Color Picker (C)",
@@ -62,91 +105,101 @@ export enum TEditorOptionName {
   PENCIL = "Pencil (P)",
 }
 
+/**
+ * A selectable editor tool.
+ *
+ * @property {TIcon} icon - Icon displayed in UI.
+ * @property {TEditorOptionName} name - Human-readable name.
+ */
 export interface TEditorOption {
   icon: TIcon;
   name: TEditorOptionName;
 }
 
+/**
+ * Palette of selectable colors.
+ *
+ * @property {string[]} colors - Hex/color values.
+ */
 export interface TColorPalette {
   colors: string[];
 }
 
 /**
- * EDITOR SNAPSHOT
+ * A snapshot of all editor state that can be stored/exported.
+ *
+ * NOTE: If updated, also update the validation service.
  */
-
-// IMPORTANT: If the types are updated, the validation service needs to be updated to match the new structure
-
 export interface TPixelArtEditorStorableSnapShot {
   currentColorPrimary: string;
   currentColorSecondary: string;
   fps: number;
   frames: TFrame[];
+  /** ID of the currently selected frame. */
   _currentFrameId: TFrame["id"];
   selectedOption: TEditorOptionName;
   showGrid: boolean;
 }
 
+/**
+ * Internal snapshot including undo/redo history.
+ */
 export interface TPixelArtEditorInternalSnapShot
   extends TPixelArtEditorStorableSnapShot {
   history: TPixelArtEditorHistory;
 }
 
+/**
+ * Full runtime snapshot including the resolved current frame.
+ */
 export interface TPixelArtEditorSnapShot
   extends TPixelArtEditorInternalSnapShot {
   currentFrame: TFrame;
 }
 
+/**
+ * All possible actions that can be dispatched to the pixel editor reducer.
+ */
 export type TPixelArtEditorAction =
   | {
+      /** Set the primary color. */
       type: "current-color-primary";
-      payload: {
-        color: string;
-      };
+      payload: { color: string };
     }
   | {
+      /** Set the secondary color. */
       type: "current-color-secondary";
-      payload: {
-        color: string;
-      };
+      payload: { color: string };
     }
   | {
+      /** Set animation FPS. */
       type: "fps";
-      payload: {
-        fps: number;
-      };
+      payload: { fps: number };
     }
   | {
+      /** Toggle grid visibility. */
       type: "show-grid";
-      payload: {
-        showGrid: boolean;
-      };
+      payload: { showGrid: boolean };
     }
   | {
+      /** Change the selected tool. */
       type: "current-option";
-      payload: {
-        currentOption: TEditorOptionName;
-      };
+      payload: { currentOption: TEditorOptionName };
     }
   | {
+      /** Commit a mutation update to history. */
       type: "commit-update";
-      payload: {
-        update: TUpdate;
-      };
+      payload: { update: TUpdate };
     }
+  | { type: "undo" }
+  | { type: "redo" }
   | {
-      type: "undo";
-    }
-  | {
-      type: "redo";
-    }
-  | {
+      /** Replace history instance. */
       type: "set-history";
-      payload: {
-        history: TPixelArtEditorHistory;
-      };
+      payload: { history: TPixelArtEditorHistory };
     }
   | {
+      /** Apply a transformation to the internal snapshot. */
       type: "set-pixel-art-internal-snapshot";
       payload: {
         setSnapshot: (
@@ -155,36 +208,52 @@ export type TPixelArtEditorAction =
       };
     }
   | {
+      /** Insert a new frame at an order index. */
       type: "create-frame";
-      payload: {
-        order: number;
-      };
+      payload: { order: number };
     }
   | {
+      /** Delete a frame by ID. */
       type: "delete-frame";
-      payload: {
-        id: Identifider;
-      };
+      payload: { id: Identifider };
     }
   | {
+      /** Switch current frame by ID. */
       type: "set-frame";
-      payload: {
-        id: Identifider;
-      };
+      payload: { id: Identifider };
     }
   | {
+      /** Duplicate an existing frame. */
       type: "duplicate-frame";
-      payload: {
-        id: Identifider;
-      };
+      payload: { id: Identifider };
     };
 
+/**
+ * Public service interface for interacting with editor snapshots.
+ */
 export interface IEditorSnapshotService {
+  /** Current editor snapshot. */
   editorSnapshot: TPixelArtEditorSnapShot;
+
+  /** Dispatch actions to update the editor state. */
   dispatch: Dispatch<TPixelArtEditorAction>;
+
+  /** Download the snapshot as a JSON file. */
   downloadSnaphot: () => void;
+
+  /** Load a snapshot from a Blob. */
   loadSnapshot: {
+    /** Whether the load operation is in progress. */
     isPending: boolean;
+
+    /**
+     * Load snapshot from a blob.
+     *
+     * @param {Blob} blob - Snapshot file.
+     * @param {Object} [args]
+     * @param {Function} [args.onError] - Called on error.
+     * @param {Function} [args.onSettled] - Called after completion.
+     */
     onClick: (
       blob: Blob,
       args?: {
@@ -193,5 +262,7 @@ export interface IEditorSnapshotService {
       },
     ) => void;
   };
+
+  /** Reset all internal state. */
   reset: () => void;
 }

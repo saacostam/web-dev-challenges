@@ -79,6 +79,6 @@ function App() {
 - [ ] PERF: Re-visit the hover for pencil option (maybe other as well).
   - [ ] Also, transition between not-clicked to clicked.
 - [ ] TEST: Add unit tests.
-- [ ] DOCS: Add js-doc annotations to types.
+- [x] DOCS: Add js-doc annotations to types.
 - [ ] DOCS: Add js-doc to complex business logic.
 - [ ] DOCS: Document module code structure - implementation details.
