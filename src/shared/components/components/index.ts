@@ -1,5 +1,6 @@
 export * from "./alert";
 export * from "./checkbox";
+export * from "./confirmation-modal";
 export * from "./divider";
 export * from "./header";
 export * from "./input";
