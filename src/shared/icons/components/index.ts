@@ -7,6 +7,7 @@ export * from "./clock-icon";
 export * from "./code-bracket-icon";
 export * from "./cog-6-tooth-icon";
 export * from "./cube-icon";
+export * from "./document-plus-icon";
 export * from "./duplicate-icon";
 export * from "./eraser-icon";
 export * from "./eye-dropper-icon";
