@@ -56,7 +56,7 @@ export function ImportFromJson({
               loadSnapshot.isPending ? "btn-disabled" : ""
             }`}
             disabled={loadSnapshot.isPending}
-            type="reset"
+            type="submit"
           >
             Upload
           </button>
