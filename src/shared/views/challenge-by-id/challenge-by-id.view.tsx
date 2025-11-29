@@ -5,7 +5,7 @@ import {
   TChallenge,
   useChallengeById,
 } from "../../../features/challenges";
-import { Error404 } from "../../../features/error-handling";
+import { Error404 } from "../../../features/error-handling/ui";
 import {
   Divider,
   Header,
