@@ -1,3 +1,5 @@
+export * from "./arrow-down-tray";
+export * from "./arrow-up-tray";
 export * from "./arrow-uturn-left";
 export * from "./arrow-uturn-right";
 export * from "./bell-alert-icon";
