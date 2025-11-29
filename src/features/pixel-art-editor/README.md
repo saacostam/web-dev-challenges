@@ -70,7 +70,7 @@ function App() {
 - [x] FEAT: Export app file.
 - [x] FEAT: Create new sprite CTA.
 - [x] REFACTOR: Suffix all icons with "Icons" to convey usage.
-- [ ] FEAT: Add cancel button to import-to-json modal.
+- [x] FEAT: Add cancel button to import-to-json modal.
 - [ ] FEAT: Add an error boundary.
 - [ ] FEAT: Export sprite file.
 - [ ] FEAT: Create keyboard hot-keys visualizer.

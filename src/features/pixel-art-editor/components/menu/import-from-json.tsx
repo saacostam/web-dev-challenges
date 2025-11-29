@@ -5,12 +5,14 @@ import { IEditorSnapshotService } from "../../types";
 
 export interface ImportFromJsonProps {
   loadSnapshot: IEditorSnapshotService["loadSnapshot"];
+  onCancel: () => void;
   onError: (e: unknown) => void;
   onSettled: () => void;
 }
 
 export function ImportFromJson({
   loadSnapshot,
+  onCancel,
   onError,
   onSettled,
 }: ImportFromJsonProps) {
@@ -45,14 +47,20 @@ export function ImportFromJson({
         />
         {error && <div className="text-danger">{error}</div>}
 
-        <button
-          className={`btn btn-primary block ml-auto mt-4 ${
-            loadSnapshot.isPending ? "btn-disabled" : ""
-          }`}
-          disabled={loadSnapshot.isPending}
-        >
-          Upload
-        </button>
+        <div className="flex flex-row justify-end mt-4 gap-2">
+          <button className="btn block" onClick={onCancel} type="button">
+            Cancel
+          </button>
+          <button
+            className={`btn btn-primary block ${
+              loadSnapshot.isPending ? "btn-disabled" : ""
+            }`}
+            disabled={loadSnapshot.isPending}
+            type="reset"
+          >
+            Upload
+          </button>
+        </div>
       </form>
     </>
   );

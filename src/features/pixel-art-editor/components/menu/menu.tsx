@@ -136,14 +136,15 @@ export function Menu() {
       </div>
       <FileModal>
         <ImportFromJson
-          onSettled={closeFileModal}
           loadSnapshot={loadSnapshot}
+          onCancel={closeFileModal}
           onError={(e) => {
             notificationsAdapter.logError(
               DomainErrorUtils.getMessageWithDefault(e, "Unnable to load file"),
               "import-from-json-error",
             );
           }}
+          onSettled={closeFileModal}
         />
       </FileModal>
       <ResetModal>

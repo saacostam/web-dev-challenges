@@ -34,7 +34,7 @@ export function ConfirmationModal({
         <button className="btn btn-primary" onClick={primaryButton.onClick}>
           {primaryButton.label}
         </button>
-        <button className="btn btn-secondary" onClick={secondaryButton.onClick}>
+        <button className="btn" onClick={secondaryButton.onClick}>
           {secondaryButton.label}
         </button>
       </div>
