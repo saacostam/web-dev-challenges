@@ -8,4 +8,5 @@ export interface IStorageAdapter {
   unsafeGet<T>(key: ClientStorageKeys): T | null;
   get(key: ClientStorageKeys): unknown | null;
   set(key: ClientStorageKeys, obj: unknown): void;
+  removeItem(key: ClientStorageKeys): void;
 }

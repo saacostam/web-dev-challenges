@@ -24,12 +24,17 @@ export function useLocalStorageAdapter(): IStorageAdapter {
     localStorage.setItem(key, JSON.stringify(obj));
   }, []);
 
+  const removeItem: IStorageAdapter["removeItem"] = useCallback((key) => {
+    localStorage.removeItem(key);
+  }, []);
+
   return useMemo(
     () => ({
       get,
       unsafeGet,
       set,
+      removeItem,
     }),
-    [get, unsafeGet, set],
+    [get, unsafeGet, set, removeItem],
   );
 }
