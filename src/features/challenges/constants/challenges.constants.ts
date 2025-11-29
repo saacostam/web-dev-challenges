@@ -11,7 +11,6 @@ export const CHALLENGES: TChallenge[] = [
       "Pixel Art Editor with core features commonly found in similar applications.",
     Component: PixelArtEditor,
     difficulty: TChallengeDifficulty.HARD,
-    inProgress: true,
     Icon: CubeIcon,
   },
   {
