@@ -53,9 +53,6 @@ export function reduceEditorSnapshot(
         history: action.payload.history,
       };
     }
-    case "set-pixel-art-internal-snapshot": {
-      return action.payload.setSnapshot(state);
-    }
     case "set-frame": {
       const id = action.payload.id;
 
@@ -66,6 +63,9 @@ export function reduceEditorSnapshot(
         ...state,
         _currentFrameId: id,
       };
+    }
+    case "set-pixel-art-internal-snapshot": {
+      return action.payload.setSnapshot(state);
     }
     // Actions built on update objects (i.e., history-reversible updates)
     case "commit-update": {
