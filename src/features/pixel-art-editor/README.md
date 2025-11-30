@@ -72,13 +72,15 @@ function App() {
 - [x] REFACTOR: Suffix all icons with "Icons" to convey usage.
 - [x] FEAT: Add cancel button to import-to-json modal.
 - [x] FEAT: Add an error boundary.
-- [ ] FEAT: Export sprite file.
-- [ ] FEAT: Create keyboard hot-keys visualizer.
-- [ ] REFACTOR: Centralize menu buttons (undoredo, menu-options, color-picker?).
-- [ ] PERF: `frame-preview.tsx` is rendering as often as possible (empty dep array) because frame is not inmutable.
-- [ ] PERF: Re-visit the hover for pencil option (maybe other as well).
+- [ ] FEAT(deprioritized): Export sprite file.
+- [ ] FEAT(deprioritized): Create keyboard hot-keys visualizer.
+- [ ] REFACTOR(deprioritized): Centralize menu buttons (undoredo, menu-options, color-picker?).
+- [ ] PERF(deprioritized): `frame-preview.tsx` is rendering as often as possible (empty dep array) because frame is not inmutable.
+- [ ] PERF(deprioritized): Re-visit the hover for pencil option (maybe other as well).
   - [ ] Also, transition between not-clicked to clicked.
-- [ ] TEST: Add unit tests.
+- [x] TEST: Add tests for core logic
+- [ ] TEST: Add tests for component
+- [ ] TEST: Add tests for managers 
 - [x] DOCS: Add js-doc annotations to types.
 - [ ] DOCS: Add js-doc to complex business logic.
 - [ ] DOCS: Document module code structure - implementation details.
