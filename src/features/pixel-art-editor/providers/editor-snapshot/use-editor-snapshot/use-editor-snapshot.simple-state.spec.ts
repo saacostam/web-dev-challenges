@@ -17,7 +17,7 @@ const mockAdapter: MockAdapters = {
   },
 };
 
-describe("useEditorSnapshot", () => {
+describe("useEditorSnapshotStateHook [Simple State Updates]", () => {
   it("should update currentColorPrimary", () => {
     const { result } = renderHookWithProviders(
       () => useEditorSnapshotStateHook(),
