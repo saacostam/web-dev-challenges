@@ -6,7 +6,7 @@ import { ClientStorageKeys } from "../../../../../shared/adapters/storage/domain
 import {
   DomainError,
   DomainErrorType,
-} from "../../../../error-handling/domain";
+} from "../../../../../shared/error-handling/domain";
 import { InitializerService } from "../../../services";
 import { ValidationService } from "../../../services/validation";
 import {
