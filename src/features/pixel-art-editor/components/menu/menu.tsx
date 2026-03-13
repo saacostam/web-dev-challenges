@@ -11,7 +11,7 @@ import {
   ArrowUpTrayIcon,
   DocumentPlusIcon,
 } from "../../../../shared/icons";
-import { DomainErrorUtils } from "../../../../shared/error-handling/domain";
+import { DomainErrorUtils } from "../../../../shared/errors/domain";
 import { useEditorSnapshot } from "../../providers";
 import { TEditorOptionName } from "../../types";
 import { ColorPicker } from "./color-picker";

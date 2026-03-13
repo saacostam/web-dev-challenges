@@ -1,6 +1,6 @@
 import { Component, PropsWithChildren, ReactNode } from "react";
 
-import { ErrorAlert } from "../../../shared/error-handling/ui";
+import { ErrorAlert } from "../../../shared/errors/ui";
 
 export class PixelArtEditorErrorBoundary extends Component<
   PropsWithChildren,

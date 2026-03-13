@@ -6,7 +6,7 @@ import {
   MockAdapters,
   renderHookWithProviders,
 } from "../../../../../shared/test";
-import { DomainError } from "../../../../../shared/error-handling/domain";
+import { DomainError } from "../../../../../shared/errors/domain";
 import { InitializerService } from "../../../services";
 import { TPixelArtEditorInternalSnapShot } from "../../../types";
 import { useEditorSnapshotStateHook } from "./use-editor-snapshot";
