@@ -16,7 +16,7 @@ export function Logo({ className, iconClassName }: LogoProps) {
       )}
     >
       <LeafIcon className={twMerge(iconClassName, "hidden sm:block")} />
-      React Challenges
+      Web Dev Challenges
     </h1>
   );
 }

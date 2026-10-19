@@ -6,12 +6,12 @@ import {
   SubHeader,
   useModal,
 } from "../../../../shared/components";
+import { DomainErrorUtils } from "../../../../shared/errors/domain";
 import {
   ArrowDownTrayIcon,
   ArrowUpTrayIcon,
   DocumentPlusIcon,
 } from "../../../../shared/icons";
-import { DomainErrorUtils } from "../../../../shared/errors/domain";
 import { useEditorSnapshot } from "../../providers";
 import { TEditorOptionName } from "../../types";
 import { ColorPicker } from "./color-picker";

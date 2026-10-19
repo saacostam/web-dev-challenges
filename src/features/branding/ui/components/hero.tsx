@@ -16,7 +16,7 @@ export function Hero() {
       <Logo className="text-4xl mb-4" iconClassName="size-10" />
       <Paragraph className="mb-0">
         A personal compendium of small projects and challenges that I’ve built
-        to explore and deepen my understanding of React development.
+        to explore and deepen my understanding of web development.
       </Paragraph>
       {queryAuthor.isLoading ? (
         <div className={twMerge(githubCtaClassNames, "skeleton")}></div>

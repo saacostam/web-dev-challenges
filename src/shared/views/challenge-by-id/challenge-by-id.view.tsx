@@ -5,7 +5,6 @@ import {
   TChallenge,
   useChallengeById,
 } from "../../../features/challenges";
-import { Error404 } from "../../../shared/errors/ui";
 import {
   Divider,
   Header,
@@ -13,6 +12,7 @@ import {
   Pill,
   SubHeader,
 } from "../../../shared/components";
+import { Error404 } from "../../../shared/errors/ui";
 
 export function ChallengeByIdView() {
   const params = useParams();

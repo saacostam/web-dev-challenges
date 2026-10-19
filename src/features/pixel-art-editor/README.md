@@ -80,7 +80,7 @@ function App() {
   - [ ] Also, transition between not-clicked to clicked.
 - [x] TEST: Add tests for core logic
 - [ ] TEST: Add tests for component
-- [ ] TEST: Add tests for managers 
+- [ ] TEST: Add tests for managers
 - [x] DOCS: Add js-doc annotations to types.
 - [ ] DOCS: Add js-doc to complex business logic.
 - [ ] DOCS: Document module code structure - implementation details.
