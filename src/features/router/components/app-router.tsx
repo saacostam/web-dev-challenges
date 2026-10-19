@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 
 import { Error404 } from "../../../shared/errors/ui";
 import { AdaptersProvider } from "../../../shared/adapters/core/ui";
@@ -8,7 +8,7 @@ import { ChallengeByIdView, HomeView } from "../../../shared/views";
 
 export function AppRouter() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AdaptersProvider>
         <RepositoriesProvider>
           <MainLayout>
@@ -20,6 +20,6 @@ export function AppRouter() {
           </MainLayout>
         </RepositoriesProvider>
       </AdaptersProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
