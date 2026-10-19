@@ -48,12 +48,12 @@ export function usePomodoroTimer() {
   });
 
   const { play: playNotification } = useSoundPlayer({
-    audioSrc: "/audio/alert-before.mp3",
+    audioSrc: "./audio/alert-before.mp3",
     volume: settings.volume / SETTINGS_CONFIG.VOLUME.MAX,
   });
 
   const { play: playEnd } = useSoundPlayer({
-    audioSrc: "/audio/ding.mp3",
+    audioSrc: "./audio/ding.mp3",
     volume: settings.volume / SETTINGS_CONFIG.VOLUME.MAX,
   });
 
