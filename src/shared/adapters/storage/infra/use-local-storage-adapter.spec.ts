@@ -9,7 +9,6 @@ describe("useLocalStorageAdapter", () => {
   const mockSetItem = vi.fn();
 
   beforeAll(() => {
-    // @ts-expect-error: Global overwrite for test
     Object.defineProperty(global, "localStorage", {
       value: {
         getItem: mockGetItem,
