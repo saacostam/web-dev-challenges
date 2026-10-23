@@ -3,7 +3,7 @@ import { PropsWithChildren, useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { CHALLENGES } from "@/features/challenges";
-import { TRoute, useGetRoutes } from "@/features/router";
+import { TRoute, useGetRoutes } from "@/shared/router";
 import { Logo, SubHeader } from "@/shared/components";
 import { ThreeLinesIcon, XIcon } from "@/shared/icons";
 import { NavbarNavigationItem } from "./types";

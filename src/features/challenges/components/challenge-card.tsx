@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
 import { Pill } from "@/shared/components";
-import { TRoute, useGetRoutes } from "@/features/router";
+import { TRoute, useGetRoutes } from "@/shared/router";
 import { TChallenge } from "../types";
 import { InProgressPill } from "./in-progress-pill";
 
