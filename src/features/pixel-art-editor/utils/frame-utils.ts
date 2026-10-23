@@ -1,4 +1,4 @@
-import { getUuid } from "@/features/string.utils";
+import { getUuid } from "@/shared/string.utils";
 import { COLORS } from "../constants";
 import { TFrame, TPosition } from "../types";
 
