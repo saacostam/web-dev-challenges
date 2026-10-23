@@ -1,10 +1,10 @@
-import { Hero } from "../../../features/branding/ui";
-import { CHALLENGES, ChallengeCard } from "../../../features/challenges";
+import { Hero } from "@/features/branding/ui";
+import { CHALLENGES, ChallengeCard } from "@/features/challenges";
 import {
   Divider,
   // Pagination,
   // Select,
-} from "../../../shared/components";
+} from "@/shared/components";
 
 // import { SearchBar } from "../../filters";
 

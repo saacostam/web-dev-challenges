@@ -4,15 +4,15 @@ import {
   InProgressPill,
   TChallenge,
   useChallengeById,
-} from "../../../features/challenges";
+} from "@/features/challenges";
 import {
   Divider,
   Header,
   Paragraph,
   Pill,
   SubHeader,
-} from "../../../shared/components";
-import { Error404 } from "../../../shared/errors/ui";
+} from "@/shared/components";
+import { Error404 } from "@/shared/errors/ui";
 
 export function ChallengeByIdView() {
   const params = useParams();
