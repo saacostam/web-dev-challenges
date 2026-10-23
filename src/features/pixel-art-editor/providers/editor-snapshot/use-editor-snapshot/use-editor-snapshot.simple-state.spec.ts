@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import {
   MockAdapters,
   renderHookWithProviders,
-} from "../../../../../shared/test";
+} from "@/shared/test";
 import { TEditorOptionName, TPixelArtEditorHistory } from "../../../types";
 import { useEditorSnapshotStateHook } from "./use-editor-snapshot";
 

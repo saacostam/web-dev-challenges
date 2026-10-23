@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 import {
   ArrowUturnLeftIcon,
   ArrowUturnRightIcon,
-} from "../../../../shared/icons";
+} from "@/shared/icons";
 
 export interface UndoRedoProps {
   redo: () => void;

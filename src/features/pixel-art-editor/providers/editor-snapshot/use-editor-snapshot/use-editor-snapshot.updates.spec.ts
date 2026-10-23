@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import {
   MockAdapters,
   renderHookWithProviders,
-} from "../../../../../shared/test";
+} from "@/shared/test";
 import { TCanvas, TPixelArtEditorAction, TUpdate } from "../../../types";
 import { applyUpdate } from "../apply-and-rever-update";
 import { useEditorSnapshotStateHook } from "./use-editor-snapshot";

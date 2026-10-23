@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-import { FormatTimeUtils } from "../../time";
+import { FormatTimeUtils } from "@/features/time";
 
 /**
  * Props for the PomodoroTimerCounter component.

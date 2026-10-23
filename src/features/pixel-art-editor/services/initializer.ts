@@ -1,7 +1,7 @@
 import {
   ClientStorageKeys,
   IStorageAdapter,
-} from "../../../shared/adapters/storage/domain";
+} from "@/shared/adapters/storage/domain";
 import {
   COLORS,
   DEFAULT_DIMENSIONS,

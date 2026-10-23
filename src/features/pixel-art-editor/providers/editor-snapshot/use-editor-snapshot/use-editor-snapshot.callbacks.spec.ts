@@ -1,12 +1,12 @@
 import { act, waitFor } from "@testing-library/react";
 import { Mock, describe, expect, it, vi } from "vitest";
 
-import { IBlobExportAdapterPayload } from "../../../../../shared/adapters/export/domain";
-import { DomainError } from "../../../../../shared/errors/domain";
+import { IBlobExportAdapterPayload } from "@/shared/adapters/export/domain";
+import { DomainError } from "@/shared/errors/domain";
 import {
   MockAdapters,
   renderHookWithProviders,
-} from "../../../../../shared/test";
+} from "@/shared/test";
 import { InitializerService } from "../../../services";
 import { TPixelArtEditorInternalSnapShot } from "../../../types";
 import { useEditorSnapshotStateHook } from "./use-editor-snapshot";

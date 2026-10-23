@@ -1,6 +1,6 @@
 import { Dispatch, useCallback, useMemo } from "react";
 
-import { getUuid } from "../../string.utils";
+import { getUuid } from "@/features/string.utils";
 import {
   TCreateTask,
   TDeleteTask,

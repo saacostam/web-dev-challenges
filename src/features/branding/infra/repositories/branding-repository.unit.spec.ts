@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { BASE_URL } from "../../../../shared/async-state-management";
+import { BASE_URL } from "@/shared/async-state-management";
 import { BrandingRepository } from "./branding-repository";
 
 describe("BrandingRepository", () => {

@@ -1,5 +1,5 @@
-import { BASE_URL } from "../../../../shared/async-state-management";
-import { IBrandingRepository, IBrandingRepositoryPayload } from "../../domain";
+import { BASE_URL } from "@/shared/async-state-management";
+import { IBrandingRepository, IBrandingRepositoryPayload } from "@/features/branding/domain";
 
 export class BrandingRepository implements IBrandingRepository {
   async getAuthor(): Promise<IBrandingRepositoryPayload["GetAuthorOut"]> {

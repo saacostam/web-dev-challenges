@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-import { Header } from "../../../../shared/components";
+import { Header } from "@/shared/components";
 import { IEditorSnapshotService } from "../../types";
 
 export interface ImportFromJsonProps {

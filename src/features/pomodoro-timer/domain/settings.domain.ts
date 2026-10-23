@@ -1,7 +1,7 @@
 import {
   ClientStorageKeys,
   IStorageAdapter,
-} from "../../../shared/adapters/storage/domain";
+} from "@/shared/adapters/storage/domain";
 import { DEFAULT_SETTINGS, SETTINGS_CONFIG } from "../constants";
 import {
   TPomodoroSettings,

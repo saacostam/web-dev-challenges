@@ -1,4 +1,4 @@
-import { PlusIcon } from "../../../../shared/icons";
+import { PlusIcon } from "@/shared/icons";
 
 export interface AddFrameCtaProps {
   onClick(): void;

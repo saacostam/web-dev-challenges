@@ -1,4 +1,4 @@
-import { getUuid } from "../../../string.utils";
+import { getUuid } from "@/features/string.utils";
 import { TFrame, TPixelArtEditorInternalSnapShot, TUpdate } from "../../types";
 
 /**

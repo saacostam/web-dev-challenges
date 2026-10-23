@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useMemo, useReducer } from "react";
 
-import { useAdapters } from "../../../../../shared/adapters/core/app";
-import { useMutationReadFromBlob } from "../../../../../shared/adapters/export/app";
-import { ClientStorageKeys } from "../../../../../shared/adapters/storage/domain";
+import { useAdapters } from "@/shared/adapters/core/app";
+import { useMutationReadFromBlob } from "@/shared/adapters/export/app";
+import { ClientStorageKeys } from "@/shared/adapters/storage/domain";
 import {
   DomainError,
   DomainErrorType,
-} from "../../../../../shared/errors/domain";
+} from "@/shared/errors/domain";
 import { InitializerService } from "../../../services";
 import { ValidationService } from "../../../services/validation";
 import {

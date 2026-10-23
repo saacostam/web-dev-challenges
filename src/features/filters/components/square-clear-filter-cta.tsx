@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { XCircleIcon } from "../../../shared/icons";
+import { XCircleIcon } from "@/shared/icons";
 
 export interface SquareClearFilterCtaProps {
   clearFilterHref: string;

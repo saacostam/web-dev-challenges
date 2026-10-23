@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useReducer } from "react";
 
-import { useAdapters } from "../../../shared/adapters/core/app";
-import { ClientStorageKeys } from "../../../shared/adapters/storage/domain";
-import { useSoundPlayer } from "../../sound";
-import { useXSecondsTimer } from "../../time";
+import { useAdapters } from "@/shared/adapters/core/app";
+import { ClientStorageKeys } from "@/shared/adapters/storage/domain";
+import { useSoundPlayer } from "@/features/sound";
+import { useXSecondsTimer } from "@/features/time";
 import { SETTINGS_CONFIG } from "../constants";
 import {
   getCurrentStepDurationInSeconds,

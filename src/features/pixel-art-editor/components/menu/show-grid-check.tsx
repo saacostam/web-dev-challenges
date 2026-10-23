@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 
-import { Checkbox } from "../../../../shared/components";
+import { Checkbox } from "@/shared/components";
 
 export interface ShowGridCheckProps {
   className?: string;

@@ -1,5 +1,5 @@
-import { Input } from "../../../shared/components";
-import { SearchIcon } from "../../../shared/icons";
+import { Input } from "@/shared/components";
+import { SearchIcon } from "@/shared/icons";
 
 export function SearchBar() {
   return (

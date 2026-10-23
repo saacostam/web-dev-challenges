@@ -1,17 +1,17 @@
 import { useCallback } from "react";
 
-import { useAdapters } from "../../../../shared/adapters/core/app";
+import { useAdapters } from "@/shared/adapters/core/app";
 import {
   ConfirmationModal,
   SubHeader,
   useModal,
-} from "../../../../shared/components";
-import { DomainErrorUtils } from "../../../../shared/errors/domain";
+} from "@/shared/components";
+import { DomainErrorUtils } from "@/shared/errors/domain";
 import {
   ArrowDownTrayIcon,
   ArrowUpTrayIcon,
   DocumentPlusIcon,
-} from "../../../../shared/icons";
+} from "@/shared/icons";
 import { useEditorSnapshot } from "../../providers";
 import { TEditorOptionName } from "../../types";
 import { ColorPicker } from "./color-picker";

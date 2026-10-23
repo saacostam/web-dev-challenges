@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 
-import { TIcon } from "../../../shared/icons";
-import { Identifider } from "../../../shared/types";
+import { TIcon } from "@/shared/icons";
+import { Identifider } from "@/shared/types";
 import { TPosition } from "./core.types";
 
 /**

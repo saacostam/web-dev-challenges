@@ -1,6 +1,6 @@
-import { ClockIcon, CubeIcon } from "../../../shared/icons";
-import { PixelArtEditor } from "../../pixel-art-editor";
-import { PomodoroTimer } from "../../pomodoro-timer";
+import { ClockIcon, CubeIcon } from "@/shared/icons";
+import { PixelArtEditor } from "@/features/pixel-art-editor";
+import { PomodoroTimer } from "@/features/pomodoro-timer";
 import { TChallenge, TChallengeDifficulty } from "../types";
 
 export const CHALLENGES: TChallenge[] = [

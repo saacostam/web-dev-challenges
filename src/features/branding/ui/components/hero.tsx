@@ -2,9 +2,9 @@ import { PropsWithChildren } from "react";
 
 import { twMerge } from "tailwind-merge";
 
-import { Logo, Paragraph } from "../../../../shared/components";
-import { GithubIcon } from "../../../../shared/icons";
-import { useQueryAuthor } from "../../app";
+import { Logo, Paragraph } from "@/shared/components";
+import { GithubIcon } from "@/shared/icons";
+import { useQueryAuthor } from "@/features/branding/app";
 
 export function Hero() {
   const queryAuthor = useQueryAuthor();

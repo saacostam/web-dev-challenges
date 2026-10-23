@@ -1,4 +1,4 @@
-import { getUuid } from "../../string.utils";
+import { getUuid } from "@/features/string.utils";
 import { TCanvas, TFrame } from "../types";
 
 export interface seedFrameProps {
