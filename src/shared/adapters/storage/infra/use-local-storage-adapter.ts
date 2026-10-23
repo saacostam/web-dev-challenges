@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 
-import { ClientStorageKeys, IStorageAdapter } from "../domain";
+import { ClientStorageKeys, IStorageAdapter } from "@/shared/adapters/storage/domain";
 
 export function useLocalStorageAdapter(): IStorageAdapter {
   const get = useCallback(function (key: ClientStorageKeys) {

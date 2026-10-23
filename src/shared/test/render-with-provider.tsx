@@ -9,10 +9,10 @@ import {
 } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 
-import { AdaptersContext } from "../adapters/core/app";
-import { IAdapters } from "../adapters/core/domain";
-import { RepositoryContext } from "../repositories/app";
-import { IRepositories } from "../repositories/domain";
+import { AdaptersContext } from "@/shared/adapters/core/app";
+import { IAdapters } from "@/shared/adapters/core/domain";
+import { RepositoryContext } from "@/shared/repositories/app";
+import { IRepositories } from "@/shared/repositories/domain";
 
 // REPOSITORIES
 export type MockRepositories = {

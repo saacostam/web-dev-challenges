@@ -2,10 +2,10 @@ import { PropsWithChildren, useEffect, useMemo, useState } from "react";
 
 import { Link, useLocation } from "react-router-dom";
 
-import { CHALLENGES } from "../../../../features/challenges";
-import { TRoute, useGetRoutes } from "../../../../features/router";
-import { Logo, SubHeader } from "../../../components";
-import { ThreeLinesIcon, XIcon } from "../../../icons";
+import { CHALLENGES } from "@/features/challenges";
+import { TRoute, useGetRoutes } from "@/features/router";
+import { Logo, SubHeader } from "@/shared/components";
+import { ThreeLinesIcon, XIcon } from "@/shared/icons";
 import { NavbarNavigationItem } from "./types";
 
 export function Navbar({ children }: PropsWithChildren) {

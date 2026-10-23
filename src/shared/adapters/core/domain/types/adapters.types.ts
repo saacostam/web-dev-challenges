@@ -1,7 +1,7 @@
-import { IDownloaderAdapter } from "../../../downloader/domain";
-import { IBlobExportAdapter } from "../../../export/domain";
-import { INotificationsAdapter } from "../../../notifications/domain";
-import { IStorageAdapter } from "../../../storage/domain";
+import { IDownloaderAdapter } from "@/shared/adapters/downloader/domain";
+import { IBlobExportAdapter } from "@/shared/adapters/export/domain";
+import { INotificationsAdapter } from "@/shared/adapters/notifications/domain";
+import { IStorageAdapter } from "@/shared/adapters/storage/domain";
 
 export interface IAdapters {
   blobExportAdapter: IBlobExportAdapter;

@@ -2,7 +2,7 @@ import { useCallback, useMemo } from "react";
 
 import toast from "react-hot-toast";
 
-import { INotificationsAdapter } from "../domain";
+import { INotificationsAdapter } from "@/shared/adapters/notifications/domain";
 
 export function useToastNotificationsAdapter(): INotificationsAdapter {
   const logError: INotificationsAdapter["logError"] = useCallback(

@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 
-import { IDownloaderAdapter } from "../domain";
+import { IDownloaderAdapter } from "@/shared/adapters/downloader/domain";
 
 export function useDownloaderAdapter(): IDownloaderAdapter {
   const download: IDownloaderAdapter["download"] = useCallback(

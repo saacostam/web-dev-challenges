@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 
-import { Alert, Header } from "../../../../shared/components";
-import { ExclamationCircleIcon } from "../../../../shared/icons";
+import { Alert, Header } from "@/shared/components";
+import { ExclamationCircleIcon } from "@/shared/icons";
 
 export interface ErrorAlertProps {
   header: string;

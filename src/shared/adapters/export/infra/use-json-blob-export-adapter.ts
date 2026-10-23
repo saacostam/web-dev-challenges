@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 
-import { IBlobExportAdapter, IBlobExportAdapterPayload } from "../domain";
+import { IBlobExportAdapter, IBlobExportAdapterPayload } from "@/shared/adapters/export/domain";
 
 const JSON_MIME = "application/json";
 

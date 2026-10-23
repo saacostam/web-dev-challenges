@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { MutationKey } from "../../../async-state-management";
-import { useAdapters } from "../../core/app";
-import { IBlobExportAdapterPayload } from "../domain";
+import { MutationKey } from "@/shared/async-state-management";
+import { useAdapters } from "@/shared/adapters/core/app";
+import { IBlobExportAdapterPayload } from "@/shared/adapters/export/domain";
 
 export function useMutationReadFromBlob() {
   const { blobExportAdapter } = useAdapters();
